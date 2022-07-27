@@ -17,7 +17,6 @@ export const useKeepAliveStore = defineStore("keepAlive", {
     setKeepAliveList(payload: RouteData[]) {
       this.keepAliveList = [];
       for (let i = 0; i < payload.length; i++) {
-        console.log(payload[i]);
         if (payload[i].keepAlive) {
           this.keepAliveList.push(payload[i].name as string);
         }

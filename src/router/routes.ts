@@ -31,6 +31,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
       title: "page1",
       icon: "blur_on",
       requiresAuth: false,
+      keepAlive: true,
     },
   },
   {

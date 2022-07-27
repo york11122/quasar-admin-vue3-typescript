@@ -30,7 +30,7 @@
       <base-menu />
     </q-drawer>
 
-    <q-page-container class="full-height">
+    <q-page-container class="app-main full-height">
       <router-view v-slot="{ Component, route }">
         <transition name="fade-transform" mode="out-in">
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
