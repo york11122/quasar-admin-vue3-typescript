@@ -5,6 +5,7 @@ import { useBreadcrumbsStore } from "src/stores/breadcrumbs";
 import { useKeepAliveStore } from "src/stores/keep-alive";
 import { SessionStorage } from "quasar";
 import { RouteLocationNormalized } from "vue-router";
+import LoadingBar from "src/components/LoadingBar/LoadingBar";
 import constantRoutes from "src/router/constantRoutes";
 
 const routerStore = useRouterStore();
@@ -14,6 +15,8 @@ const keepAliveStore = useKeepAliveStore();
 
 export default boot(async ({ router }) => {
   router.beforeEach((to, from, next) => {
+    LoadingBar.stop();
+    LoadingBar.start();
     handleTagViewAndBreadcrumbsAndKeepAlive(to, from);
     // Simulate obtaining token
     const token = "true"; //sessionStorage.getItem('access_token')
@@ -42,12 +45,20 @@ export default boot(async ({ router }) => {
       }
     } else {
       // go to a route that does not require authorization
-      // if (constantRoutes.some((item) => { return item.path === to.path })) {
-      //   next()
-      // } else {
-      //   next({ path: '/logon' })
-      // }
+      if (
+        constantRoutes.some((item) => {
+          return item.path === to.path;
+        })
+      ) {
+        next();
+      } else {
+        next({ path: "/logon" });
+      }
     }
+  });
+
+  router.afterEach(() => {
+    LoadingBar.stop();
   });
 });
 

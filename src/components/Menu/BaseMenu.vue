@@ -7,18 +7,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+export default {
+  name: "BaseMenu"
+}
+</script>
+
+<script lang="ts" setup>
 import { useRouterStore } from "../../stores/permission";
 import BaseMenuItem from "./BaseMenuItem.vue";
 
-export default defineComponent({
-  name: "BaseMenu",
-  components: { BaseMenuItem },
-  setup() {
-    const store = useRouterStore();
-    return {
-      router: store.getPermissionRoutes[0].children,
-    };
-  },
-});
+const store = useRouterStore();
+const router = store.getPermissionRoutes[0].children
+
 </script>

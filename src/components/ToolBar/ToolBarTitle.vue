@@ -7,14 +7,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "ToolBarTitle",
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-  },
-});
+export default {
+  name: "ToolBarTitle"
+}
+</script>
+
+<script lang="ts" setup>
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  }
+})
 </script>

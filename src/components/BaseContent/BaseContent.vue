@@ -1,19 +1,19 @@
 <template>
   <div class="main-content">
-    <q-scroll-area
-      ref="scrollArea"
-      :thumb-style="thumbStyle"
-      :visible="false"
-      style="height: 100%"
-    >
+    <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%">
       <slot></slot>
     </q-scroll-area>
   </div>
 </template>
 
 <script lang="ts">
+export default {
+  name: "BaseContent",
+}
+</script>
+
+<script lang="ts" setup>
 import {
-  defineComponent,
   ref,
   onMounted,
   onUnmounted,
@@ -23,74 +23,53 @@ import {
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
 
-export const thumbStyle = {
+const thumbStyle = {
   right: "5px",
   borderRadius: "5px",
   backgroundColor: "#616161",
   width: "5px",
 };
 
-export const thumbStyleOfMenu = {
-  borderRadius: "5px",
-  backgroundColor: "rgba(144,147,153,0.9)",
-  padding: "10px;",
-  margin: "10px;",
-  width: "3px",
+const route = useRoute();
+const scrollArea = ref<QScrollArea | null>(null);
+
+const basePath = ref<string>("");
+
+const scrollToPosition = (value: number) => {
+  scrollArea.value?.setScrollPosition("horizontal", value, 300);
 };
 
-export default defineComponent({
-  name: "BaseContent",
-  setup() {
-    const route = useRoute();
-    const scrollArea = ref<QScrollArea | null>(null);
+const getScrollPosition = () => {
+  return scrollArea.value?.getScrollPosition();
+};
 
-    const basePath = ref<string>("");
+onMounted(() => {
+  basePath.value = route.path;
 
-    const scrollToPosition = (value: number) => {
-      scrollArea.value?.setScrollPosition("horizontal", value, 300);
-    };
+  const t = SessionStorage.getItem(basePath.value);
+  if (t) {
+    const toPosition = JSON.parse(t as string);
+    scrollToPosition(toPosition.listScrollTop);
+  }
+});
 
-    const getScrollPosition = () => {
-      return scrollArea.value?.getScrollPosition();
-    };
+onUnmounted(() => {
+  SessionStorage.remove(basePath.value);
+});
 
-    onMounted(() => {
-      basePath.value = route.path;
+onActivated(() => {
+  const t = SessionStorage.getItem(route.path);
+  if (t) {
+    const toPosition = JSON.parse(t as string);
+    scrollToPosition(toPosition.listScrollTop);
+  }
+});
 
-      const t = SessionStorage.getItem(basePath.value);
-      if (t) {
-        const toPosition = JSON.parse(t as string);
-        scrollToPosition(toPosition.listScrollTop);
-      }
-    });
-
-    onUnmounted(() => {
-      SessionStorage.remove(basePath.value);
-    });
-
-    onActivated(() => {
-      const t = SessionStorage.getItem(route.path);
-      if (t) {
-        const toPosition = JSON.parse(t as string);
-        scrollToPosition(toPosition.listScrollTop);
-      }
-    });
-
-    onDeactivated(() => {
-      const position = getScrollPosition();
-      SessionStorage.set(
-        basePath.value,
-        JSON.stringify({ listScrollTop: position ? position.top : 0 })
-      );
-    });
-
-    return {
-      thumbStyle,
-      thumbStyleOfMenu,
-      scrollArea,
-      scrollToPosition,
-      getScrollPosition,
-    };
-  },
+onDeactivated(() => {
+  const position = getScrollPosition();
+  SessionStorage.set(
+    basePath.value,
+    JSON.stringify({ listScrollTop: position ? position.top : 0 })
+  );
 });
 </script>

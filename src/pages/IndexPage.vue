@@ -1,49 +1,32 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
-  </q-page>
+  <base-content>
+    <div class="base-markdown-content">
+      <v-md-editor style="width:100%" :model-value="content" mode="preview" />
+    </div>
+  </base-content>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from "components/models";
-import ExampleComponent from "components/ExampleComponent.vue";
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
+export default {
   name: "IndexPage",
-  components: { ExampleComponent },
-  setup() {
-    const todos = ref<Todo[]>([
-      {
-        id: 1,
-        content: "ct1",
-      },
-      {
-        id: 2,
-        content: "ct2",
-      },
-      {
-        id: 3,
-        content: "ct3",
-      },
-      {
-        id: 4,
-        content: "ct4",
-      },
-      {
-        id: 5,
-        content: "ct5",
-      },
-    ]);
-    const meta = ref<Meta>({
-      totalCount: 1200,
-    });
-    return { todos, meta };
-  },
-});
+}
 </script>
+
+<script lang="ts" setup>
+import { ref } from "vue"
+import BaseContent from "src/components/BaseContent/BaseContent.vue"
+const content = ref<string>(":::tip 123 \n123 123")
+</script>
+
+<style>
+.base-markdown-content {
+  padding: 0px 10px 0px 10px;
+  max-width: 100%;
+  margin: 0 auto;
+  color: #2c3e50;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI Emoji, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+</style>

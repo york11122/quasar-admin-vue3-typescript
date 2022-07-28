@@ -99,12 +99,12 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["SessionStorage"],
+      plugins: ["SessionStorage", "LoadingBar"],
     },
 
     //animations: 'all', // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: ['fadeInRight'],
+    animations: ["fadeInRight"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
     // sourceFiles: {

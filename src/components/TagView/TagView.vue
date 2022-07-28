@@ -1,50 +1,21 @@
 <template>
-  <div
-    class="row"
-    :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 15px' }"
-  >
-    <q-tabs
-      class="bg-white col-12"
-      align="left"
-      active-color="primary"
-      active-class="text-weight-bolder bg-grey-2"
-      dense
-      swipeable
-      inline-label
-      indicator-color="transparent"
-      :outside-arrows="$q.platform.is.electron ? true : false"
-      :breakpoint="0"
-    >
-      <q-route-tab
-        class="tagView"
-        to="/"
-        no-caps
-        content-class="tagView-q-router-tab"
-      >
+  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 15px' }">
+    <q-tabs class="bg-white col-12" align="left" active-color="primary" active-class="text-weight-bolder bg-grey-2"
+      dense swipeable inline-label indicator-color="transparent"
+      :outside-arrows="$q.platform.is.electron ? true : false" :breakpoint="0">
+      <q-route-tab class="tagView" to="/" no-caps content-class="tagView-q-router-tab">
         <q-icon size="1.3rem" name="home" />
         <div class="line-limit-length" style="margin: 0px 5px 0px 5px">
           首頁
         </div>
       </q-route-tab>
 
-      <template
-        v-for="(tag, i) in tagViewStore.tagView"
-        :key="tag.fullPath + i"
-      >
-        <q-route-tab
-          class="tagView"
-          :to="tag.fullPath"
-          no-caps
-          content-class="tagView-q-router-tab"
-        >
+      <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
+        <q-route-tab class="tagView" :to="tag.fullPath" no-caps content-class="tagView-q-router-tab">
           <q-icon size="1.3rem" :name="tag.icon" />
           <div class="line-limit-length">{{ tag.title }}</div>
-          <q-icon
-            class="tagView-remove-icon"
-            style="display: inline-flex"
-            name="close"
-            @click.prevent.stop="removetagViewAt(i)"
-          />
+          <q-icon class="tagView-remove-icon" style="display: inline-flex" name="close"
+            @click.prevent.stop="removetagViewAt(i)" />
           <q-menu touch-position context-menu>
             <q-list dense>
               <q-item clickable v-close-popup>
@@ -76,52 +47,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+export default {
+  name: "TagView"
+}
+</script>
+
+<script lang="ts" setup>
 import { useTagViewStore } from "src/stores/tagView";
+import { useKeepAliveStore } from "src/stores/keep-alive"
 import { SessionStorage } from "quasar";
+const tagViewStore = useTagViewStore();
+const keepAliveStore = useKeepAliveStore();
 
-export default defineComponent({
-  name: "TagView",
-  setup() {
-    const tagViewStore = useTagViewStore();
+const removeAllTagView = () => {
+  tagViewStore.removeAllTagView();
+};
 
-    const removeAllTagView = () => {
-      tagViewStore.removeAllTagView();
-    };
+const removetagViewAt = (i: number) => {
+  tagViewStore.removeTagViewAt(i);
+};
 
-    const removetagViewAt = (i: number) => {
-      tagViewStore.removeTagViewAt(i);
-    };
+const removetagViewOnRight = (i: number) => {
+  tagViewStore.removeTagViewOnRight(i);
+};
 
-    const removetagViewOnRight = (i: number) => {
-      tagViewStore.removeTagViewOnRight(i);
-    };
+const removetagViewOnLeft = (i: number) => {
+  tagViewStore.removeTagViewOnLeft(i);
+};
 
-    const removetagViewOnLeft = (i: number) => {
-      tagViewStore.removeTagViewOnLeft(i);
-    };
+const removeOthertagView = (i: number) => {
+  tagViewStore.removeOtherTagView(i);
+};
 
-    const removeOthertagView = (i: number) => {
-      tagViewStore.removeOtherTagView(i);
-    };
-
-    tagViewStore.$subscribe(
-      (mutation, state) => {
-        SessionStorage.set("tagView", JSON.stringify(state.tagView));
-      },
-      { detached: false }
-    );
-
-    return {
-      tagViewStore,
-      removeAllTagView,
-      removetagViewAt,
-      removetagViewOnRight,
-      removetagViewOnLeft,
-      removeOthertagView,
-    };
+tagViewStore.$subscribe(
+  (mutation, state) => {
+    keepAliveStore.setKeepAliveList(state.tagView)
+    SessionStorage.set("tagView", JSON.stringify(state.tagView));
   },
-});
+  { detached: false }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -143,6 +107,7 @@ export default defineComponent({
   border-radius: 0.2rem;
   opacity: 0.58;
   transition: all 0.3s;
+
   &:hover {
     opacity: 1;
   }

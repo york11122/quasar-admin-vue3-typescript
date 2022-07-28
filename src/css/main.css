@@ -1,14 +1,14 @@
 .app-main {
-    width: 100%;
-    position: relative;
-  }
-  
-  .main-content {
-    height: 100%;
-    min-height: 100%;
-    background-color: #fcfcff;
-  }
-  
-  aside {
-    top: 86px;
-  }
+  width: 100%;
+  position: relative;
+}
+
+.main-content {
+  height: 100%;
+  min-height: 100%;
+  background-color: #fcfcff;
+}
+
+aside {
+  top: 86px;
+}
