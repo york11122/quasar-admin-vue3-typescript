@@ -13,9 +13,30 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
-const content = ref<string>(":::tip 123 \n123 123")
+import { api } from "src/boot/axios"
+
+const content = ref<string>("")
+const isLoading = ref<boolean>(false)
+
+onMounted(() => {
+  getData()
+})
+
+const getData = async () => {
+  try {
+    isLoading.value = true;
+    const res = await api.get("data/data.md")
+    content.value = res.data
+    isLoading.value = false;
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
+
+
 </script>
 
 <style>

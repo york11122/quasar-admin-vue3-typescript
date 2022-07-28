@@ -18,8 +18,8 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     path: "/",
     name: "home",
     meta: {
-      title: "home",
-      icon: "blur_on",
+      title: "首頁",
+      icon: "home",
       requiresAuth: false,
     },
   },
@@ -29,9 +29,21 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     name: "markdown",
     meta: {
       title: "markdown",
+      icon: "article",
+      requiresAuth: false,
+      keepAlive: false,
+    },
+  },
+
+  {
+    component: () => import("src/pages/Lottie.vue"),
+    path: "/lottie",
+    name: "Lottie",
+    meta: {
+      title: "Lottie動畫",
       icon: "blur_on",
       requiresAuth: false,
-      keepAlive: true,
+      keepAlive: false,
     },
   },
   {
@@ -39,32 +51,35 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     path: "/page",
     name: "page",
     meta: {
-      title: "page",
-      icon: "blur_on",
+      title: "第一層",
+      icon: "filter_1",
       requiresAuth: false,
       isOpen: false,
     },
     children: [
       {
-        component: () => import("src/pages/Markdown.vue"),
-        path: "aa",
-        name: "aa",
-        meta: {
-          title: "page1",
-          icon: "blur_on",
-          requiresAuth: false,
-        },
-      },
-      {
-        component: () => import("src/pages/Markdown.vue"),
+        component: () => import("components/Layout/Layout.vue"),
         path: "page2",
         name: "page2",
         meta: {
-          title: "page2",
-          icon: "blur_on",
+          title: "第二層",
+          icon: "filter_2",
           requiresAuth: false,
         },
+        children: [
+          {
+            component: () => import("src/pages/Markdown.vue"),
+            path: "page3",
+            name: "page3",
+            meta: {
+              title: "第三層",
+              icon: "filter_3",
+              requiresAuth: false,
+            },
+          },
+        ]
       },
+
     ],
   },
 ];

@@ -22,7 +22,7 @@
 
     <q-page-container class="app-main full-height">
       <router-view v-slot="{ Component, route }">
-        <transition name="fade-transform" mode="out-in">
+        <transition name="fade-transform" mode="out-in" enter-active-class="animated fadeIn">
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
             <component :is="Component" :key="route.fullPath" />
           </keep-alive>
