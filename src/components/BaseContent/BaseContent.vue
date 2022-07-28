@@ -1,5 +1,5 @@
 <template>
-  <q-page class="main-content">
+  <div class="main-content">
     <q-scroll-area
       ref="scrollArea"
       :thumb-style="thumbStyle"
@@ -8,7 +8,7 @@
     >
       <slot></slot>
     </q-scroll-area>
-  </q-page>
+  </div>
 </template>
 
 <script lang="ts">

@@ -24,11 +24,11 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     },
   },
   {
-    component: () => import("pages/Page1.vue"),
-    path: "/page1",
-    name: "page1",
+    component: () => import("src/pages/Markdown.vue"),
+    path: "/markdown",
+    name: "markdown",
     meta: {
-      title: "page1",
+      title: "markdown",
       icon: "blur_on",
       requiresAuth: false,
       keepAlive: true,
@@ -46,7 +46,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     },
     children: [
       {
-        component: () => import("pages/Page1.vue"),
+        component: () => import("src/pages/Markdown.vue"),
         path: "aa",
         name: "aa",
         meta: {
@@ -56,7 +56,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
         },
       },
       {
-        component: () => import("pages/Page1.vue"),
+        component: () => import("src/pages/Markdown.vue"),
         path: "page2",
         name: "page2",
         meta: {
