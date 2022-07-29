@@ -51,7 +51,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     path: "/page",
     name: "page",
     meta: {
-      title: "第一層",
+      title: "第1層",
       icon: "filter_1",
       requiresAuth: false,
       isOpen: false,
@@ -62,7 +62,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
         path: "page2",
         name: "page2",
         meta: {
-          title: "第二層",
+          title: "第2層",
           icon: "filter_2",
           requiresAuth: false,
         },
@@ -72,14 +72,23 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
             path: "page3",
             name: "page3",
             meta: {
-              title: "第三層",
+              title: "第3層",
               icon: "filter_3",
               requiresAuth: false,
             },
           },
-        ]
+        ],
       },
-
+      {
+        component: () => import("src/pages/Markdown.vue"),
+        path: "page2_2",
+        name: "page2_2",
+        meta: {
+          title: "第2-1層",
+          icon: "filter_2",
+          requiresAuth: false,
+        },
+      },
     ],
   },
 ];

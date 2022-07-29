@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 15px' }">
+  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 5px' }">
     <q-tabs class="bg-white col-12" align="left" active-color="primary" active-class="text-weight-bolder bg-grey-2"
       dense swipeable inline-label indicator-color="transparent"
       :outside-arrows="$q.platform.is.electron ? true : false" :breakpoint="0">
@@ -9,7 +9,7 @@
           首頁
         </div>
       </q-route-tab>
-
+      <q-separator vertical />
       <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
         <q-route-tab class="tagView" :to="tag.fullPath" no-caps content-class="tagView-q-router-tab">
           <q-icon size="1.3rem" :name="tag.icon" />
