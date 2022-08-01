@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
-import router from "../router/routes";
-import constructionRouters from "../router/permissionUtils";
 import { RouteRecordRaw } from "vue-router";
 import { deepClone } from "src/utils/index";
+import router from "src/router/routes";
+import constructionRouters from "src/router/utils/permissionUtils";
 
 export const useRouterStore = defineStore("routes", {
   state: () => ({

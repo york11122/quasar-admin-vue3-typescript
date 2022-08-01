@@ -77,7 +77,7 @@ export const useTagViewStore = defineStore("tagView", {
     removeAllTagView() {
       this.tagView = [];
       SessionStorage.set("tagView", "[]");
-      router.push("/");
+      router.push({ name: "home" });
     },
   },
 });
@@ -94,7 +94,7 @@ export function removeATagView(state: any, index: any) {
   // If tagView is empty
   if (state.tagView.length === 0) {
     SessionStorage.set("tagView", "[]");
-    router.push("/");
+    router.push({ name: "home" });
   } else {
     // If the last tagView is removed, the route jumps to the current last tagView
     if (

@@ -16,7 +16,7 @@
       <tag-view />
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" :width="240" show-if-above bordered>
+    <q-drawer v-model="leftDrawerOpen" :width="225" show-if-above bordered>
       <base-menu />
     </q-drawer>
 

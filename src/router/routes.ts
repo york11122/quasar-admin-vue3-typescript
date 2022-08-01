@@ -4,7 +4,7 @@ declare module "vue-router" {
   interface RouteMeta {
     roles?: string[];
     title: string;
-    icon: string;
+    icon?: string;
     itemLabel?: string;
     keepAlive?: boolean;
     requiresAuth?: boolean;
@@ -14,7 +14,7 @@ declare module "vue-router" {
 
 const asyncRoutesChildren: RouteRecordRaw[] = [
   {
-    component: () => import("pages/IndexPage.vue"),
+    component: () => import("src/pages/Index.vue"),
     path: "/",
     name: "home",
     meta: {
@@ -32,7 +32,6 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
       icon: "pages",
       requiresAuth: false,
       keepAlive: false,
-
     },
     children: [
       {
@@ -56,11 +55,12 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
           requiresAuth: false,
           keepAlive: false,
         },
-      }]
+      },
+    ],
   },
 
   {
-    component: () => import("pages/Lottie.vue"),
+    component: () => import("src/pages/lottie/Lottie.vue"),
     path: "/lottie",
     name: "Lottie",
     meta: {
@@ -102,7 +102,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
             },
           },
         ],
-      }
+      },
     ],
   },
 ];
