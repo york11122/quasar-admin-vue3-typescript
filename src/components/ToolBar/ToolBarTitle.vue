@@ -13,10 +13,5 @@ export default {
 </script>
 
 <script lang="ts" setup>
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  }
-})
+withDefaults(defineProps<{ title?: string }>(), { title: '' })
 </script>

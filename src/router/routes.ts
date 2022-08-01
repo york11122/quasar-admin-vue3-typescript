@@ -7,7 +7,7 @@ declare module "vue-router" {
     icon: string;
     itemLabel?: string;
     keepAlive?: boolean;
-    requiresAuth: boolean;
+    requiresAuth?: boolean;
     isOpen?: boolean;
   }
 }
@@ -24,19 +24,43 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     },
   },
   {
-    component: () => import("src/pages/Markdown.vue"),
+    component: () => import("components/Layout/Layout.vue"),
     path: "/markdown",
     name: "markdown",
     meta: {
       title: "markdown",
-      icon: "article",
+      icon: "pages",
       requiresAuth: false,
       keepAlive: false,
+
     },
+    children: [
+      {
+        component: () => import("pages/markdown/MDViewer.vue"),
+        path: "md-viewer",
+        name: "MDViewer",
+        meta: {
+          title: "MD呈現",
+          icon: "article",
+          requiresAuth: false,
+          keepAlive: true,
+        },
+      },
+      {
+        component: () => import("pages/markdown/MDEditor.vue"),
+        path: "md-editor",
+        name: "MDEditor",
+        meta: {
+          title: "編輯器",
+          icon: "edit_note",
+          requiresAuth: false,
+          keepAlive: false,
+        },
+      }]
   },
 
   {
-    component: () => import("src/pages/Lottie.vue"),
+    component: () => import("pages/Lottie.vue"),
     path: "/lottie",
     name: "Lottie",
     meta: {
@@ -48,10 +72,10 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
   },
   {
     component: () => import("components/Layout/Layout.vue"),
-    path: "/page",
-    name: "page",
+    path: "/menu1",
+    name: "menu1",
     meta: {
-      title: "第1層",
+      title: "摺疊目錄",
       icon: "filter_1",
       requiresAuth: false,
       isOpen: false,
@@ -59,36 +83,26 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     children: [
       {
         component: () => import("components/Layout/Layout.vue"),
-        path: "page2",
-        name: "page2",
+        path: "menu2",
+        name: "menu2",
         meta: {
-          title: "第2層",
+          title: "第一層",
           icon: "filter_2",
           requiresAuth: false,
         },
         children: [
           {
-            component: () => import("src/pages/Markdown.vue"),
-            path: "page3",
-            name: "page3",
+            component: () => import("pages/expansion-menu/ExpansionMenu.vue"),
+            path: "menu3",
+            name: "menu3",
             meta: {
-              title: "第3層",
+              title: "第二層",
               icon: "filter_3",
               requiresAuth: false,
             },
           },
         ],
-      },
-      {
-        component: () => import("src/pages/Markdown.vue"),
-        path: "page2_2",
-        name: "page2_2",
-        meta: {
-          title: "第2-1層",
-          icon: "filter_2",
-          requiresAuth: false,
-        },
-      },
+      }
     ],
   },
 ];

@@ -23,7 +23,7 @@
         :label="item.meta?.title">
         <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
         <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
-          :base-path="basePath === '' ? item.path : basePath + '/' + item.path" />
+          :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
       </q-expansion-item>
     </div>
   </template>
@@ -35,30 +35,19 @@ export default {
 }
 </script>
 
+
 <script lang="ts" setup>
-import { PropType, computed } from "vue";
+import { computed } from "vue";
 import { RouteRecordRaw, useRoute } from "vue-router";
 
-defineProps({
-  myRouter: {
-    type: Array as PropType<Array<RouteRecordRaw>>,
-    required: true,
-    default: [],
-  },
-  initLevel: {
-    type: Number,
-    default: 0,
-  },
-  duration: {
-    type: Number,
-    default: 200,
-  },
-  basePath: {
-    type: String,
-    default: "",
-  },
-})
+interface Props {
+  myRouter: RouteRecordRaw[]
+  initLevel?: number
+  duration?: number
+  basePath?: string
+}
 
+withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 200, basePath: "" })
 const route = useRoute();
 
 const baseItemClassWithNoChildren = computed(() => {
@@ -77,12 +66,9 @@ const handleLink = (basePath: string, itemPath: string) => {
 </script>
 
 
+
 <style lang="scss" scoped>
-$ITEM_COLOR: #2c3e50;
-
-$ACTIVE_COLOR: #1976d2;
-$ACTIVE_BACKGROUND: rgba(25, 118, 210, 0.0618);
-
+// $
 .base-menu-item {
   color: $ITEM_COLOR  !important;
 

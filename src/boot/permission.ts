@@ -7,7 +7,6 @@ import { SessionStorage } from "quasar";
 import { RouteLocationNormalized } from "vue-router";
 import LoadingBar from "src/components/LoadingBar/LoadingBar";
 import constantRoutes from "src/router/constantRoutes";
-import { useMeta } from "quasar";
 
 const routerStore = useRouterStore();
 const tagViewStore = useTagViewStore();
@@ -68,12 +67,7 @@ function handleTagViewAndBreadcrumbsAndKeepAlive(
   from: RouteLocationNormalized
 ) {
   if (to.name != null) {
-    const mataData = {
-      title: to.meta.title,
-      titleTemplate: (title: string) => `${title} - My Website`,
-    };
 
-    useMeta(mataData);
 
     for (let i = 0; i < constantRoutes.length; i++) {
       if (constantRoutes[i].path === to.path) {

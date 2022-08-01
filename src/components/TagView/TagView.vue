@@ -1,8 +1,8 @@
 <template>
   <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 5px' }">
-    <q-tabs class="bg-white col-12" align="left" active-color="primary" active-class="text-weight-bolder bg-grey-2"
-      dense swipeable inline-label indicator-color="transparent"
-      :outside-arrows="$q.platform.is.electron ? true : false" :breakpoint="0">
+    <q-tabs class="bg-white col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
+      inline-label indicator-color="transparent" :outside-arrows="$q.platform.is.electron ? true : false"
+      :breakpoint="0">
       <q-route-tab class="tagView" to="/" no-caps content-class="tagView-q-router-tab">
         <q-icon size="1.3rem" name="home" />
         <div class="line-limit-length" style="margin: 0px 5px 0px 5px">
@@ -89,6 +89,7 @@ tagViewStore.$subscribe(
 </script>
 
 <style lang="scss" scoped>
+// $
 .tagView {
   margin: 1.5px 3px 0 3px;
   min-height: 20px;
@@ -100,6 +101,11 @@ tagViewStore.$subscribe(
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.tagActive {
+  color: $ACTIVE_COLOR  !important;
+  background: $ACTIVE_BACKGROUND;
 }
 
 .tagView-remove-icon {

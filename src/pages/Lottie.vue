@@ -1,6 +1,7 @@
 <template>
   <base-content>
     <div class="base-markdown-content">
+      <q-skeleton type="text" height="150px" v-if="!isLottieFinished" />
       <lottie-web ref="lottieRef" :path="defaultOptions.path" :loop="defaultOptions.loop"
         :animation-speed="defaultOptions.animationSpeed" @isLottieFinish="handleLottieFinish" />
       <div class="row justify-center" style="margin-left: 10px;margin-right: 10px">
@@ -33,6 +34,7 @@ export default {
 import { ref } from "vue"
 import LottieWeb from 'src/components/LottieWeb/LottieWeb.vue';
 import BaseContent from 'src/components/BaseContent/BaseContent.vue';
+
 const lottieRef = ref<typeof LottieWeb | null>(null)
 const isLottieFinished = ref<boolean>(false)
 const defaultOptions = ref<any>({

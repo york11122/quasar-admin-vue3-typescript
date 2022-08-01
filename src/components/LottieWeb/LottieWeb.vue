@@ -11,24 +11,15 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, onUnmounted } from "vue"
 import lottie, { AnimationItem } from 'lottie-web'
-const props = defineProps({
-  animationData: {
-    type: Object,
-    default: null
-  },
-  path: {
-    type: String,
-    default: ""
-  },
-  loop: {
-    type: Boolean,
-    default: true
-  },
-  animationSpeed: {
-    type: Number,
-    default: 10
-  },
-})
+
+interface Props {
+  animationData?: object,
+  path?: string,
+  loop?: boolean,
+  animationSpeed?: number
+}
+
+const props = withDefaults(defineProps<Props>(), { loop: true, animationSpeed: 1 })
 
 const emit = defineEmits<{
   (e: 'isLottieFinish', isLottieFinish: boolean): void
