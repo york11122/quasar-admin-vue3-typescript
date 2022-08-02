@@ -48,8 +48,11 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue"
+import { useRouter } from "vue-router"
+import { SessionStorage, Notify } from "quasar"
 import LottieWeb from "src/components/LottieWeb/LottieWeb.vue";
 
+const router = useRouter()
 const isPwd = ref<boolean>(true)
 const username = ref<string>('username')
 const password = ref<string>('password')
@@ -61,8 +64,19 @@ const defaultOptions = ref<any>({
   animationSpeed: 1
 })
 
-const login = () => {
-  console.log('login click')
+const login = async () => {
+  SessionStorage.set('access_token', "accesstoken")
+  SessionStorage.set('user', { username: username.value, role: "user" })
+
+  await router.push("/")
+
+  Notify.create({
+    icon: 'insert_emoticon',
+    message: 'hi，cimo 欢迎回来',
+    color: 'green',
+    position: 'top',
+    timeout: 1500
+  })
 }
 
 const handleFinish = () => {

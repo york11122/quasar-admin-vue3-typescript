@@ -4,7 +4,7 @@ export interface RouteData {
   title: string;
   fullPath: string;
   path: string;
-  icon: string;
+  icon?: string;
   keepAlive?: boolean;
   name: RouteRecordName | null | undefined;
 }
@@ -12,4 +12,9 @@ export interface RouteData {
 export interface BreadCrumbsData {
   title: string;
   icon: string;
+}
+
+export interface User {
+  username: string;
+  role: string;
 }
