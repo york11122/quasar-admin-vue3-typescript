@@ -47,7 +47,7 @@ interface Props {
   basePath?: string
 }
 
-withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 200, basePath: "" })
+withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 150, basePath: "" })
 const route = useRoute();
 
 const baseItemClassWithNoChildren = computed(() => {

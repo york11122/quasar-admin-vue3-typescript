@@ -23,7 +23,7 @@ export default boot(async ({ router }) => {
           return;
         }
       }
-      
+
       const tagViewOnSessionStorage = JSON.parse(
         SessionStorage.getItem("tagView") ?? "[]"
       );

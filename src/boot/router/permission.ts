@@ -1,8 +1,8 @@
 import { boot } from "quasar/wrappers";
 import { useRouterStore } from "src/stores/permission";
-import { useUserStore } from "src/stores/user"
+import { useUserStore } from "src/stores/user";
 import constantRoutes from "src/router/constantRoutes";
-import { SessionStorage } from "quasar"
+import { SessionStorage } from "quasar";
 
 const routerStore = useRouterStore();
 const userStore = useUserStore();
@@ -18,11 +18,14 @@ export default boot(async ({ router }) => {
         next({ path: "/" });
       }
       // There is user authority, and the route is not empty, then let go
-      if (userStore.getUser && routerStore.getPermissionRoutes.length) {
+      if (
+        userStore.getUserRole !== "" &&
+        routerStore.getPermissionRoutes.length
+      ) {
         next();
       } else {
-        // Simulate when user permissions do not exist, obtain user permissions
-        userStore.setUser(SessionStorage.getItem("user") ?? { username: "", role: "" })
+        
+        userStore.fetchUserInfo(token as string);
         // And set the corresponding route according to the permissions
         routerStore.setRoutes();
         // If you are prompted that addRoutes is deprecated, use the spread operator to complete the operation

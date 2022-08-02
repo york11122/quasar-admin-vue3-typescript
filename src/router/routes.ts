@@ -68,6 +68,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
       icon: "blur_on",
       requiresAuth: false,
       keepAlive: false,
+      roles: ["admin"],
     },
   },
   {
