@@ -83,7 +83,7 @@ module.exports = configure(function (/* ctx */) {
             include: path.resolve(__dirname, "./src/i18n/**"),
           },
         ],
-        [require("unplugin-vue-define-options/vite"), {}],
+        ["unplugin-vue-define-options/vite", {}],
       ],
     },
 

@@ -4311,10 +4311,10 @@ unpipe@1.0.0, unpipe@~1.0.0:
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==
 
-unplugin-vue-define-options@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/unplugin-vue-define-options/-/unplugin-vue-define-options-0.7.1.tgz#938f0fe1cc788e03260e15f41ba13d15e4236f95"
-  integrity sha512-nCizpKHSdVgZ8YIuenMNE1D7p2xG7Gkk102bd9bPK0QSzHCEBfeeiDNxYDaJD9iJDmptfmauvl+hxx6wv0IPAA==
+unplugin-vue-define-options@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-define-options/-/unplugin-vue-define-options-0.7.3.tgz#5b932eb93b4467117d14f5daa4d1983bea5d8cd2"
+  integrity sha512-VbexYR8m2v/TLi49+F7Yf3rO2EyS0EkrXjJxqym6W0NxOzom9zdmRUR+av4UAu4GruhMumJc/9ITS1Wj+rozjg==
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     "@vue/compiler-sfc" "^3.2.37"

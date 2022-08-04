@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh lpR fFf" class="full-height">
-    <q-header class="q-py-xs bg-white text-grey-8" height-hint="48" bordered style="
+    <q-header class="q-py-xs dark-header" height-hint="48" bordered style="
         box-shadow: rgba(0, 0, 0, 0) 0px 2px 12px 0px;
         padding-bottom: 2px;
       ">
@@ -21,7 +21,7 @@
 
       </q-toolbar>
 
-      <q-separator color="grey-3" />
+      <q-separator />
       <!-- tagview-->
       <tagview />
     </q-header>
@@ -54,7 +54,7 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import Tagview from "src/components/Tagview/TagView.vue";
+import Tagview from "src/components/TagView/TagView.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
@@ -67,3 +67,19 @@ const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
+
+<style lang="scss" scoped>
+.body--light {
+  .dark-header {
+    color: $grey-8;
+    background-color: white;
+  }
+}
+
+.body--dark {
+  .dark-header {
+    color: white;
+    background-color: $dark;
+  }
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 5px' }">
-    <q-tabs class="bg-white col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
+    <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
       inline-label indicator-color="transparent" :outside-arrows="$q.platform.is.electron ? true : false"
       :breakpoint="0">
       <q-route-tab class="tagView" to="/" no-caps content-class="tagView-q-router-tab">
@@ -87,22 +87,48 @@ tagViewStore.$subscribe(
 
 <style lang="scss" scoped>
 // $
-.tagView {
-  margin: 1.5px 3px 0 3px;
-  min-height: 20px;
-  padding: 0 8px;
-  background: white;
-  transition: all 0.5s;
-  border-radius: 0;
-  height: 33px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.body--light {
+  .tagViewBase {
+    background-color: white;
+
+    .tagView {
+      min-height: 20px;
+      padding: 0 8px;
+      transition: all 0.5s;
+      border-radius: 0;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tagActive {
+      color: $ACTIVE_COLOR  !important;
+      background: $ACTIVE_BACKGROUND;
+    }
+  }
 }
 
-.tagActive {
-  color: $ACTIVE_COLOR  !important;
-  background: $ACTIVE_BACKGROUND;
+.body--dark {
+  .tagViewBase {
+    background-color: $ACTIVE_BACKGROUND_DARK;
+
+    .tagView {
+      min-height: 20px;
+      padding: 0 8px;
+      transition: all 0.5s;
+      border-radius: 0;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tagActive {
+      color: $ACTIVE_COLOR_DARK  !important;
+      background: $ACTIVE_BACKGROUND_DARK;
+    }
+  }
 }
 
 .tagView-remove-icon {

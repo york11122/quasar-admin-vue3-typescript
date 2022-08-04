@@ -6,9 +6,8 @@
       <q-tooltip>全螢幕</q-tooltip>
     </q-btn>
 
-    <q-btn dense flat :icon="$q.dark.isActive ? 'sym_r_light_mode' : 'sym_r_dark_mode'" @click="$q.dark.toggle()"
-      v-if="$q.screen.gt.sm">
-      <q-tooltip>全螢幕</q-tooltip>
+    <q-btn dense flat :icon="$q.dark.isActive ? 'sym_r_light_mode' : 'sym_r_dark_mode'" @click="$q.dark.toggle()">
+      <q-tooltip>{{ $q.dark.isActive ? '淺色模式' : '深色模式' }}</q-tooltip>
     </q-btn>
     <q-btn round dense flat icon="sym_r_notifications">
       <q-badge color="red" text-color="" floating>
