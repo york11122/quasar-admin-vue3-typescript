@@ -16,9 +16,11 @@ export const useUserStore = defineStore("user", {
     getUserName(state) {
       return state.username;
     },
-
     getUserRole(state) {
       return state.role;
+    },
+    getFirstCharacterOfUserName(state) {
+      return state.username ? state.username.charAt(0).toUpperCase() : "";
     },
   },
 

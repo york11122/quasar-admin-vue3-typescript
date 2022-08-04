@@ -12,18 +12,31 @@
       <q-tooltip>通知</q-tooltip>
     </q-btn>
     <q-btn round flat>
+      <q-avatar color="primary" text-color="white">
+        {{ userStore.getFirstCharacterOfUserName }}
+      </q-avatar>
       <q-menu>
-        <div class="row no-wrap q-pa-md">
+        <q-list dense>
+          <q-item>
+            <q-item-section>
+              <div>Signed in as <br /><strong>{{ userStore.getUserName }}</strong></div>
+            </q-item-section>
+          </q-item>
+          <q-separator />
+          <q-item clickable>
+            <q-item-section>
+              <div>
+                <q-icon name="tag_faces" color="blue-9" size="18px" />
+                Set your status
+              </div>
+            </q-item-section>
+          </q-item>
+          <q-separator />
 
-          <div class="column items-center">
-            <q-avatar size="72px">
-            </q-avatar>
-
-            <div class="text-subtitle1 q-mt-md q-mb-xs">Hi！ CIMO</div>
-
-            <q-btn color="primary" label="Logout" size="sm" v-close-popup @click="logout" />
-          </div>
-        </div>
+          <q-item clickable>
+            <q-item-section @click="logout">Sign out</q-item-section>
+          </q-item>
+        </q-list>
       </q-menu>
 
       <q-tooltip>使用者</q-tooltip>
@@ -45,4 +58,5 @@ const logout = () => {
   userStore.logout()
   router.push({ name: "Login" })
 }
+
 </script>
