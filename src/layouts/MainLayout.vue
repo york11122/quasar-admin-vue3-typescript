@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh lpR fFf" class="full-height">
-    <q-header class="q-py-xs bg-white text-grey-8" height-hint="48" style="
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+    <q-header class="q-py-xs bg-white text-grey-8" height-hint="48" bordered style="
+        box-shadow: rgba(0, 0, 0, 0) 0px 2px 12px 0px;
         padding-bottom: 2px;
       ">
       <q-toolbar style="margin-top: -5px">
@@ -54,9 +54,8 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import Tagview from "src/components/Tagview/Tagview.vue";
+import Tagview from "src/components/TagView/TagView.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
-import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
 import { useKeepAliveStore } from "src/stores/keep-alive";

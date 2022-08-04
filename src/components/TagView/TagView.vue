@@ -9,12 +9,12 @@
           首頁
         </div>
       </q-route-tab>
-      <q-separator vertical />
+      <!-- <q-separator vertical /> -->
       <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
         <q-route-tab class="tagView" :to="tag.fullPath" no-caps content-class="tagView-q-router-tab">
           <q-icon size="1.3rem" :name="tag.icon" />
           <div class="line-limit-length">{{ tag.title }}</div>
-          <q-icon class="tagView-remove-icon" style="display: inline-flex" name="close"
+          <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
             @click.prevent.stop="removetagViewAt(i)" />
           <q-menu touch-position context-menu>
             <q-list dense>
@@ -109,8 +109,9 @@ tagViewStore.$subscribe(
 }
 
 .tagView-remove-icon {
-  font-size: 1rem;
-  border-radius: 0.2rem;
+  // font-size: .7rem;
+  // border-radius: 0.2rem;
+  font-weight: bold;
   opacity: 0.58;
   transition: all 0.3s;
 
