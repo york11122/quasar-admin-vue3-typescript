@@ -1,11 +1,16 @@
 <template>
   <div class="q-gutter-sm row items-center no-wrap">
 
-    <q-btn dense flat :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'" @click="$q.fullscreen.toggle()"
+    <q-btn dense flat :icon="$q.fullscreen.isActive ? 'sym_r_fullscreen_exit' : 'sym_r_fullscreen'"
+      @click="$q.fullscreen.toggle()" v-if="$q.screen.gt.sm">
+      <q-tooltip>全螢幕</q-tooltip>
+    </q-btn>
+
+    <q-btn dense flat :icon="$q.dark.isActive ? 'sym_r_light_mode' : 'sym_r_dark_mode'" @click="$q.dark.toggle()"
       v-if="$q.screen.gt.sm">
       <q-tooltip>全螢幕</q-tooltip>
     </q-btn>
-    <q-btn round dense flat icon="notifications">
+    <q-btn round dense flat icon="sym_r_notifications">
       <q-badge color="red" text-color="" floating>
         2
       </q-badge>

@@ -4,7 +4,7 @@
       inline-label indicator-color="transparent" :outside-arrows="$q.platform.is.electron ? true : false"
       :breakpoint="0">
       <q-route-tab class="tagView" to="/" no-caps content-class="tagView-q-router-tab">
-        <q-icon size="1.3rem" name="home" />
+        <q-icon size="1.3rem" name="sym_r_home" />
         <div class="line-limit-length" style="margin: 0px 5px 0px 5px">
           首頁
         </div>

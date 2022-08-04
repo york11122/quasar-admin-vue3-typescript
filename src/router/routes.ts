@@ -19,7 +19,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     name: "home",
     meta: {
       title: "首頁",
-      icon: "home",
+      icon: "sym_r_home",
       requiresAuth: false,
     },
   },
@@ -29,7 +29,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     name: "markdown",
     meta: {
       title: "markdown",
-      icon: "pages",
+      icon: "sym_r_pages",
       requiresAuth: false,
       keepAlive: false,
     },
@@ -40,7 +40,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
         name: "MDViewer",
         meta: {
           title: "MD呈現",
-          icon: "article",
+          icon: "sym_r_article",
           requiresAuth: false,
           keepAlive: true,
         },
@@ -51,7 +51,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
         name: "MDEditor",
         meta: {
           title: "編輯器",
-          icon: "edit_note",
+          icon: "sym_r_edit_note",
           requiresAuth: false,
           keepAlive: false,
         },
@@ -65,7 +65,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     name: "Lottie",
     meta: {
       title: "Lottie動畫",
-      icon: "blur_on",
+      icon: "sym_r_animation",
       requiresAuth: false,
       keepAlive: false,
       roles: ["admin"],
@@ -77,7 +77,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     name: "menu1",
     meta: {
       title: "摺疊目錄",
-      icon: "filter_1",
+      icon: "sym_r_filter_1",
       requiresAuth: false,
       isOpen: false,
     },
@@ -88,7 +88,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
         name: "menu2",
         meta: {
           title: "第一層",
-          icon: "filter_2",
+          icon: "sym_r_filter_2",
           requiresAuth: false,
         },
         children: [
@@ -98,7 +98,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
             name: "menu3",
             meta: {
               title: "第二層",
-              icon: "filter_3",
+              icon: "sym_r_filter_3",
               requiresAuth: false,
             },
           },
