@@ -2,15 +2,11 @@
   <div ref="lottieBox"></div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "LottieWeb"
-}
-</script>
-
 <script lang="ts" setup>
 import { ref, watch, onMounted, onUnmounted } from "vue"
 import lottie, { AnimationItem } from 'lottie-web'
+
+defineOptions({ name: "LottieWeb" })
 
 interface Props {
   animationData?: object,

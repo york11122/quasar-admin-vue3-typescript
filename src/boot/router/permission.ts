@@ -3,6 +3,9 @@ import { useRouterStore } from "src/stores/permission";
 import { useUserStore } from "src/stores/user";
 import constantRoutes from "src/router/constantRoutes";
 import { SessionStorage } from "quasar";
+import { deepClone } from "src/utils/index";
+import { asyncRoutesChildren, asyncRootRoute } from "src/router/routes";
+import constructionRouters from "src/router/utils/permissionUtils";
 
 const routerStore = useRouterStore();
 const userStore = useUserStore();
@@ -24,13 +27,13 @@ export default boot(async ({ router }) => {
       ) {
         next();
       } else {
-        
         userStore.fetchUserInfo(token as string);
         // And set the corresponding route according to the permissions
-        routerStore.setRoutes();
+        const accessRoutes = deepClone(asyncRoutesChildren);
+        asyncRootRoute[0].children = constructionRouters(accessRoutes);
+        routerStore.setRoutes(asyncRootRoute);
         // If you are prompted that addRoutes is deprecated, use the spread operator to complete the operation
-        const permissionRoutes = routerStore.getPermissionRoutes;
-        for (let item of permissionRoutes) {
+        for (let item of asyncRootRoute) {
           router.addRoute(item);
         }
         // If addRoutes is not completed, the guard will execute it again

@@ -108,7 +108,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
   },
 ];
 
-const asyncRoutes: RouteRecordRaw[] = [
+const asyncRootRoute: RouteRecordRaw[] = [
   {
     component: () => import("layouts/MainLayout.vue"),
     path: "/",
@@ -118,4 +118,4 @@ const asyncRoutes: RouteRecordRaw[] = [
   },
 ];
 
-export default asyncRoutes;
+export { asyncRootRoute, asyncRoutesChildren };

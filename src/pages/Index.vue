@@ -6,16 +6,12 @@
   </base-content>
 </template>
 
-<script lang="ts">
-export default {
-  name: "Index",
-}
-</script>
-
 <script lang="ts" setup>
 import { ref, onMounted } from "vue"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
 import { api } from "src/boot/axios"
+
+defineOptions({ name: "Index" })
 
 const content = ref<string>("")
 const isLoading = ref<boolean>(false)

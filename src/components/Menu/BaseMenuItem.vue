@@ -29,16 +29,11 @@
   </template>
 </template>
 
-<script lang="ts">
-export default {
-  name: "BaseMenuItem"
-}
-</script>
-
-
 <script lang="ts" setup>
 import { computed } from "vue";
 import { RouteRecordRaw, useRoute } from "vue-router";
+
+defineOptions({ name: "BaseMenuItem" })
 
 interface Props {
   myRouter: RouteRecordRaw[]

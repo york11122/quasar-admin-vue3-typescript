@@ -10,16 +10,12 @@
   </q-scroll-area>
 </template>
 
-<script lang="ts">
-export default {
-  name: "BaseMenu"
-}
-</script>
-
 <script lang="ts" setup>
 import { useRouterStore } from "src/stores/permission";
 import BaseMenuItem from "./BaseMenuItem.vue";
 import ToolbarTitle from "src/components/Toolbar/ToolBarTitle.vue"
+
+defineOptions({ name: "BaseMenu" })
 
 const thumbStyle = {
   right: "5px",

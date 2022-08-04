@@ -26,21 +26,17 @@
         </div>
       </q-menu>
 
-      <q-tooltip>账号</q-tooltip>
+      <q-tooltip>使用者</q-tooltip>
     </q-btn>
 
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "ToolbarItem"
-}
-</script>
-
 <script lang="ts" setup>
 import { useUserStore } from "src/stores/user"
 import { useRouter } from "vue-router"
+
+defineOptions({ name: "ToolbarItem" })
 
 const router = useRouter()
 const userStore = useUserStore()

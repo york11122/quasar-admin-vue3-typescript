@@ -6,16 +6,14 @@
     </base-content>
 </template>
 
-<script lang="ts">
-export default {
-    name: "MDViewer",
-}
-</script>
+
 
 <script lang="ts" setup>
 import { ref, onMounted } from "vue"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
 import { api } from "src/boot/axios"
+
+defineOptions({ name: "MDViewer" })
 
 const content = ref<string>("")
 const isLoading = ref<boolean>(false)

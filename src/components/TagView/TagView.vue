@@ -46,16 +46,13 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "Tagview"
-}
-</script>
-
 <script lang="ts" setup>
 import { useTagViewStore } from "src/stores/tagView";
 import { useKeepAliveStore } from "src/stores/keep-alive"
 import { SessionStorage } from "quasar";
+
+defineOptions({ name: "Tagview" })
+
 const tagViewStore = useTagViewStore();
 const keepAliveStore = useKeepAliveStore();
 

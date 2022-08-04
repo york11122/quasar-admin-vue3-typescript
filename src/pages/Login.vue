@@ -40,17 +40,13 @@
 
 </template>
 
-<script lang="ts">
-export default {
-  name: "Login",
-}
-</script>
-
 <script lang="ts" setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { SessionStorage, Notify } from "quasar"
 import LottieWeb from "src/components/LottieWeb/LottieWeb.vue";
+
+defineOptions({ name: "Login" })
 
 const router = useRouter()
 const isPwd = ref<boolean>(true)

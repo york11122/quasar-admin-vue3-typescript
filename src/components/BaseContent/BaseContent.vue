@@ -6,12 +6,6 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "BaseContent",
-}
-</script>
-
 <script lang="ts" setup>
 import {
   ref,
@@ -22,6 +16,8 @@ import {
 } from "vue";
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
+
+defineOptions({ name: "Login" })
 
 const thumbStyle = {
   right: "5px",

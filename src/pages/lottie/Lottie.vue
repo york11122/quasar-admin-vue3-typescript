@@ -25,15 +25,12 @@
   </base-content>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'Lottie'
-}
-</script>
 <script lang="ts" setup>
 import { ref } from "vue"
 import LottieWeb from 'src/components/LottieWeb/LottieWeb.vue';
 import BaseContent from 'src/components/BaseContent/BaseContent.vue';
+
+defineOptions({ name: "Lottie" })
 
 const lottieRef = ref<typeof LottieWeb | null>(null)
 const isLottieFinished = ref<boolean>(false)
