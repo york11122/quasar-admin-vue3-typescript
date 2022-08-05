@@ -1,7 +1,7 @@
 <template>
     <base-content>
         <div class="base-markdown-content">
-            <v-md-editor style="width:100%" :model-value="content" mode="preview" />
+            <md-editor style="width:100%" v-model="content" />
         </div>
     </base-content>
 </template>
@@ -12,6 +12,10 @@
 import { ref, onMounted } from "vue"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
 import { api } from "src/boot/axios"
+
+import MdEditor from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
+
 
 defineOptions({ name: "MDViewer" })
 
@@ -36,5 +40,4 @@ const getData = async () => {
 
 
 </script>
-
 
