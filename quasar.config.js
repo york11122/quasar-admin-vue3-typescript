@@ -84,6 +84,7 @@ module.exports = configure(function (/* ctx */) {
           },
         ],
         ["unplugin-vue-define-options/vite", {}],
+        ["vite-plugin-prismjs", { languages: ["json", "js", "ts"] }],
       ],
     },
 

@@ -1,6 +1,6 @@
 <template>
   <base-content>
-    <div class="base-markdown-content">
+    <div style="margin: 0 auto; max-width: 700px;">
       <q-skeleton type="text" height="150px" v-if="!isLottieFinished" />
       <lottie-web ref="lottieRef" :path="defaultOptions.path" :loop="defaultOptions.loop"
         :animation-speed="defaultOptions.animationSpeed" @isLottieFinish="handleLottieFinish" />

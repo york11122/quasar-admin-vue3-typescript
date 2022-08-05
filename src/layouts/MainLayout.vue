@@ -54,7 +54,7 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import Tagview from "src/components/TagView/TagView.vue";
+import Tagview from "src/components/Tagview/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
