@@ -1,6 +1,6 @@
 <template>
     <q-page style="margin: 10px; height: calc(100vh - 105px)">
-        <v-md-editor v-model="content" height="100%"></v-md-editor>
+        <v-md-editor v-model="content" height="100%" placeholder="內容輸入"></v-md-editor>
     </q-page>
 </template>
 

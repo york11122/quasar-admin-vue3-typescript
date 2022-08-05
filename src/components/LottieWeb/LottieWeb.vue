@@ -56,7 +56,7 @@ const isLottieFinish = () => {
   emit("isLottieFinish", true)
 }
 
-watch(() => props.animationSpeed, (newValue, oldValue) => {
+const stopHandle = watch(() => props.animationSpeed, (newValue, oldValue) => {
   onSpeedChange(newValue)
 });
 
@@ -67,6 +67,7 @@ onMounted(() => {
 onUnmounted(() => {
   lottieInstance.value?.destroy()
   lottieInstance.value = null
+  stopHandle()
 })
 
 defineExpose({ play, stop, pause })
