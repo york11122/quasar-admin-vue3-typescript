@@ -7,14 +7,16 @@ import { deepClone } from "src/utils/index";
 import { asyncRoutesChildren, asyncRootRoute } from "src/router/routes";
 import constructionRouters from "src/router/utils/permissionUtils";
 
-const routerStore = useRouterStore();
-const userStore = useUserStore();
+
 
 export default boot(async ({ router }) => {
+  const routerStore = useRouterStore();
+  const userStore = useUserStore();
   router.beforeEach((to, from, next) => {
     // Simulate obtaining token
     const token = SessionStorage.getItem("access_token");
     // There is a token indicating that you have logged in
+    console.log(token)
     if (token) {
       //You cannot access the login interface after logging in
       if (to.path === "/login") {

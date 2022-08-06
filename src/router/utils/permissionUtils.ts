@@ -1,8 +1,9 @@
 import { RouteRecordRaw } from "vue-router";
 import { useUserStore } from "src/stores/user";
-const userStore = useUserStore();
+
 
 export default function constructionRouters(router: RouteRecordRaw[]) {
+  const userStore = useUserStore();
   let temp = router.filter((item) => {
     // if no roles is setting, everyone can access
     if (!item.meta?.roles || item.meta.roles.length === 0) return true;

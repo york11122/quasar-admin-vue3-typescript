@@ -32,6 +32,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
       icon: "sym_r_pages",
       requiresAuth: false,
       keepAlive: false,
+      isOpen: true
     },
     children: [
       {
