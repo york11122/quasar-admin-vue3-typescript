@@ -14,8 +14,24 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="stylesheet" href="/resource/loading.css" />
   </head>
   <body>
-    <!-- quasar:entry-point -->
+    <div id="q-app">
+      <!-- quasar:entry-point -->
+       <div class="loading-container">
+        <div id="loadingLogo" class="loading-svg"></div>
+        <div class="loading-spin__container">
+          <div class="loading-spin">
+            <div class="left-0 top-0 loading-spin-item"></div>
+            <div class="left-0 bottom-0 loading-spin-item loading-delay-500"></div>
+            <div class="right-0 top-0 loading-spin-item loading-delay-1000"></div>
+            <div class="right-0 bottom-0 loading-spin-item loading-delay-1500"></div>
+          </div>
+        </div>
+        <div class="loading-title"><%= productName %></div>
+      </div>
+      <script src="/resource/loading.js"></script>
+    </div>
   </body>
 </html>
