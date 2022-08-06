@@ -35,8 +35,17 @@ const getData = async () => {
         console.log(error)
     }
 }
-
-
 </script>
+
+<style scoped lang="scss">
+.base-markdown-content {
+    padding: 0px 10px 0px 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+
+}
+</style>
+
 
 

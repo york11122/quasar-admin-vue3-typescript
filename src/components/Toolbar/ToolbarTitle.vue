@@ -6,12 +6,7 @@
   </q-btn>
 </template>
 
-<script lang="ts">
-export default {
-  name: "ToolBarTitle"
-}
-</script>
-
 <script lang="ts" setup>
+defineOptions({ name: "ToolbarTitle" })
 withDefaults(defineProps<{ title?: string }>(), { title: '' })
 </script>

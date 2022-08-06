@@ -7,11 +7,12 @@ import { RouteLocationNormalized } from "vue-router";
 import constantRoutes from "src/router/constantRoutes";
 import LoadingBar from "src/components/LoadingBar/LoadingBar";
 
-const tagViewStore = useTagViewStore();
-const breadCrumbsStore = useBreadcrumbsStore();
-const keepAliveStore = useKeepAliveStore();
+
 
 export default boot(async ({ router }) => {
+  const tagViewStore = useTagViewStore();
+  const breadCrumbsStore = useBreadcrumbsStore();
+  const keepAliveStore = useKeepAliveStore();
   router.beforeEach((to, from) => {
     LoadingBar.stop();
     LoadingBar.start();
@@ -23,7 +24,7 @@ export default boot(async ({ router }) => {
           return;
         }
       }
-      
+
       const tagViewOnSessionStorage = JSON.parse(
         SessionStorage.getItem("tagView") ?? "[]"
       );

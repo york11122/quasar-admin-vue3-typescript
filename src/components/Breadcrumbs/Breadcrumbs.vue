@@ -14,13 +14,10 @@
   </q-breadcrumbs>
 </template>
 
-<script lang="ts">
-export default {
-  name: "Breadcrumbs"
-}
-</script>
-
 <script lang="ts" setup>
 import { useBreadcrumbsStore } from "src/stores/breadcrumbs";
+
+defineOptions({ name: "Breadcrumbs" })
+
 const breadcrumbsStore = useBreadcrumbsStore();
 </script>

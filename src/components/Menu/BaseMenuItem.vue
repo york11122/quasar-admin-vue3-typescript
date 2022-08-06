@@ -29,16 +29,11 @@
   </template>
 </template>
 
-<script lang="ts">
-export default {
-  name: "BaseMenuItem"
-}
-</script>
-
-
 <script lang="ts" setup>
 import { computed } from "vue";
 import { RouteRecordRaw, useRoute } from "vue-router";
+
+defineOptions({ name: "BaseMenuItem" })
 
 interface Props {
   myRouter: RouteRecordRaw[]
@@ -47,7 +42,7 @@ interface Props {
   basePath?: string
 }
 
-withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 200, basePath: "" })
+withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 150, basePath: "" })
 const route = useRoute();
 
 const baseItemClassWithNoChildren = computed(() => {
@@ -69,27 +64,57 @@ const handleLink = (basePath: string, itemPath: string) => {
 
 <style lang="scss" scoped>
 // $
-.base-menu-item {
-  color: $ITEM_COLOR  !important;
+.body--light {
+  .base-menu-item {
+    color: $ITEM_COLOR  !important;
 
-  .baseRootItemActive {
-    color: $ACTIVE_COLOR  !important;
+    .baseRootItemActive {
+      color: $ACTIVE_COLOR  !important;
+    }
+
+    .baseItemActive {
+      color: $ACTIVE_COLOR  !important;
+      background: $ACTIVE_BACKGROUND;
+      transition: all 0.618s;
+      font-weight: bold;
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: 100%;
+        background: $ACTIVE_COLOR  !important;
+        top: 0;
+        right: 0;
+      }
+    }
   }
+}
 
-  .baseItemActive {
-    color: $ACTIVE_COLOR  !important;
-    background: $ACTIVE_BACKGROUND;
-    transition: all 0.618s;
-    font-weight: bold;
+.body--dark {
 
-    &:after {
-      content: "";
-      position: absolute;
-      width: 3px;
-      height: 100%;
-      background: $ACTIVE_COLOR  !important;
-      top: 0;
-      right: 0;
+  .base-menu-item {
+    color: $ITEM_COLOR_DARK  !important;
+
+    .baseRootItemActive {
+      color: $ACTIVE_COLOR_DARK  !important;
+    }
+
+    .baseItemActive {
+      color: $ACTIVE_COLOR_DARK  !important;
+      background: $ACTIVE_BACKGROUND_DARK;
+      transition: all 0.618s;
+      font-weight: bold;
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: 100%;
+        background: $ACTIVE_COLOR_DARK  !important;
+        top: 0;
+        right: 0;
+      }
     }
   }
 }

@@ -2,15 +2,11 @@
   <div ref="lottieBox"></div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "LottieWeb"
-}
-</script>
-
 <script lang="ts" setup>
 import { ref, watch, onMounted, onUnmounted } from "vue"
 import lottie, { AnimationItem } from 'lottie-web'
+
+defineOptions({ name: "LottieWeb" })
 
 interface Props {
   animationData?: object,
@@ -60,7 +56,7 @@ const isLottieFinish = () => {
   emit("isLottieFinish", true)
 }
 
-watch(() => props.animationSpeed, (newValue, oldValue) => {
+const stopHandle = watch(() => props.animationSpeed, (newValue, oldValue) => {
   onSpeedChange(newValue)
 });
 
@@ -71,6 +67,7 @@ onMounted(() => {
 onUnmounted(() => {
   lottieInstance.value?.destroy()
   lottieInstance.value = null
+  stopHandle()
 })
 
 defineExpose({ play, stop, pause })

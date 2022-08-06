@@ -1,6 +1,6 @@
 <template>
   <base-content>
-    <div class="base-markdown-content">
+    <div style="margin: 0 auto; max-width: 700px;">
       <q-skeleton type="text" height="150px" v-if="!isLottieFinished" />
       <lottie-web ref="lottieRef" :path="defaultOptions.path" :loop="defaultOptions.loop"
         :animation-speed="defaultOptions.animationSpeed" @isLottieFinish="handleLottieFinish" />
@@ -25,15 +25,12 @@
   </base-content>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'Lottie'
-}
-</script>
 <script lang="ts" setup>
 import { ref } from "vue"
 import LottieWeb from 'src/components/LottieWeb/LottieWeb.vue';
 import BaseContent from 'src/components/BaseContent/BaseContent.vue';
+
+defineOptions({ name: "Lottie" })
 
 const lottieRef = ref<typeof LottieWeb | null>(null)
 const isLottieFinished = ref<boolean>(false)
