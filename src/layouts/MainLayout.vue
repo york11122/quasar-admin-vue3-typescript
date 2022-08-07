@@ -28,7 +28,10 @@
 
     <!-- drawer start -->
     <q-drawer v-model="leftDrawerOpen" :width="210" show-if-above bordered>
-      <base-menu />
+      <div class="absolute-top q-pa-sm" style="height: 50px">
+        <toolbar-title :title="$q.version" style="width:100%" />
+      </div>
+      <base-menu style="height: calc(100% - 50px); margin-top: 50px;" />
     </q-drawer>
     <!-- drawer end -->
 
@@ -58,6 +61,7 @@ import Tagview from "src/components/TagView/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/ToolBar/ToolbarItem.vue"
+import ToolbarTitle from "src/components/ToolBar/ToolbarTitle.vue"
 import { useKeepAliveStore } from "src/stores/keep-alive";
 
 const leftDrawerOpen = ref<boolean>(false);
