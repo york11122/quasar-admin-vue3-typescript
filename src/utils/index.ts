@@ -12,3 +12,9 @@ export function deepClone(obj: any) {
     }
     return newObj
 }
+
+export function getFirst(obj: any) {
+    for (const key in obj) {
+        return obj[key]
+    }
+}

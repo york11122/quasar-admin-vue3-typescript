@@ -23,6 +23,17 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
       requiresAuth: false,
     },
   },
+
+  {
+    component: () => import("src/pages/Iframe.vue"),
+    path: "/iframe",
+    name: "Iframe",
+    meta: {
+      title: "Iframe",
+      icon: "sym_r_home",
+      requiresAuth: false,
+    },
+  },
   {
     component: () => import("components/Layout/Layout.vue"),
     path: "/markdown",

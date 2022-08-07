@@ -1,8 +1,15 @@
 <template>
   <div class="main-content">
-    <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%">
+    <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%" @scroll="onScroll">
       <slot></slot>
+
+      <q-page-sticky position="bottom-right" :offset="[18, 18]">
+        <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+          <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="sym_r_expand_less" @click="toTop" />
+        </transition>
+      </q-page-sticky>
     </q-scroll-area>
+
   </div>
 </template>
 
@@ -19,6 +26,18 @@ import { useRoute } from "vue-router";
 
 defineOptions({ name: "Login" })
 
+interface scrollInfo {
+  horizontalContainerSize: number;
+  horizontalPercentage: number;
+  horizontalPosition: number;
+  horizontalSize: number;
+  verticalContainerSize: number;
+  verticalPercentage: number;
+  verticalPosition: number;
+  verticalSize: number;
+
+}
+
 const thumbStyle = {
   right: "5px",
   borderRadius: "5px",
@@ -28,19 +47,27 @@ const thumbStyle = {
 
 const route = useRoute();
 const scrollArea = ref<QScrollArea | null>(null);
-
 const basePath = ref<string>("");
+const showToTopBtn = ref<boolean>(false);
 
-const scrollToPosition = (value: number) => {
-  scrollArea.value?.setScrollPosition("horizontal", value, 300);
+const scrollToPosition = (value: number, duration: number = 0) => {
+  scrollArea.value?.setScrollPosition("vertical", value, duration);
 };
 
 const getScrollPosition = () => {
   return scrollArea.value?.getScrollPosition();
 };
 
+const onScroll = (info: scrollInfo) => {
+  (info.verticalPercentage >= 0.1) ? showToTopBtn.value = true : showToTopBtn.value = false
+}
+
+const toTop = () => {
+  scrollToPosition(0, 300)
+}
+
 onMounted(() => {
-  basePath.value = route.path;
+  basePath.value = route.fullPath;
 
   const t = SessionStorage.getItem(basePath.value);
   if (t) {
@@ -54,7 +81,7 @@ onUnmounted(() => {
 });
 
 onActivated(() => {
-  const t = SessionStorage.getItem(route.path);
+  const t = SessionStorage.getItem(route.fullPath);
   if (t) {
     const toPosition = JSON.parse(t as string);
     scrollToPosition(toPosition.listScrollTop);
@@ -69,3 +96,19 @@ onDeactivated(() => {
   );
 });
 </script>
+
+<style lang="scss" scoped>
+.body--light {
+  .toTopBtn {
+    color: $primary;
+    background-color: white;
+  }
+}
+
+.body--dark {
+  .toTopBtn {
+    color: $ACTIVE_COLOR_DARK;
+    background-color: $ITEM_COLOR_DARK;
+  }
+}
+</style>

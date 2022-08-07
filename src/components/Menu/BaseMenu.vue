@@ -1,6 +1,6 @@
 <template>
   <div class="absolute-top q-pa-sm" style="height: 50px">
-    <toolbar-title :title="'123'" style="width:100%" />
+    <toolbar-title :title="'Q'" style="width:100%" />
   </div>
 
   <q-scroll-area :thumb-style="thumbStyle" style="height: calc(100% - 50px); margin-top: 50px;">
@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { useRouterStore } from "src/stores/permission";
 import BaseMenuItem from "./BaseMenuItem.vue";
-import ToolbarTitle from "src/components/Toolbar/ToolBarTitle.vue"
+import ToolbarTitle from "src/components/ToolBar/ToolbarTitle.vue"
 
 defineOptions({ name: "BaseMenu" })
 

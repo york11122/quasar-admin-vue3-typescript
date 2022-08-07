@@ -1,58 +1,63 @@
 <template>
   <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 5px' }">
     <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
-      inline-label indicator-color="transparent" :outside-arrows="$q.platform.is.electron ? true : false"
-      :breakpoint="0">
-      <q-route-tab class="tagView" to="/" no-caps content-class="tagView-q-router-tab">
-        <q-icon size="1.3rem" name="sym_r_home" />
-        <div class="line-limit-length" style="margin: 0px 5px 0px 5px">
-          首頁
-        </div>
-      </q-route-tab>
-      <!-- <q-separator vertical /> -->
-      <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
-        <q-route-tab class="tagView" :to="tag.fullPath" no-caps content-class="tagView-q-router-tab">
-          <q-icon size="1.3rem" :name="tag.icon" />
-          <div class="line-limit-length">{{ tag.title }}</div>
-          <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
-            @click.prevent.stop="removetagViewAt(i)" />
-          <q-menu touch-position context-menu>
-            <q-list dense>
-              <q-item clickable v-close-popup>
-                <q-item-section @click="removetagViewOnRight(i)">
-                  關閉右邊
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-close-popup>
-                <q-item-section @click="removetagViewOnLeft(i)">
-                  關閉左邊
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-close-popup>
-                <q-item-section @click="removeOthertagView(i)">
-                  關閉其他
-                </q-item-section>
-              </q-item>
-              <q-item clickable v-close-popup>
-                <q-item-section @click="removeAllTagView()">
-                  關閉全部
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
+      inline-label indicator-color="transparent" :breakpoint="0">
+      <router-link :to="'/'" custom v-slot:default="props">
+        <q-route-tab :class="tagViewClass('/')" flat dense no-caps v-bind="props">
+          <q-icon size="1.3rem" name="sym_r_home" />
+          <div class="line-limit-length">主頁</div>
         </q-route-tab>
+      </router-link>
+      <q-separator vertical />
+      <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
+        <router-link :to="tag.fullPath" custom v-slot:default="props">
+          <q-route-tab :class="tagViewClass(tag.fullPath)" flat dense no-caps v-bind="props">
+            <q-icon size="1.3rem" :name="tag.icon" />
+            <div class="line-limit-length">{{ tag.title }}</div>
+            <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
+              @click.prevent.stop="removetagViewAt(i)" />
+            <q-menu touch-position context-menu>
+              <q-list dense>
+                <q-item clickable v-close-popup>
+                  <q-item-section @click="removetagViewOnRight(i)">
+                    關閉右邊
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-close-popup>
+                  <q-item-section @click="removetagViewOnLeft(i)">
+                    關閉左邊
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-close-popup>
+                  <q-item-section @click="removeOthertagView(i)">
+                    關閉其他
+                  </q-item-section>
+                </q-item>
+                <q-item clickable v-close-popup>
+                  <q-item-section @click="removeAllTagView()">
+                    關閉全部
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-route-tab>
+        </router-link>
+
       </template>
     </q-tabs>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue"
 import { useTagViewStore } from "src/stores/tagView";
 import { useKeepAliveStore } from "src/stores/keep-alive"
 import { SessionStorage } from "quasar";
+import { useRoute } from "vue-router";
 
 defineOptions({ name: "Tagview" })
 
+const route = useRoute()
 const tagViewStore = useTagViewStore();
 const keepAliveStore = useKeepAliveStore();
 
@@ -76,6 +81,14 @@ const removeOthertagView = (i: number) => {
   tagViewStore.removeOtherTagView(i);
 };
 
+const tagViewClass = computed(() => {
+  //是否為當前路由
+  return (path: any) => {
+    return route.fullPath === path ? "tagView tagActive" : "tagView";
+  };
+});
+
+
 tagViewStore.$subscribe(
   (mutation, state) => {
     keepAliveStore.setKeepAliveList(state.tagView)
@@ -92,11 +105,11 @@ tagViewStore.$subscribe(
     background-color: white;
 
     .tagView {
-      margin: 1.5px 3px 0 3px;
+      margin: 2px 3px 0 3px;
       min-height: 20px;
       padding: 0 8px;
       transition: all 0.5s;
-      border-radius: 0;
+      border-radius: 3px;
       height: 33px;
       display: flex;
       align-items: center;
@@ -119,7 +132,6 @@ tagViewStore.$subscribe(
       min-height: 20px;
       padding: 0 8px;
       transition: all 0.5s;
-      border-radius: 0;
       height: 33px;
       display: flex;
       align-items: center;
@@ -151,9 +163,5 @@ tagViewStore.$subscribe(
   max-width: 180px;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.tagView-q-router-tab {
-  min-width: 40px !important
 }
 </style>

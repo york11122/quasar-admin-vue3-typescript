@@ -54,10 +54,10 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import Tagview from "src/components/Tagview/Tagview.vue";
+import Tagview from "src/components/TagView/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
-import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
+import ToolbarItem from "src/components/ToolBar/ToolbarItem.vue"
 import { useKeepAliveStore } from "src/stores/keep-alive";
 
 const leftDrawerOpen = ref<boolean>(false);

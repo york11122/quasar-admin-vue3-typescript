@@ -3,7 +3,7 @@ import { RouteLocationNormalized } from "vue-router";
 import { Router as router } from "../router";
 import { SessionStorage } from "quasar";
 import { RouteData } from "src/types/index";
-
+import { getFirst } from "src/utils/index"
 enum removeType {
   Right,
   Left,
@@ -26,10 +26,14 @@ export const useTagViewStore = defineStore("tagView", {
         title: to.meta.title,
         name: to.name,
         fullPath: to.fullPath,
-        path: to.path,
         icon: to.meta.icon,
         keepAlive: to.meta.keepAlive,
       };
+
+      if (getFirst(to.query)) {
+        tag.title += '：' + getFirst(to.query)
+      }
+
       if (
         tag.title !== null &&
         tag.title !== undefined &&

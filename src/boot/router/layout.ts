@@ -38,7 +38,7 @@ export default boot(async ({ router }) => {
       } else if (from.fullPath !== to.fullPath) {
         tagViewStore.addTagView(to);
       }
-      breadCrumbsStore.setBreadcurmbs(to.matched);
+      breadCrumbsStore.setBreadcurmbs(to.matched, to.query);
       handleKeepAlive(to);
     }
   });

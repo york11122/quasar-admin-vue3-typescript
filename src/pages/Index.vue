@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
 
 

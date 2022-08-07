@@ -16,7 +16,6 @@ export default boot(async ({ router }) => {
     // Simulate obtaining token
     const token = SessionStorage.getItem("access_token");
     // There is a token indicating that you have logged in
-    console.log(token)
     if (token) {
       //You cannot access the login interface after logging in
       if (to.path === "/login") {
