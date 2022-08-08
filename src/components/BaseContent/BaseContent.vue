@@ -24,7 +24,7 @@ import {
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
 
-defineOptions({ name: "Login" })
+defineOptions({ name: "BaseContent" })
 
 interface scrollInfo {
   horizontalContainerSize: number;
@@ -36,6 +36,11 @@ interface scrollInfo {
   verticalPosition: number;
   verticalSize: number;
 
+}
+
+interface scrollPosition {
+  top: number;
+  left: number;
 }
 
 const thumbStyle = {
@@ -69,10 +74,9 @@ const toTop = () => {
 onMounted(() => {
   basePath.value = route.fullPath;
 
-  const t = SessionStorage.getItem(basePath.value);
+  const t: scrollPosition | null = SessionStorage.getItem(basePath.value);
   if (t) {
-    const toPosition = JSON.parse(t as string);
-    scrollToPosition(toPosition.listScrollTop);
+    scrollToPosition(t.top);
   }
 });
 
@@ -81,10 +85,9 @@ onUnmounted(() => {
 });
 
 onActivated(() => {
-  const t = SessionStorage.getItem(route.fullPath);
+  const t: scrollPosition | null = SessionStorage.getItem(route.fullPath);
   if (t) {
-    const toPosition = JSON.parse(t as string);
-    scrollToPosition(toPosition.listScrollTop);
+    scrollToPosition(t.top);
   }
 });
 
@@ -92,7 +95,7 @@ onDeactivated(() => {
   const position = getScrollPosition();
   SessionStorage.set(
     basePath.value,
-    JSON.stringify({ listScrollTop: position ? position.top : 0 })
+    position
   );
 });
 </script>

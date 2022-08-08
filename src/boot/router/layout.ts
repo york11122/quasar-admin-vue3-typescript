@@ -6,8 +6,7 @@ import { SessionStorage } from "quasar";
 import { RouteLocationNormalized } from "vue-router";
 import constantRoutes from "src/router/constantRoutes";
 import LoadingBar from "src/components/LoadingBar/LoadingBar";
-
-
+import { RouteData } from "src/types";
 
 export default boot(async ({ router }) => {
   const tagViewStore = useTagViewStore();
@@ -25,9 +24,8 @@ export default boot(async ({ router }) => {
         }
       }
 
-      const tagViewOnSessionStorage = JSON.parse(
-        SessionStorage.getItem("tagView") ?? "[]"
-      );
+      const tagViewOnSessionStorage = (SessionStorage.getItem("tagView") ??
+        []) as RouteData[];
 
       if (
         tagViewStore.getTagView.length === 0 &&

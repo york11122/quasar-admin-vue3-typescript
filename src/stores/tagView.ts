@@ -3,7 +3,7 @@ import { RouteLocationNormalized } from "vue-router";
 import { Router as router } from "../router";
 import { SessionStorage } from "quasar";
 import { RouteData } from "src/types/index";
-import { getFirst } from "src/utils/index"
+import { getFirst } from "src/utils/index";
 enum removeType {
   Right,
   Left,
@@ -31,7 +31,7 @@ export const useTagViewStore = defineStore("tagView", {
       };
 
       if (getFirst(to.query)) {
-        tag.title += '：' + getFirst(to.query)
+        tag.title += "：" + getFirst(to.query);
       }
 
       if (
@@ -80,7 +80,7 @@ export const useTagViewStore = defineStore("tagView", {
 
     removeAllTagView() {
       this.tagView = [];
-      SessionStorage.set("tagView", "[]");
+      SessionStorage.set("tagView", []);
       router.push({ name: "home" });
     },
   },
@@ -97,7 +97,7 @@ export function removeATagView(state: any, index: any) {
   state.tagView.splice(index, 1);
   // If tagView is empty
   if (state.tagView.length === 0) {
-    SessionStorage.set("tagView", "[]");
+    SessionStorage.set("tagView", []);
     router.push({ name: "home" });
   } else {
     // If the last tagView is removed, the route jumps to the current last tagView
