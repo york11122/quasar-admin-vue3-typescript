@@ -88,13 +88,11 @@ const tagViewClass = computed(() => {
   };
 });
 
-
 tagViewStore.$subscribe(
   (mutation, state) => {
     keepAliveStore.setKeepAliveList(state.tagView)
-    SessionStorage.set("tagView", JSON.stringify(state.tagView));
-  },
-  { detached: false }
+    SessionStorage.set("tagView", state.tagView);
+  }
 );
 </script>
 
