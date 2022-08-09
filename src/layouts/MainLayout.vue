@@ -37,7 +37,6 @@
 
     <!-- page start -->
     <q-page-container class="app-main full-height">
-      {{ keepAliveStore.getKeepAliveList }}
       <router-view v-slot="{ Component, route }">
         <transition name="fade-transform" mode="out-in" enter-active-class="animated fadeIn">
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">

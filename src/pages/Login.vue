@@ -1,39 +1,26 @@
 <template>
   <div class="flex justify-center items-center bg-primary" style="height: 100%">
-    <q-card flat bordered class="row" style="width: 60vw;min-width: 300px;">
-      <div class="col-6 flex justify-center items-center " v-show="$q.screen.gt.sm">
+    <q-card flat class="row" style="border-radius: 20px;">
+      <!-- <div class="col-6 flex justify-center items-center " v-show="$q.screen.gt.sm">
         <q-skeleton type="text" height="70%" width="50%" v-if="!isLottieFinished" />
         <lottie-web style="height: 70%" :path="defaultOptions.path" @isLottieFinish="handleFinish" />
       </div>
-      <q-separator vertical inset v-if="$q.screen.gt.sm" />
+      <q-separator vertical inset v-if="$q.screen.gt.sm" /> -->
       <div class="col flex justify-center items-center">
-        <q-card square flat style="min-width: 290px;height: 100%; width: 60%;">
-          <q-card-section align="center">
-            <h3 class="text-uppercase">WINDRIPPLE</h3>
+        <q-card-section align="center" class="q-gutter-y-lg">
+          <h3 class="text-uppercase">WINDRIPPLE</h3>
 
-            <q-input class="logon-input" clearable standout="bg-cyan text-white" bottom-slots v-model="username"
-              label="账号">
-              <template v-slot:prepend>
-                <q-icon name="account_circle" />
-              </template>
-            </q-input>
+          <q-input v-model="username" class="logon-input" dense clearable outlined />
+          <q-input v-model="password" class="logon-input" dense outlined :type="isPwd ? 'password' : 'text'">
+            <template v-slot:append>
+              <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
+            </template>
+          </q-input>
 
-            <q-input class="logon-input" standout="bg-cyan text-white" bottom-slots v-model="password" label="密码"
-              :type="isPwd ? 'password' : 'text'" hint="">
-              <template v-slot:prepend>
-                <q-icon name="vpn_key" />
-              </template>
-              <template v-slot:append>
-                <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer"
-                  @click="isPwd = !isPwd" />
-              </template>
-            </q-input>
+          <q-btn class="full-width" rounded unelevated color="primary" :loading="loading" @click="login">登入
+          </q-btn>
 
-            <q-btn :loading="loading" unelevated style="font-size: large;" @click="login">登入
-            </q-btn>
-
-          </q-card-section>
-        </q-card>
+        </q-card-section>
       </div>
     </q-card>
   </div>
