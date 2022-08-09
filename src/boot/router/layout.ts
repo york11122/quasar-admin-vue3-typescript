@@ -26,7 +26,6 @@ export default boot(async ({ router }) => {
 
       const tagViewOnSessionStorage = (SessionStorage.getItem("tagView") ??
         []) as RouteData[];
-
       if (
         tagViewStore.getTagView.length === 0 &&
         tagViewOnSessionStorage.length !== 0

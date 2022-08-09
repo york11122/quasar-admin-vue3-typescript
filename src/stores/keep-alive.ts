@@ -21,9 +21,6 @@ export const useKeepAliveStore = defineStore("keepAlive", {
           this.keepAliveList.push(payload[i].name as string);
         }
       }
-      // If you need to cache the homepage, as shown below,
-      // push the corresponding routing component name at the end of the method.
-      // state.keepAliveList.push('home')
       return this.keepAliveList;
     },
   },

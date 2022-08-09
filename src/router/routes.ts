@@ -65,7 +65,7 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
           title: "編輯器",
           icon: "sym_r_edit_note",
           requiresAuth: false,
-          keepAlive: false,
+          keepAlive: true,
         },
       },
     ],

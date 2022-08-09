@@ -37,6 +37,7 @@
 
     <!-- page start -->
     <q-page-container class="app-main full-height">
+      {{ keepAliveStore.getKeepAliveList }}
       <router-view v-slot="{ Component, route }">
         <transition name="fade-transform" mode="out-in" enter-active-class="animated fadeIn">
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
@@ -57,11 +58,11 @@ export default {
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import Tagview from "src/components/Tagview/Tagview.vue";
+import Tagview from "src/components/TagView/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
-import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
-import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue"
+import ToolbarItem from "src/components/ToolBar/ToolbarItem.vue"
+import ToolbarTitle from "src/components/ToolBar/ToolbarTitle.vue"
 import { useKeepAliveStore } from "src/stores/keep-alive";
 
 const leftDrawerOpen = ref<boolean>(false);
