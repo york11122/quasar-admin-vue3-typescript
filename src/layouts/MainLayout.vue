@@ -30,6 +30,7 @@
     <q-drawer v-model="leftDrawerOpen" :width="210" show-if-above bordered>
       <div class="absolute-top q-pa-sm" style="height: 50px">
         <toolbar-title :title="'Windripple'" style="width:100%" />
+        <q-separator spaced="sm" inset />
       </div>
       <base-menu style="height: calc(100% - 50px); margin-top: 50px;" />
     </q-drawer>
