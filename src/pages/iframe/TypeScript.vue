@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-const src = 'https://vitejs.cn/';
+const src = 'https://www.typescriptlang.org/';
 </script>
 
 <style scoped>

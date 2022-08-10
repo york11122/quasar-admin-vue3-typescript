@@ -16,7 +16,7 @@ import { AxiosResponse } from "axios";
 
 defineOptions({ name: "MDViewer" })
 
-const { isLoading, state } = useAsyncState(api.get("data/data.md"), {} as AxiosResponse)
+const { isLoading, state } = useAsyncState(api.get("data/v-md-editor.md"), {} as AxiosResponse)
 
 </script>
 

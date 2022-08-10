@@ -8,12 +8,16 @@
 
       <!-- no children -->
       <q-item v-if="!item.children" :exact="item.path === '/'" clickable v-ripple :inset-level="initLevel"
-        active-class="baseItemActive" :to="handleLink(basePath, item.path)">
+        active-class="baseItemActive" :active="$route.fullPath === handleLink(basePath, item.path)"
+        @click="handleMenuClick(basePath, item.path)">
         <q-item-section avatar>
           <q-icon :name="item.meta?.icon" />
         </q-item-section>
         <q-item-section>
           {{ item.meta?.title }}
+        </q-item-section>
+        <q-item-section v-if="handleLink(basePath, item.path) === '#'" side>
+          <q-icon name="fa-solid fa-up-right-from-square" size="10px" />
         </q-item-section>
       </q-item>
 
@@ -31,7 +35,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { RouteRecordRaw, useRoute } from "vue-router";
+import { RouteRecordRaw, useRoute, useRouter } from "vue-router";
 
 defineOptions({ name: "BaseMenuItem" })
 
@@ -44,6 +48,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 150, basePath: "" })
 const route = useRoute();
+const router = useRouter();
 
 const baseItemClassWithNoChildren = computed(() => {
   return (path: any) => {
@@ -58,6 +63,21 @@ const handleLink = (basePath: string, itemPath: string) => {
   }
   return link;
 };
+
+
+const handleMenuClick = (basePath: string, itemPath: string) => {
+  const link = basePath === "" ? itemPath : basePath + "/" + itemPath;
+  const i = link.indexOf('http')
+  if (i !== -1) {
+    const a = document.createElement('a')
+    a.setAttribute('href', link.slice(i))
+    a.setAttribute('target', '_blank')
+    a.click()
+    return false
+  }
+  router.push(link)
+};
+
 </script>
 
 

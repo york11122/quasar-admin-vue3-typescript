@@ -1,4 +1,9 @@
-import { RouteRecordRaw } from "vue-router";
+import {
+  RouteRecordName,
+  RouteRecordRaw,
+  RouteRecordRedirectOption,
+  RouteMeta,
+} from "vue-router";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -12,7 +17,17 @@ declare module "vue-router" {
   }
 }
 
-const asyncRoutesChildren: RouteRecordRaw[] = [
+interface Route {
+  name: string;
+  path: RouteRecordName | undefined;
+  redirect?: RouteRecordRedirectOption | undefined;
+  component?: any;
+  children?: Route[];
+  meta: RouteMeta;
+  props?: boolean | Record<string, any> | ((to: any) => Record<string, any>);
+}
+
+const asyncRoutesChildren: Route[] = [
   {
     component: () => import("src/pages/Index.vue"),
     path: "/",
@@ -25,14 +40,50 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
   },
 
   {
-    component: () => import("src/pages/Iframe.vue"),
-    path: "/iframe",
-    name: "Iframe",
+    component: () => import("components/Layout/Layout.vue"),
+    path: "/docs",
+    name: "docs",
     meta: {
-      title: "Iframe",
-      icon: "sym_r_home",
-      requiresAuth: false,
+      title: "技術文件",
+      icon: "sym_r_description",
+      isOpen: true,
     },
+    children: [
+      {
+        component: () => import("pages/iframe/TypeScript.vue"),
+        path: "ts",
+        name: "TypeScript",
+        meta: {
+          title: "TypeScript",
+          icon: "fa-brands fa-js",
+        },
+      },
+      {
+        component: () => import("pages/iframe/Vite.vue"),
+        path: "vite",
+        name: "Vite",
+        meta: {
+          title: "Vite",
+          icon: "fa-solid fa-file-code",
+        },
+      },
+      {
+        path: "https://vuejs.org/",
+        name: "Vue3",
+        meta: {
+          title: "Vue3",
+          icon: "fa-brands fa-vuejs",
+        },
+      },
+      {
+        path: "https://quasar.dev/",
+        name: "Quasar",
+        meta: {
+          title: "Quasar",
+          icon: "fa-solid fa-file-code",
+        },
+      },
+    ],
   },
   {
     component: () => import("components/Layout/Layout.vue"),
@@ -40,10 +91,10 @@ const asyncRoutesChildren: RouteRecordRaw[] = [
     name: "markdown",
     meta: {
       title: "markdown",
-      icon: "sym_r_pages",
+      icon: "fa-brands fa-markdown",
       requiresAuth: false,
       keepAlive: false,
-      isOpen: true
+      isOpen: true,
     },
     children: [
       {

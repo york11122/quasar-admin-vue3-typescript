@@ -8,15 +8,15 @@
         <q-badge color="secondary" class="justify-start">
           Speed: {{ defaultOptions.animationSpeed }}
         </q-badge>
-        <q-slider v-model="defaultOptions.animationSpeed" :min="0" :max="3" :step="0.5" color="purple" label />
+        <q-slider v-model="defaultOptions.animationSpeed" :min="0" :max="3" :step="0.5" label />
         <q-btn-group>
-          <q-btn color="accent" icon="play_arrow" @click="play">
+          <q-btn color="primary" icon="play_arrow" @click="play">
             <q-tooltip>播放</q-tooltip>
           </q-btn>
-          <q-btn color="accent" icon="pause" @click="pause">
+          <q-btn color="primary" icon="pause" @click="pause">
             <q-tooltip>暂停</q-tooltip>
           </q-btn>
-          <q-btn color="accent" icon="stop" @click="stop">
+          <q-btn color="primary" icon="stop" @click="stop">
             <q-tooltip>停止</q-tooltip>
           </q-btn>
         </q-btn-group>
