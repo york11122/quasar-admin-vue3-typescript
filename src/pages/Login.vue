@@ -1,26 +1,25 @@
 <template>
-  <div class="flex justify-center items-center bg-primary" style="height: 100%">
-    <q-card flat class="row" style="border-radius: 20px;">
-      <!-- <div class="col-6 flex justify-center items-center " v-show="$q.screen.gt.sm">
-        <q-skeleton type="text" height="70%" width="50%" v-if="!isLottieFinished" />
-        <lottie-web style="height: 70%" :path="defaultOptions.path" @isLottieFinish="handleFinish" />
-      </div>
-      <q-separator vertical inset v-if="$q.screen.gt.sm" /> -->
-      <div class="col flex justify-center items-center">
-        <q-card-section align="center" class="q-gutter-y-lg">
-          <h3 class="text-uppercase">WINDRIPPLE</h3>
+  <div class="flex justify-center items-center" style="height: 100%">
+    <corner-bottom class="wave fit bg-black" />
 
-          <q-input v-model="username" class="logon-input" dense clearable outlined />
-          <q-input v-model="password" class="logon-input" dense outlined :type="isPwd ? 'password' : 'text'">
+    <div class="col-6 flex justify-center items-center " v-show="$q.screen.gt.sm">
+      <q-skeleton type="text" height="70%" width="50%" v-if="!isLottieFinished" />
+      <lottie-web style="height: 70%" :path="defaultOptions.path" @isLottieFinish="handleFinish" />
+    </div>
+    <q-card flat class="row" style="border-radius: 20px;  width:85%; max-width: 400px;">
+      <div class="col flex justify-center items-center q-pa-md">
+        <q-card-section align="center" class="q-gutter-y-lg fit">
+          <q-input v-model="username" placeholder="請輸入帳號" dense clearable outlined />
+          <q-input v-model="password" placeholder="請輸入密碼" dense outlined :type="isPwd ? 'password' : 'text'">
             <template v-slot:append>
               <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
             </template>
           </q-input>
-
-          <q-btn class="full-width" rounded unelevated color="primary" :loading="loading" @click="login">登入
+          <q-btn class="full-width" size="1.2em" rounded unelevated color="primary" :loading="loading" @click="login">
+            登入
           </q-btn>
-
         </q-card-section>
+
       </div>
     </q-card>
   </div>
@@ -32,6 +31,7 @@ import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { SessionStorage, Notify } from "quasar"
 import LottieWeb from "src/components/LottieWeb/LottieWeb.vue";
+import CornerBottom from "src/components/Login/CornerBottom.vue"
 
 defineOptions({ name: "Login" })
 
@@ -68,4 +68,11 @@ const handleFinish = () => {
 
 </script>
 
-
+<style scoped>
+.wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+</style>
