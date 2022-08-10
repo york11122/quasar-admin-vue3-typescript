@@ -1,5 +1,6 @@
 <template>
-  <q-btn flat no-caps no-wrap v-if="$q.screen.gt.xs">
+  <q-btn flat no-caps no-wrap>
+    <q-icon name="fa-solid fa-shield-dog" />
     <q-toolbar-title shrink class="text-weight-bold">
       {{ title }}
     </q-toolbar-title>
