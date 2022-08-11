@@ -4,7 +4,7 @@
       inline-label indicator-color="transparent" :breakpoint="0">
       <router-link :to="'/'" custom v-slot:default="props">
         <q-route-tab :class="tagViewClass('/')" flat dense no-caps v-bind="props">
-          <q-icon size="1.3rem" name="sym_r_home" />
+          <q-icon size="1.3rem" name="home" />
           <div class="line-limit-length">主頁</div>
         </q-route-tab>
       </router-link>

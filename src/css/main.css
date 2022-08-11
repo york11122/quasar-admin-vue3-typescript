@@ -8,13 +8,6 @@
   min-height: 100%;
 }
 
-.material-symbols-rounded {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 350,
-    'GRAD' 200,
-    'opsz' 48
-}
 
 .sticky-header-table {
   height: 310px;

@@ -5,7 +5,7 @@
 
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
         <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-          <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="sym_r_expand_less" @click="toTop" />
+          <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="expand_less" @click="toTop" />
         </transition>
       </q-page-sticky>
     </q-scroll-area>

@@ -17,7 +17,7 @@ export const useApi = createFetch({
     afterFetch({ data, response }) {
       return { data, response };
     },
-    // when error occur
+    // when error occurs
     onFetchError({ data, error, response }) {
       const defaultNotify: string | QNotifyCreateOptions = {
         message: "unknow error",

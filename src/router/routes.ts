@@ -34,7 +34,7 @@ const asyncRoutesChildren: Route[] = [
     name: "home",
     meta: {
       title: "首頁",
-      icon: "sym_r_home",
+      icon: "home",
       requiresAuth: false,
     },
   },
@@ -44,7 +44,7 @@ const asyncRoutesChildren: Route[] = [
     name: "FitTable",
     meta: {
       title: "FitTable",
-      icon: "sym_r_home",
+      icon: "home",
       requiresAuth: false,
     },
   },
@@ -66,7 +66,7 @@ const asyncRoutesChildren: Route[] = [
         name: "MDViewer",
         meta: {
           title: "MD呈現",
-          icon: "sym_r_article",
+          icon: "article",
           requiresAuth: false,
           keepAlive: true,
         },
@@ -77,7 +77,7 @@ const asyncRoutesChildren: Route[] = [
         name: "MDEditor",
         meta: {
           title: "編輯器",
-          icon: "sym_r_edit_note",
+          icon: "edit_note",
           requiresAuth: false,
           keepAlive: true,
         },
@@ -90,7 +90,7 @@ const asyncRoutesChildren: Route[] = [
     name: "Lottie",
     meta: {
       title: "Lottie動畫",
-      icon: "sym_r_animation",
+      icon: "animation",
       requiresAuth: false,
       keepAlive: false,
       roles: ["admin"],
@@ -102,7 +102,7 @@ const asyncRoutesChildren: Route[] = [
     name: "menu1",
     meta: {
       title: "摺疊目錄",
-      icon: "sym_r_filter_1",
+      icon: "filter_1",
       requiresAuth: false,
       isOpen: false,
     },
@@ -113,7 +113,7 @@ const asyncRoutesChildren: Route[] = [
         name: "menu2",
         meta: {
           title: "第一層",
-          icon: "sym_r_filter_2",
+          icon: "filter_2",
           requiresAuth: false,
         },
         children: [
@@ -123,7 +123,7 @@ const asyncRoutesChildren: Route[] = [
             name: "menu3",
             meta: {
               title: "第二層",
-              icon: "sym_r_filter_3",
+              icon: "filter_3",
               requiresAuth: false,
             },
           },
@@ -137,7 +137,7 @@ const asyncRoutesChildren: Route[] = [
     name: "docs",
     meta: {
       title: "技術文件",
-      icon: "sym_r_description",
+      icon: "description",
       isOpen: true,
     },
     children: [

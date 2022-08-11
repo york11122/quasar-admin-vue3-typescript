@@ -1,17 +1,32 @@
 <template>
-    <div class="q-pa-md fit">
-        <q-table flat bordered virtual-scroll class="fit sticky-header-table table-header-color" :rows="rows"
+    <div class="q-pa-md fit" v-if="$q.screen.gt.xs">
+        <q-table class="fit" :dense="$q.screen.lt.md" separator="cell" flat bordered virtual-scroll :rows="rows"
             :columns="columns" row-key="name" v-model:pagination="pagination">
+            <template v-slot:top>
+                <q-btn color="primary" label="Add row" />
+                <q-btn class="q-ml-sm" color="primary" label="Remove row" />
+                <q-space />
+                <q-input dense outlined debounce="300" v-model="pagesNumber">
+                    <template v-slot:append>
+                        <q-icon name="search" />
+                    </template>
+                </q-input>
+            </template>
             <template v-slot:bottom>
                 <q-space />
                 <q-pagination v-model="pagination.page" input :max="pagesNumber" />
             </template>
         </q-table>
     </div>
+    <base-content v-else>
+        <q-table grid flat bordered :rows="rows" :columns="columns" row-key="name" v-model:pagination="pagination" />
+    </base-content>
+
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from "vue"
+import BaseContent from "src/components/BaseContent/BaseContent.vue"
 defineOptions({ name: "FitTable" })
 
 const pagination = ref({
@@ -45,7 +60,7 @@ const columns = ref<any>([
 ])
 
 const rows = ref<any>([])
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < 50; i++) {
     rows.value.push({
         name: 'Frozen Yogurt',
         calories: 159,
