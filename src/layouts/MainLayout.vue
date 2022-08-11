@@ -1,6 +1,6 @@
 <template>
-  <q-layout view="lHh lpR fFf" class="full-height">
-    <q-header class="q-py-xs dark-header" height-hint="48" bordered style="
+  <q-layout view="lHh lpR lff" class="full-height">
+    <q-header class="q-py-xs header" height-hint="48" bordered style="
         box-shadow: rgba(0, 0, 0, 0) 0px 2px 12px 0px;
         padding-bottom: 2px;
       ">
@@ -47,6 +47,7 @@
       </router-view>
     </q-page-container>
     <!-- page end -->
+
   </q-layout>
 </template>
 
@@ -75,14 +76,14 @@ const toggleLeftDrawer = () => {
 
 <style lang="scss" scoped>
 .body--light {
-  .dark-header {
+  .header {
     color: $grey-8;
     background-color: white;
   }
 }
 
 .body--dark {
-  .dark-header {
+  .header {
     color: white;
     background-color: $dark;
   }

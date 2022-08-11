@@ -19,17 +19,9 @@
   <body>
     <div id="q-app">
       <!-- quasar:entry-point -->
-       <div class="loading-container">
-        <div id="loadingLogo" class="loading-svg"></div>
-        <div class="loading-spin__container">
-          <div class="loading-spin">
-            <div class="left-0 top-0 loading-spin-item"></div>
-            <div class="left-0 bottom-0 loading-spin-item loading-delay-500"></div>
-            <div class="right-0 top-0 loading-spin-item loading-delay-1000"></div>
-            <div class="right-0 bottom-0 loading-spin-item loading-delay-1500"></div>
-          </div>
-        </div>
-        <div class="loading-title"><%= productName %></div>
+      <div class="loading-container">
+        <span class="loader">
+          <%= productName %></span>
       </div>
       <script src="/resource/loading.js"></script>
     </div>

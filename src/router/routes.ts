@@ -39,6 +39,16 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
+    component: () => import("src/pages/table/FitTable.vue"),
+    path: "/fit-table",
+    name: "FitTable",
+    meta: {
+      title: "FitTable",
+      icon: "sym_r_home",
+      requiresAuth: false,
+    },
+  },
+  {
     component: () => import("components/Layout/Layout.vue"),
     path: "/markdown",
     name: "markdown",
