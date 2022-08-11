@@ -38,53 +38,6 @@ const asyncRoutesChildren: Route[] = [
       requiresAuth: false,
     },
   },
-
-  {
-    component: () => import("components/Layout/Layout.vue"),
-    path: "/docs",
-    name: "docs",
-    meta: {
-      title: "技術文件",
-      icon: "sym_r_description",
-      isOpen: true,
-    },
-    children: [
-      {
-        component: () => import("pages/iframe/TypeScript.vue"),
-        path: "ts",
-        name: "TypeScript",
-        meta: {
-          title: "TypeScript",
-          icon: "fa-brands fa-js",
-        },
-      },
-      {
-        component: () => import("pages/iframe/Vite.vue"),
-        path: "vite",
-        name: "Vite",
-        meta: {
-          title: "Vite",
-          icon: "fa-solid fa-file-code",
-        },
-      },
-      {
-        path: "https://vuejs.org/",
-        name: "Vue3",
-        meta: {
-          title: "Vue3",
-          icon: "fa-brands fa-vuejs",
-        },
-      },
-      {
-        path: "https://quasar.dev/",
-        name: "Quasar",
-        meta: {
-          title: "Quasar",
-          icon: "fa-solid fa-file-code",
-        },
-      },
-    ],
-  },
   {
     component: () => import("components/Layout/Layout.vue"),
     path: "/markdown",
@@ -121,7 +74,6 @@ const asyncRoutesChildren: Route[] = [
       },
     ],
   },
-
   {
     component: () => import("src/pages/lottie/Lottie.vue"),
     path: "/lottie",
@@ -166,6 +118,52 @@ const asyncRoutesChildren: Route[] = [
             },
           },
         ],
+      },
+    ],
+  },
+  {
+    component: () => import("components/Layout/Layout.vue"),
+    path: "/docs",
+    name: "docs",
+    meta: {
+      title: "技術文件",
+      icon: "sym_r_description",
+      isOpen: true,
+    },
+    children: [
+      {
+        component: () => import("pages/iframe/TypeScript.vue"),
+        path: "ts",
+        name: "TypeScript",
+        meta: {
+          title: "TypeScript",
+          icon: "fa-brands fa-js",
+        },
+      },
+      {
+        component: () => import("pages/iframe/Vite.vue"),
+        path: "vite",
+        name: "Vite",
+        meta: {
+          title: "Vite",
+          icon: "fa-solid fa-file-code",
+        },
+      },
+      {
+        path: "https://vuejs.org/",
+        name: "Vue3",
+        meta: {
+          title: "Vue3",
+          icon: "fa-brands fa-vuejs",
+        },
+      },
+      {
+        path: "https://quasar.dev/",
+        name: "Quasar",
+        meta: {
+          title: "Quasar",
+          icon: "fa-solid fa-file-code",
+        },
       },
     ],
   },

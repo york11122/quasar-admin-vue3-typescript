@@ -27,7 +27,7 @@
     </q-header>
 
     <!-- drawer start -->
-    <q-drawer v-model="leftDrawerOpen" :width="210" show-if-above bordered>
+    <q-drawer v-model="leftDrawerOpen" :width="230" show-if-above bordered>
       <div class="absolute-top q-pa-sm" style="height: 50px">
         <toolbar-title :title="'Windripple'" style="width:100%" />
         <q-separator spaced="sm" inset />

@@ -13,7 +13,6 @@
     "@quasar/extras": "^1.15.1",
     "@types/prismjs": "^1.26.0",
     "@vueuse/core": "^9.1.0",
-    "axios": "^0.21.1",
     "lottie-web": "^5.9.6",
     "pinia": "^2.0.11",
     "quasar": "^2.7.7",

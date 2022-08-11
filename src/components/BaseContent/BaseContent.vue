@@ -103,8 +103,8 @@ onDeactivated(() => {
 <style lang="scss" scoped>
 .body--light {
   .toTopBtn {
-    color: $primary;
-    background-color: white;
+    color: white;
+    background-color: $primary;
   }
 }
 
