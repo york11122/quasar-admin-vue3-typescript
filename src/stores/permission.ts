@@ -1,19 +1,19 @@
 import { defineStore } from "pinia";
-import { RouteRecordRaw } from "vue-router";
+import { Route } from "src/types/index"
 
 export const useRouterStore = defineStore("routes", {
   state: () => ({
-    permissionRoutes: [] as RouteRecordRaw[],
+    permissionRoutes: [] as Route[],
   }),
 
   getters: {
-    getPermissionRoutes(state): RouteRecordRaw[] {
+    getPermissionRoutes(state): Route[] {
       return state.permissionRoutes;
     },
   },
 
   actions: {
-    setRoutes(routes: RouteRecordRaw[]) {
+    setRoutes(routes: Route[]) {
       this.permissionRoutes = routes;
     },
   },

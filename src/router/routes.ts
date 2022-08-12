@@ -1,9 +1,4 @@
-import {
-  RouteRecordName,
-  RouteRecordRaw,
-  RouteRecordRedirectOption,
-  RouteMeta,
-} from "vue-router";
+import { Route } from "src/types/index"
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -15,16 +10,6 @@ declare module "vue-router" {
     requiresAuth?: boolean;
     isOpen?: boolean;
   }
-}
-
-interface Route {
-  name: string;
-  path: RouteRecordName | undefined;
-  redirect?: RouteRecordRedirectOption | undefined;
-  component?: any;
-  children?: Route[];
-  meta: RouteMeta;
-  props?: boolean | Record<string, any> | ((to: any) => Record<string, any>);
 }
 
 const asyncRoutesChildren: Route[] = [
@@ -179,7 +164,7 @@ const asyncRoutesChildren: Route[] = [
   },
 ];
 
-const asyncRootRoute: RouteRecordRaw[] = [
+const asyncRootRoute: Route[] = [
   {
     component: () => import("layouts/MainLayout.vue"),
     path: "/",

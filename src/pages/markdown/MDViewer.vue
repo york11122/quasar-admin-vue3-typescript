@@ -10,12 +10,15 @@
 <script lang="ts" setup>
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
 import BaseSkelton from "src/components/Skelton/BaseSkelton.vue"
-import { useApi } from "src/composables/fetchApi"
+import { useMyApi } from "src/composables/myApi"
+import { useFetch } from "src/composables/fetch"
 
 defineOptions({ name: "MDViewer" })
 
-const { isFetching, data } = useApi("data/v-md-editor.md")
+const api = useMyApi()
+const test = api("/status/500")
 
+const { data, isFetching } = useFetch("data/v-md-editor.md")
 
 </script>
 

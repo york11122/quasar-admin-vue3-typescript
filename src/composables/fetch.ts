@@ -1,7 +1,7 @@
 import { createFetch } from "@vueuse/core";
 import { SessionStorage, Notify, QNotifyCreateOptions } from "quasar";
 
-export const useApi = createFetch({
+export const useFetch = createFetch({
   baseUrl: "",
   options: {
     // doing some additional setting before the fetch, e.g. Authorization header adding

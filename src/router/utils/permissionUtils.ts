@@ -1,8 +1,8 @@
-import { RouteRecordRaw } from "vue-router";
 import { useUserStore } from "src/stores/user";
+import { Route } from "src/types/index"
 
 
-export default function constructionRouters(router: RouteRecordRaw[]) {
+export default function constructionRouters(router: Route[]) {
   const userStore = useUserStore();
   let temp = router.filter((item) => {
     // if no roles is setting, everyone can access
@@ -14,7 +14,7 @@ export default function constructionRouters(router: RouteRecordRaw[]) {
   for (const i in temp) {
     if (temp[i].children) {
       temp[i].children = constructionRouters(
-        temp[i].children as RouteRecordRaw[]
+        temp[i].children as Route[]
       );
     }
   }

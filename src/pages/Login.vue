@@ -62,9 +62,9 @@ const login = async () => {
   await router.push("/")
 
   Notify.create({
-    icon: 'insert_emoticon',
-    message: 'hi，cimo 欢迎回来',
-    color: 'green',
+    icon: 'fa-regular fa-face-laugh',
+    message: 'hi，windripple',
+    color: 'primary',
     position: 'top',
     timeout: 1500
   })

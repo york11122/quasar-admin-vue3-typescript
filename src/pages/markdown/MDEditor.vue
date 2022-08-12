@@ -8,11 +8,11 @@
 <script lang="ts" setup>
 import { VueMarkdownEditor } from "src/boot/markdown";
 import zhTW from "@kangc/v-md-editor/lib/lang/zh-TW";
-import { useApi } from "src/composables/fetchApi"
+import { useFetch } from "src/composables/fetch"
 VueMarkdownEditor.lang.use("zh-CN", zhTW);
 
 defineOptions({ name: "MDEditor" })
 
-const { data } = useApi("data/v-md-editor.md")
+const { data } = useFetch("data/v-md-editor.md")
 
 </script>

@@ -6,6 +6,7 @@ import { SessionStorage } from "quasar";
 import { deepClone } from "src/utils/index";
 import { asyncRoutesChildren, asyncRootRoute } from "src/router/routes";
 import constructionRouters from "src/router/utils/permissionUtils";
+import { RouteRecordRaw } from "vue-router";
 
 
 
@@ -35,7 +36,7 @@ export default boot(async ({ router }) => {
         routerStore.setRoutes(asyncRootRoute);
         // If you are prompted that addRoutes is deprecated, use the spread operator to complete the operation
         for (let item of asyncRootRoute) {
-          router.addRoute(item);
+          router.addRoute(item as RouteRecordRaw);
         }
         // If addRoutes is not completed, the guard will execute it again
         next({ ...to, replace: true });
