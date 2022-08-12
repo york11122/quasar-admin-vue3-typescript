@@ -1,6 +1,6 @@
 <template>
-    <div class="q-pa-md fit" v-if="$q.screen.gt.xs">
-        <q-table class="fit" :dense="$q.screen.lt.md" separator="cell" flat bordered virtual-scroll :rows="rows"
+    <div class="q-pa-sm fit" v-if="$q.screen.gt.xs">
+        <q-table class="fit sticky-header-table" :dense="$q.screen.lt.md" separator="cell" flat bordered :rows="rows"
             :columns="columns" row-key="name" v-model:pagination="pagination">
             <template v-slot:top>
                 <q-btn color="primary" label="Add row" />
@@ -13,8 +13,10 @@
                 </q-input>
             </template>
             <template v-slot:bottom>
-                <q-space />
-                <q-pagination v-model="pagination.page" input :max="pagesNumber" />
+                <div class="full-width row justify-center">
+                    <q-pagination v-model="pagination.page" input :max="pagesNumber" />
+                </div>
+
             </template>
         </q-table>
     </div>

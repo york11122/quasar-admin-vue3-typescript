@@ -8,7 +8,7 @@
 
         <div class="q-pr-md">
           <q-btn flat dense round aria-label="Menu" :icon="leftDrawerOpen === true ? 'menu_open' : 'menu'"
-            @click="toggleLeftDrawer" />
+            @click="toggleLeftDrawer()" />
         </div>
 
         <!-- breadcrumbs-->
@@ -65,13 +65,12 @@ import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
 import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue"
 import { useKeepAliveStore } from "src/stores/keep-alive";
+import { useToggle } from "@vueuse/shared"
 
 const leftDrawerOpen = ref<boolean>(false);
 const keepAliveStore = useKeepAliveStore();
+const toggleLeftDrawer = useToggle(leftDrawerOpen)
 
-const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
 </script>
 
 <style lang="scss" scoped>
