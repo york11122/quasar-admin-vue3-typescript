@@ -7,7 +7,8 @@ export default function constructionRouters(router: Route[]) {
   let temp = router.filter((item) => {
     // if no roles is setting, everyone can access
     if (!item.meta?.roles || item.meta.roles.length === 0) return true;
-    return item.meta.roles.indexOf(userStore.getUserRole as string) !== -1;
+   // return item.meta.roles.indexOf(userStore.getUserRole as string) !== -1;
+   return userStore.getUserRole.some(role => item.meta.roles.includes(role))
   });
 
   // construct router with user permission

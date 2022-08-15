@@ -1,10 +1,11 @@
 <template>
   <div class="q-pa-md fit">
-    <iframe class="fit" style="border:none;" :src="src"></iframe>
+    <Iframe :src="src" />
   </div>
 </template>
 
 <script setup lang="ts">
+import Iframe from 'src/components/Iframe/Iframe.vue';
 const src = 'https://www.typescriptlang.org/';
 </script>
 

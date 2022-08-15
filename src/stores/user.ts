@@ -1,17 +1,17 @@
 import { defineStore } from "pinia";
 import { SessionStorage } from "quasar";
-import { Router as router } from "src/router/index";
-import { useMyApi } from "src/composables/myApi"
-import { useFetch } from "src/composables/fetch"
+
 interface User {
-  username?: string;
-  role?: string;
+  username: string;
+  role: string[];
+  accessToken: string | null;
 }
 
 export const useUserStore = defineStore("user", {
   state: (): User => ({
     username: "",
-    role: "",
+    role: [],
+    accessToken: null
   }),
 
   getters: {
@@ -21,45 +21,31 @@ export const useUserStore = defineStore("user", {
     getUserRole(state) {
       return state.role;
     },
+    getAccessToken(state) {
+      return state.accessToken;
+    },
     getFirstCharacterOfUserName(state) {
       return state.username ? state.username.charAt(0).toUpperCase() : "";
     },
   },
 
   actions: {
-    login(loginObj: {
-      username: string;
-      password: string;
-    }) {
-      //fetch backend login
-      const api = useMyApi()
-
-      const response = api("/status/200", { immediate: false }).post(loginObj)
-
-      response.onFetchResponse(async (res) => {
-        const accessToken = "token";
-        SessionStorage.set("access_token", accessToken);
-        await this.fetchUserInfo(response.statusCode.toString());
-        // router.push("/")
-      })
-
-      return response
+    setLoginToken(accessToken: string) {
+      this.accessToken = accessToken;
+      SessionStorage.set("access_token", accessToken);
     },
-    async fetchUserInfo(accessToken: string): Promise<void> {
-      const api = useMyApi()
-      const { data } = await api("/get")
-      console.log("ggg")
-      const user: User = { username: accessToken, role: "admin" };
+    setUserInfo(user: User) {
       this.username = user.username;
       this.role = user.role;
+      this.accessToken = user.accessToken
     },
-    logout() {
+    setLogout() {
       this.username = "";
-      this.role = "";
+      this.role = [];
+      this.accessToken = null;
       SessionStorage.remove("access_token");
       SessionStorage.remove("user");
       SessionStorage.clear();
-      router.push({ name: "Login" })
     },
   },
 });
