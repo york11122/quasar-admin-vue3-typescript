@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { SessionStorage } from "quasar";
-
+import { Router as router } from "src/router/index";
+import { useMyApi } from "src/composables/myApi"
+import { useFetch } from "src/composables/fetch"
 interface User {
   username?: string;
   role?: string;
@@ -25,15 +27,29 @@ export const useUserStore = defineStore("user", {
   },
 
   actions: {
-    login() {
+    login(loginObj: {
+      username: string;
+      password: string;
+    }) {
       //fetch backend login
-      const accessToken = "token";
-      SessionStorage.set("access_token", accessToken);
-      this.fetchUserInfo(accessToken);
+      const api = useMyApi()
+
+      const response = api("/status/200", { immediate: false }).post(loginObj)
+
+      response.onFetchResponse(async (res) => {
+        const accessToken = "token";
+        SessionStorage.set("access_token", accessToken);
+        await this.fetchUserInfo(response.statusCode.toString());
+        // router.push("/")
+      })
+
+      return response
     },
-    fetchUserInfo(accessToken: string) {
-      //fetch backend userInfo
-      const user: User = { username: "york", role: "admin" };
+    async fetchUserInfo(accessToken: string): Promise<void> {
+      const api = useMyApi()
+      const { data } = await api("/get")
+      console.log("ggg")
+      const user: User = { username: accessToken, role: "admin" };
       this.username = user.username;
       this.role = user.role;
     },
@@ -43,6 +59,7 @@ export const useUserStore = defineStore("user", {
       SessionStorage.remove("access_token");
       SessionStorage.remove("user");
       SessionStorage.clear();
+      router.push({ name: "Login" })
     },
   },
 });

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { RouteLocationNormalized } from "vue-router";
-import { Router as router } from "../router";
+import { Router as router } from "src/router/index";
 import { SessionStorage } from "quasar";
 import { RouteData } from "src/types/index";
 import { getFirst } from "src/utils/index";

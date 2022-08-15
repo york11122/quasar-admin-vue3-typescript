@@ -1,6 +1,7 @@
 import { createFetch } from "@vueuse/core";
 import { SessionStorage, Notify, QNotifyCreateOptions } from "quasar";
 
+
 export const useFetch = createFetch({
   baseUrl: "",
   options: {

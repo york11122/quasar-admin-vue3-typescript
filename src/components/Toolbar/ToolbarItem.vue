@@ -51,16 +51,13 @@
 
 <script lang="ts" setup>
 import { useUserStore } from "src/stores/user"
-import { useRouter } from "vue-router"
 
 defineOptions({ name: "ToolbarItem" })
 
-const router = useRouter()
 const userStore = useUserStore()
 
 const logout = () => {
   userStore.logout()
-  router.push({ name: "Login" })
 }
 
 </script>

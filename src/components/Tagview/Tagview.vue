@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue"
+import { computed, onUnmounted } from "vue"
 import { useTagViewStore } from "src/stores/tagView";
 import { useKeepAliveStore } from "src/stores/keep-alive"
 import { SessionStorage } from "quasar";
@@ -88,7 +88,11 @@ const tagViewClass = computed(() => {
   };
 });
 
-tagViewStore.$subscribe(
+onUnmounted(() => {
+  unSubscribe()
+})
+
+const unSubscribe = tagViewStore.$subscribe(
   (mutation, state) => {
     keepAliveStore.setKeepAliveList(state.tagView)
     SessionStorage.set("tagView", state.tagView);

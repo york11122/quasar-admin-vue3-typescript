@@ -7,7 +7,6 @@ declare module "vue-router" {
     icon?: string;
     itemLabel?: string;
     keepAlive?: boolean;
-    requiresAuth?: boolean;
     isOpen?: boolean;
   }
 }
@@ -20,7 +19,6 @@ const asyncRoutesChildren: Route[] = [
     meta: {
       title: "首頁",
       icon: "home",
-      requiresAuth: false,
     },
   },
   {
@@ -30,7 +28,6 @@ const asyncRoutesChildren: Route[] = [
     meta: {
       title: "FitTable",
       icon: "home",
-      requiresAuth: false,
     },
   },
   {
@@ -40,7 +37,6 @@ const asyncRoutesChildren: Route[] = [
     meta: {
       title: "markdown",
       icon: "fa-brands fa-markdown",
-      requiresAuth: false,
       keepAlive: false,
       isOpen: true,
     },
@@ -52,7 +48,6 @@ const asyncRoutesChildren: Route[] = [
         meta: {
           title: "MD呈現",
           icon: "article",
-          requiresAuth: false,
           keepAlive: true,
         },
       },
@@ -63,7 +58,6 @@ const asyncRoutesChildren: Route[] = [
         meta: {
           title: "編輯器",
           icon: "edit_note",
-          requiresAuth: false,
           keepAlive: true,
         },
       },
@@ -76,7 +70,6 @@ const asyncRoutesChildren: Route[] = [
     meta: {
       title: "Lottie動畫",
       icon: "animation",
-      requiresAuth: false,
       keepAlive: false,
       roles: ["admin"],
     },
@@ -88,7 +81,6 @@ const asyncRoutesChildren: Route[] = [
     meta: {
       title: "摺疊目錄",
       icon: "filter_1",
-      requiresAuth: false,
       isOpen: false,
     },
     children: [
@@ -99,7 +91,6 @@ const asyncRoutesChildren: Route[] = [
         meta: {
           title: "第一層",
           icon: "filter_2",
-          requiresAuth: false,
         },
         children: [
           {
@@ -109,7 +100,6 @@ const asyncRoutesChildren: Route[] = [
             meta: {
               title: "第二層",
               icon: "filter_3",
-              requiresAuth: false,
             },
           },
         ],

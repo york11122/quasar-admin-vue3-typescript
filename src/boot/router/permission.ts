@@ -13,7 +13,7 @@ import { RouteRecordRaw } from "vue-router";
 export default boot(async ({ router }) => {
   const routerStore = useRouterStore();
   const userStore = useUserStore();
-  router.beforeEach((to, from, next) => {
+  router.beforeEach(async (to, from, next) => {
     // Simulate obtaining token
     const token = SessionStorage.getItem("access_token");
     // There is a token indicating that you have logged in
@@ -29,7 +29,9 @@ export default boot(async ({ router }) => {
       ) {
         next();
       } else {
-        userStore.fetchUserInfo(token as string);
+        if (userStore.getUserRole === "") {
+          await userStore.fetchUserInfo(token as string);
+        }
         // And set the corresponding route according to the permissions
         const accessRoutes = deepClone(asyncRoutesChildren);
         asyncRootRoute[0].children = constructionRouters(accessRoutes);

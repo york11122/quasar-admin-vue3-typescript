@@ -1,9 +1,7 @@
 import { createFetch } from "@vueuse/core";
 import { SessionStorage, Notify, QNotifyCreateOptions } from "quasar";
-import { useRouter } from "vue-router"
 import { useUserStore } from "src/stores/user"
 const useMyApi = () => {
-  const router = useRouter()
   const userStore = useUserStore()
   return createFetch({
     baseUrl: "https://httpbin.org",
@@ -43,7 +41,6 @@ const useMyApi = () => {
             defaultNotify.message = "(401)權限不足";
             Notify.create(defaultNotify);
             userStore.logout()
-            router.push({ name: "Login" })
             break;
           case 403:
             defaultNotify.message = "(403)";
