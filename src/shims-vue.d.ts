@@ -15,3 +15,5 @@ declare module "@kangc/v-md-editor/lib/lang/zh-TW";
 declare module "@kangc/v-md-editor/lib/plugins/tip/index";
 declare module "@kangc/v-md-editor/lib/preview";
 declare module "@kangc/v-md-editor/lib/theme/github.js";
+
+declare module "@quasar/quasar-ui-qcalendar/src/index.js";

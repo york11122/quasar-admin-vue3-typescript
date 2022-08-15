@@ -39,6 +39,16 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
+    component: () => import("src/pages/calendar/Calendar.vue"),
+    path: "/calendar",
+    name: "Calendar",
+    meta: {
+      title: "Calendar",
+      icon: "home",
+      requiresAuth: false,
+    },
+  },
+  {
     component: () => import("src/pages/table/FitTable.vue"),
     path: "/fit-table",
     name: "FitTable",
