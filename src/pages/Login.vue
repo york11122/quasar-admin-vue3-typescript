@@ -25,7 +25,7 @@ defineOptions({ name: "Login" })
 
 const userStore = useUserStore()
 const router = useRouter()
-const loginData = reactive<{ username: string, password: string }>({ username: '', password: '' })
+const loginData = reactive<{ username: string, password: string }>({ username: 'admin', password: 'admin' })
 const isLottieFinished = ref<boolean>(false)
 const defaultOptions = ref<any>({
   path: 'https://assets1.lottiefiles.com/packages/lf20_gzl797gs.json',
