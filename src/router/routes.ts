@@ -1,4 +1,5 @@
 import { Route } from "src/types/index"
+import layout from "src/components/Layout/Layout.vue"
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -13,7 +14,7 @@ declare module "vue-router" {
 
 const asyncRoutesChildren: Route[] = [
   {
-    component: () => import("src/pages/Index.vue"),
+    component: () => import("pages/Index.vue"),
     path: "/",
     name: "home",
     meta: {
@@ -22,7 +23,7 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
-    component: () => import("src/pages/table/FitTable.vue"),
+    component: () => import("pages/table/FitTable.vue"),
     path: "/fit-table",
     name: "FitTable",
     meta: {
@@ -31,7 +32,7 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
-    component: () => import("components/Layout/Layout.vue"),
+    component: layout,
     path: "/markdown",
     name: "markdown",
     meta: {
@@ -75,7 +76,7 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
-    component: () => import("components/Layout/Layout.vue"),
+    component: layout,
     path: "/menu1",
     name: "menu1",
     meta: {
@@ -85,7 +86,7 @@ const asyncRoutesChildren: Route[] = [
     },
     children: [
       {
-        component: () => import("components/Layout/Layout.vue"),
+        component: layout,
         path: "menu2",
         name: "menu2",
         meta: {
@@ -107,7 +108,7 @@ const asyncRoutesChildren: Route[] = [
     ],
   },
   {
-    component: () => import("components/Layout/Layout.vue"),
+    component: layout,
     path: "/docs",
     name: "docs",
     meta: {
