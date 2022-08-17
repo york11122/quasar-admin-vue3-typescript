@@ -44,10 +44,9 @@ interface scrollPosition {
 }
 
 const thumbStyle = {
-  right: "5px",
-  borderRadius: "5px",
-  backgroundColor: "#616161",
-  width: "5px",
+  right: "2px",
+  borderRadius: "3px",
+  width: "7px",
 };
 
 const route = useRoute();

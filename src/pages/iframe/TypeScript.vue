@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md fit">
+  <div class="fit">
     <Iframe :src="src" />
   </div>
 </template>

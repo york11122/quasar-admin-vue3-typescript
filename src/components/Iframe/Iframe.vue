@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md fit">
+    <div class="fit">
         <base-skelton :show="loading" />
         <iframe v-show="!loading" ref="iframe" class="fit" style="border:none;" :src="src"></iframe>
     </div>
