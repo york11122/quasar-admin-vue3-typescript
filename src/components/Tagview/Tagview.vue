@@ -2,46 +2,42 @@
   <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 5px' }">
     <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
       inline-label indicator-color="transparent" :breakpoint="0">
-      <router-link :to="'/'" custom v-slot:default="props">
-        <q-route-tab :class="tagViewClass('/')" flat dense no-caps v-bind="props">
-          <q-icon size="1.3rem" name="home" />
-          <div class="line-limit-length">主頁</div>
-        </q-route-tab>
-      </router-link>
+      <q-route-tab :to="'/'" :class="tagViewClass('/')" flat dense no-caps>
+        <q-icon size="1.3rem" name="home" />
+        <div class="line-limit-length">主頁</div>
+      </q-route-tab>
       <q-separator vertical />
       <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
-        <router-link :to="tag.fullPath" custom v-slot:default="props">
-          <q-route-tab :class="tagViewClass(tag.fullPath)" flat dense no-caps v-bind="props">
-            <q-icon size="1.3rem" :name="tag.icon" />
-            <div class="line-limit-length">{{ tag.title }}</div>
-            <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
-              @click.prevent.stop="removetagViewAt(i)" />
-            <q-menu touch-position context-menu>
-              <q-list dense>
-                <q-item clickable v-close-popup>
-                  <q-item-section @click="removetagViewOnRight(i)">
-                    關閉右邊
-                  </q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup>
-                  <q-item-section @click="removetagViewOnLeft(i)">
-                    關閉左邊
-                  </q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup>
-                  <q-item-section @click="removeOthertagView(i)">
-                    關閉其他
-                  </q-item-section>
-                </q-item>
-                <q-item clickable v-close-popup>
-                  <q-item-section @click="removeAllTagView()">
-                    關閉全部
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
-          </q-route-tab>
-        </router-link>
+        <q-route-tab :to="tag.fullPath" :class="tagViewClass(tag.fullPath)" flat dense no-caps>
+          <q-icon size="1.3rem" :name="tag.icon" />
+          <div class="line-limit-length">{{ tag.title }}</div>
+          <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
+            @click.prevent.stop="removetagViewAt(i)" />
+          <q-menu touch-position context-menu>
+            <q-list dense>
+              <q-item clickable v-close-popup>
+                <q-item-section @click="removetagViewOnRight(i)">
+                  關閉右邊
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-close-popup>
+                <q-item-section @click="removetagViewOnLeft(i)">
+                  關閉左邊
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-close-popup>
+                <q-item-section @click="removeOthertagView(i)">
+                  關閉其他
+                </q-item-section>
+              </q-item>
+              <q-item clickable v-close-popup>
+                <q-item-section @click="removeAllTagView()">
+                  關閉全部
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-route-tab>
 
       </template>
     </q-tabs>
