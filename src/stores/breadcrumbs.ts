@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
-import { BreadCrumbsData } from "src/types/index";
+import { RouteData } from "src/types/index";
 import { RouteRecordNormalized, LocationQuery } from "vue-router";
 import { deepClone, getFirst } from "src/utils/index";
 export const useBreadcrumbsStore = defineStore("breadCrumbs", {
   state: () => ({
-    breadcrumbs: [] as BreadCrumbsData[],
+    breadcrumbs: [] as RouteData[],
   }),
 
   getters: {
@@ -17,7 +17,16 @@ export const useBreadcrumbsStore = defineStore("breadCrumbs", {
     setBreadcurmbs(matched: RouteRecordNormalized[], query: LocationQuery) {
       const temp = [];
       for (let i = 0; i < matched.length; i++) {
-        temp.push(deepClone(matched[i].meta));
+
+        const breadcrumb: RouteData = {
+          title: matched[i].meta.title,
+          name: matched[i].name,
+          fullPath: matched[i].path,
+          icon: matched[i].meta.icon,
+          keepAlive: matched[i].meta.keepAlive,
+        };
+
+        temp.push(breadcrumb);
       }
 
       const last = temp.length - 1

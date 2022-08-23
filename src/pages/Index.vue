@@ -1,5 +1,8 @@
 <template>
   <base-content>
+    <q-btn v-permission="['admin']" class="mr-12px">admin</q-btn>
+    <q-btn v-permission="['user']" class="mr-12px">user</q-btn>
+
     <div class="base-markdown-content">
       <base-skelton :show="isFetching" />
       <v-md-editor style="width:100%" :model-value="data" mode="preview" />

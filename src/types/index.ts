@@ -7,7 +7,7 @@ import {
 
 export interface Route {
   name: string;
-  path: RouteRecordName | undefined;
+  path: string;
   redirect?: RouteRecordRedirectOption | undefined;
   component?: any;
   children?: Route[];
@@ -21,11 +21,6 @@ export interface RouteData {
   icon?: string;
   keepAlive?: boolean;
   name: RouteRecordName | null | undefined;
-}
-
-export interface BreadCrumbsData {
-  title: string;
-  icon: string;
 }
 
 export interface User {

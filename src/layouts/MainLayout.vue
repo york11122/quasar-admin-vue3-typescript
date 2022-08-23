@@ -12,7 +12,7 @@
         </div>
 
         <!-- breadcrumbs-->
-        <breadcrumbs v-if="$q.screen.gt.sm" />
+        <breadcrumbs :show-icon="false" v-if="$q.screen.gt.sm" />
 
         <q-space />
 
@@ -76,7 +76,7 @@ const toggleLeftDrawer = useToggle(leftDrawerOpen)
 <style lang="scss" scoped>
 .body--light {
   .header {
-    color: $grey-8;
+    color: black;
     background-color: white;
   }
 }

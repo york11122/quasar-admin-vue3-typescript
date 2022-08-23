@@ -35,18 +35,18 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import { RouteRecordRaw, useRoute, useRouter } from "vue-router";
-
+import { useRoute, useRouter } from "vue-router";
+import { Route } from "src/types/index"
 defineOptions({ name: "BaseMenuItem" })
 
 interface Props {
-  myRouter: RouteRecordRaw[]
+  myRouter: Route[]
   initLevel?: number
   duration?: number
   basePath?: string
 }
 
-withDefaults(defineProps<Props>(), { myRouter: () => [] as RouteRecordRaw[], initLevel: 0, duration: 150, basePath: "" })
+withDefaults(defineProps<Props>(), { myRouter: () => [] as Route[], initLevel: 0, duration: 150, basePath: "" })
 const route = useRoute();
 const router = useRouter();
 

@@ -1,15 +1,14 @@
 <template>
-  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '' : '0px 15px 0px 5px' }">
+  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '0px 3px 0px 3px' : '0px 15px 0px 5px' }">
     <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
       inline-label indicator-color="transparent" :breakpoint="0">
       <q-route-tab :to="'/'" :class="tagViewClass('/')" flat dense no-caps>
-        <q-icon size="1.3rem" name="home" />
-        <div class="line-limit-length">主頁</div>
+        <q-icon size="1.1rem" name="home" />
+        <div class="line-limit-length">首頁</div>
       </q-route-tab>
-      <q-separator vertical />
       <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
         <q-route-tab :to="tag.fullPath" :class="tagViewClass(tag.fullPath)" flat dense no-caps>
-          <q-icon size="1.3rem" :name="tag.icon" />
+          <q-icon size="1.1rem" :name="tag.icon" />
           <div class="line-limit-length">{{ tag.title }}</div>
           <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
             @click.prevent.stop="removetagViewAt(i)" />
@@ -103,16 +102,19 @@ const unSubscribe = tagViewStore.$subscribe(
     background-color: white;
 
     .tagView {
-      margin: 2px 3px 0 3px;
+      margin: 4px 3px 2px 3px;
       min-height: 20px;
-      padding: 0 8px;
-      transition: all 0.5s;
-      border-radius: 3px;
-      height: 33px;
+      padding: 0 10px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: $grey-4;
+      border-radius: 4px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
 
     .tagActive {
       color: $ACTIVE_COLOR  !important;
@@ -126,19 +128,22 @@ const unSubscribe = tagViewStore.$subscribe(
     background-color: $ACTIVE_BACKGROUND_DARK;
 
     .tagView {
-      margin: 1.5px 3px 0 3px;
+      margin: 4px 3px 2px 3px;
       min-height: 20px;
-      padding: 0 8px;
-      transition: all 0.5s;
-      height: 33px;
+      padding: 0 10px;
+      border-style: solid;
+      border-width: 0.5px;
+      border-color: $grey-4;
+      border-radius: 4px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .tagActive {
-      color: $ACTIVE_COLOR_DARK  !important;
-      background: $ACTIVE_BACKGROUND_DARK;
+      color: $ACTIVE_COLOR  !important;
+      background: $ACTIVE_BACKGROUND;
     }
   }
 }

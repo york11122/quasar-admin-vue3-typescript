@@ -1,12 +1,13 @@
 <template>
     <div class="q-pa-sm fit" v-if="$q.screen.gt.xs">
-        <q-table class="fit sticky-header-table" :dense="$q.screen.lt.md" separator="cell" flat bordered :rows="rows"
-            :columns="columns" row-key="name" v-model:pagination="pagination">
+        <q-table class="fit sticky-header-table" selection="multiple" v-model:selected="selected"
+            :dense="$q.screen.lt.md" separator="cell" flat bordered :rows="rows" :filter="filter" :columns="columns"
+            row-key="name" v-model:pagination="pagination">
             <template v-slot:top>
                 <q-btn color="primary" label="Add row" />
                 <q-btn class="q-ml-sm" color="primary" label="Remove row" />
                 <q-space />
-                <q-input dense outlined debounce="300" v-model="pagesNumber">
+                <q-input dense outlined debounce="300" v-model="filter">
                     <template v-slot:append>
                         <q-icon name="search" />
                     </template>
@@ -35,13 +36,15 @@ const pagination = ref({
     sortBy: 'desc',
     descending: false,
     page: 1,
-    rowsPerPage: 500
+    rowsPerPage: 100
 })
 
 const pagesNumber = computed(() => {
     return Math.ceil(rows.value.length / pagination.value.rowsPerPage)
 })
 
+const filter = ref<string>("")
+const selected = ref([])
 const columns = ref<any>([
     {
         name: 'name',
@@ -62,9 +65,9 @@ const columns = ref<any>([
 ])
 
 const rows = ref<any>([])
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
     rows.value.push({
-        name: 'Frozen Yogurt',
+        name: 'Frozen Yogurt ' + i,
         calories: 159,
         fat: 6.0,
         carbs: 24,
