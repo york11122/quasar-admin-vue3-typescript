@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { SessionStorage } from "quasar";
+import { useTagViewStore } from "./tagView"
 
 interface User {
   username: string;
@@ -46,6 +47,9 @@ export const useUserStore = defineStore("user", {
       SessionStorage.remove("access_token");
       SessionStorage.remove("user");
       SessionStorage.clear();
+
+      const tagViewStore = useTagViewStore()
+      tagViewStore.removeAllTagView()
     },
   },
 });

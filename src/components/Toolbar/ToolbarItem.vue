@@ -1,6 +1,12 @@
 <template>
   <div class="q-gutter-sm row items-center no-wrap">
 
+    <q-btn dense flat icon="fa-brands fa-github" href="https://github.com/york11122/quasar-admin-vue3-typescript"
+      target="_blank">
+      <q-tooltip>github</q-tooltip>
+    </q-btn>
+
+
     <q-btn dense flat :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'" @click="$q.fullscreen.toggle()"
       v-if="$q.screen.gt.sm">
       <q-tooltip>全螢幕</q-tooltip>

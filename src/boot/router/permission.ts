@@ -33,11 +33,16 @@ export default boot(async ({ router }) => {
       } else {
         if (userStore.getUserRole.length <= 0) {
           const { data } = await api("/status/200")
+
+          let role = ["user"]
+          if (token === "admin" || token === "super") {
+            role = [token]
+          }
           userStore.setUserInfo(
             {
               username: token as string,
               accessToken: token as string,
-              role: token === "admin" ? ["admin"] : ["user"]
+              role
             }
           );
         }

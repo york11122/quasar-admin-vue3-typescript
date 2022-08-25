@@ -23,6 +23,15 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
+    component: () => import("pages/Chart.vue"),
+    path: "/chart",
+    name: "Chart",
+    meta: {
+      title: "圖表",
+      icon: "home",
+    },
+  },
+  {
     component: () => import("pages/table/FitTable.vue"),
     path: "/fit-table",
     name: "FitTable",
@@ -30,6 +39,39 @@ const asyncRoutesChildren: Route[] = [
       title: "FitTable",
       icon: "home",
     },
+  },
+  {
+    component: layout,
+    path: "/permission",
+    name: "Permission",
+    meta: {
+      title: "權限控管",
+      icon: "verified_user",
+      isOpen: true
+    },
+    children: [
+      {
+        component: () => import("pages/permission/Directive.vue"),
+        path: "directive",
+        name: "Directive",
+        meta: {
+          title: "組件權限",
+          icon: "how_to_reg",
+          keepAlive: true,
+        },
+      },
+      {
+        component: () => import("pages/permission/Permission.vue"),
+        path: "permission",
+        name: "Permission",
+        meta: {
+          title: "路由權限",
+          icon: "where_to_vote",
+          keepAlive: true,
+          roles: ['admin']
+        },
+      },
+    ],
   },
   {
     component: layout,
@@ -112,9 +154,9 @@ const asyncRoutesChildren: Route[] = [
     path: "/docs",
     name: "docs",
     meta: {
-      title: "技術文件",
+      title: "外部資訊",
       icon: "description",
-      isOpen: true,
+      isOpen: false,
     },
     children: [
       {
