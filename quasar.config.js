@@ -60,8 +60,13 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      // publicPath: '/',
-      // analyze: true,
+      publicPath:
+        process.env.NODE_ENV === "production"
+          ? "/quasar-admin-vue3-typescript/"
+          : "/",
+      gzip: true,
+      vueCompiler: true,
+      analyze: false,
       // env: {},
       // rawDefine: {}
       // ignorePublicFolder: true,

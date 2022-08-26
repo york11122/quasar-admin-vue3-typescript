@@ -4,8 +4,13 @@
   "description": "A Quasar Project",
   "productName": "Windripple",
   "author": "york <york11122@gmail.com>",
+  "homepage": "https://york11122.github.io",
   "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist/spa -t true",
+    "build": "quasar build",
+    "clean": "quasar clean",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
@@ -15,6 +20,7 @@
     "@vueuse/core": "^9.1.0",
     "chart.js": "^3.9.1",
     "echarts": "^5.3.3",
+    "gh-pages": "^4.0.0",
     "lottie-web": "^5.9.6",
     "pinia": "^2.0.11",
     "quasar": "^2.7.7",

@@ -107,7 +107,7 @@ export function useEcharts(
     }
 
     function resize() {
-
+        console.log(chart)
         chart?.resize();
     }
 
