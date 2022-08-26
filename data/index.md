@@ -1,7 +1,7 @@
 ## Quasar Admin 後台
-記錄自己過往遇過的功能
+記錄過往遇過的功能
 使用 [Vue3](https://vuejs.org/) + [Pinia ](https://pinia.vuejs.org/)+ [TypeScript ](https://www.typescriptlang.org/)+ [Quasar ](https://quasar.dev/)
-重新封裝實作組件，順便當做學習紀錄
+重新封裝組件，當做學習紀錄
 專案建立使用 [quasar-cli](https://quasar.dev/start/quasar-cli)
 
 **目錄結構**
