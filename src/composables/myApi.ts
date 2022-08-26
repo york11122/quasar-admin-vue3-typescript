@@ -40,7 +40,7 @@ const useMyApi = () => {
           case 401:
             defaultNotify.message = "(401)權限不足";
             Notify.create(defaultNotify);
-            userStore.logout()
+            userStore.setLogout()
             break;
           case 403:
             defaultNotify.message = "(403)";

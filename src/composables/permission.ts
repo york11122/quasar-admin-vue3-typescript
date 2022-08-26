@@ -1,6 +1,6 @@
 import { useUserStore } from "src/stores/user"
 
-export function usePermission() {
+export const usePermission = () => {
     const userStore = useUserStore()
 
     function hasPermission(permission: string[]) {
