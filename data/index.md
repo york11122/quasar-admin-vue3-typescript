@@ -1,4 +1,7 @@
-## Quasar Admin 後台
+## Quasar Admin
+
+Demo: [https://york11122.github.io/quasar-admin-vue3-typescript/](https://york11122.github.io/quasar-admin-vue3-typescript/)
+
 記錄過往遇過的功能
 使用 [Vue3](https://vuejs.org/) + [Pinia ](https://pinia.vuejs.org/)+ [TypeScript ](https://www.typescriptlang.org/)+ [Quasar ](https://quasar.dev/)
 重新封裝組件，當做學習紀錄
@@ -9,8 +12,8 @@
 src
  |-assets        # 靜態文件
  |-boot          # quasar boot files
- |-components 	 # 组件 (常用組件封裝)
- |-composables 	 # 組合式函數 (常用功能封裝) 
+ |-components 	 # 组件 (組件封裝)
+ |-composables 	 # 組合式函數 (功能封裝) 
  |-css           # css files
  |-i18n          # 多國語系
  |-layouts       # main layout
