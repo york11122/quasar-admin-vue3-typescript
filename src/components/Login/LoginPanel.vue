@@ -25,6 +25,11 @@
                         登入
                     </q-btn>
                 </q-form>
+                <q-separator spaced="lg" />
+                <q-card-section class="text-caption text-grey-7">
+                    <div>帳號 (權限): super, admin, 任意輸入</div>
+                    <div>密碼: 任意輸入</div>
+                </q-card-section>
             </q-card-section>
 
         </div>
