@@ -28,16 +28,16 @@ const asyncRoutesChildren: Route[] = [
     name: "Chart",
     meta: {
       title: "圖表",
-      icon: "home",
+      icon: "insert_chart_outlined",
     },
   },
   {
     component: () => import("pages/table/FitTable.vue"),
-    path: "/fit-table",
+    path: "/table",
     name: "FitTable",
     meta: {
-      title: "FitTable",
-      icon: "home",
+      title: "Table",
+      icon: "table_view",
     },
   },
   {
