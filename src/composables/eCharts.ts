@@ -1,6 +1,4 @@
-
-import { Dark } from "quasar"
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { nextTick, onUnmounted, shallowRef, watch } from 'vue';
 import type { ComputedRef, Ref } from 'vue';
 import * as echarts from 'echarts/core';
 import { BarChart, GaugeChart, LineChart, PictorialBarChart, PieChart, RadarChart, ScatterChart } from 'echarts/charts';
@@ -32,6 +30,8 @@ import type {
 } from 'echarts/components';
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
+import { useElementSize } from '@vueuse/core';
+import { Dark } from "quasar"
 
 export type ECOption = echarts.ComposeOption<
     | BarSeriesOption
@@ -71,48 +71,39 @@ echarts.use([
 
 
 export function useEcharts(
+    domRef: Ref<HTMLElement | null>,
     options: Ref<ECOption> | ComputedRef<ECOption>,
-    renderFun?: (chartInstance: echarts.ECharts) => void
 ) {
 
-    const domRef = ref<HTMLElement | null>(null);
-    const initialSize = { width: 0, height: 0 };
 
-    let chart: echarts.ECharts | null = null;
+    const chart = shallowRef<echarts.ECharts | null>(null);
 
-    function canRender() {
-        return initialSize.width > 0 && initialSize.height > 0;
-    }
+    const { width, height } = useElementSize(domRef, { width: 0, height: 0 });
+
 
     function isRendered() {
-        return Boolean(domRef.value && chart);
+        return Boolean(domRef.value && chart.value);
     }
 
     function update(updateOptions: ECOption) {
         if (isRendered()) {
-            chart!.setOption({ ...updateOptions, backgroundColor: 'transparent' });
+            chart.value?.setOption({ ...updateOptions, backgroundColor: 'transparent' });
         }
     }
 
     async function render() {
         if (domRef.value) {
             const chartTheme = Dark.isActive ? 'dark' : 'light';
+            domRef.value.style.width = "calc(100% - 1em)"; //解決base content包覆後無法resize縮小問題
             await nextTick();
-            chart = echarts.init(domRef.value, chartTheme);
-            if (renderFun) {
-                renderFun(chart);
-            }
+            chart.value = echarts.init(domRef.value, chartTheme);
             update(options.value);
         }
     }
 
-    function resize() {
-        console.log(chart)
-        chart?.resize();
-    }
 
     function destroy() {
-        chart?.dispose();
+        chart.value?.dispose();
     }
 
     function updateTheme() {
@@ -120,24 +111,13 @@ export function useEcharts(
         render();
     }
 
-    const handleWindowResize = () => {
-        initialSize.width = window.innerWidth;
-        initialSize.height = window.innerHeight;
-        if (canRender()) {
-            if (!isRendered()) {
-                render();
-            } else {
-                resize();
-            }
+    const stopSizeWatch = watch([width, height], () => {
+        if (!isRendered()) {
+            render();
+        } else {
+            chart.value?.resize();
         }
-    };
-
-    onMounted(() => {
-        handleWindowResize()
-    })
-
-    window.addEventListener('resize', handleWindowResize)
-
+    });
 
     const stopOptionWatch = watch(options, newValue => {
         update(newValue);
@@ -152,11 +132,11 @@ export function useEcharts(
 
     onUnmounted(() => {
         destroy();
+        stopSizeWatch();
         stopOptionWatch();
         stopDarkModeWatch();
     });
 
-    return {
-        domRef
-    };
+    return chart;
+
 }
