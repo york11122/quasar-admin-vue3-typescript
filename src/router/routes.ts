@@ -14,9 +14,9 @@ declare module "vue-router" {
 
 const asyncRoutesChildren: Route[] = [
   {
-    component: () => import("pages/Index.vue"),
+    component: () => import("pages/dashboard/Dashboard.vue"),
     path: "/",
-    name: "home",
+    name: "Dashboard",
     meta: {
       title: "首頁",
       icon: "home",

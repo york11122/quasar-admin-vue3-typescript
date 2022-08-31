@@ -39,7 +39,7 @@
     <!-- page start -->
     <q-page-container class="app-main full-height">
       <router-view v-slot="{ Component, route }">
-        <transition name="fade-transform" mode="out-in" enter-active-class="animated fadeIn">
+        <transition name="fade-slide" mode="out-in" appear>
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
             <component :is="Component" :key="route.fullPath" />
           </keep-alive>
@@ -86,5 +86,22 @@ const toggleLeftDrawer = useToggle(leftDrawerOpen)
     color: white;
     background-color: $dark;
   }
+}
+
+
+/* fade-slide */
+.fade-slide-leave-active,
+.fade-slide-enter-active {
+  transition: all 0.25s;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

@@ -13,7 +13,7 @@ import BaseMenuItem from "./BaseMenuItem.vue";
 defineOptions({ name: "BaseMenu" })
 
 const thumbStyle = {
-  right: "5px",
+  right: "1px",
   borderRadius: "5px",
   backgroundColor: "#616161",
   width: "5px",

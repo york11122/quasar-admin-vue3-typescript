@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { onUnmounted, ref } from 'vue';
 import { graphic } from 'echarts';
-import { type ECOption, useEcharts } from 'src/composables/echarts';
+import { type ECOption, useEcharts } from 'src/composables/eCharts';
 import BaseContent from 'src/components/BaseContent/BaseContent.vue';
 
 //stack chart demo
@@ -129,6 +129,9 @@ for (let i = 0; i < 5; ++i) {
 }
 const barRef = ref<HTMLElement | null>(null)
 const barOption = ref<ECOption>({
+    title: {
+        text: 'Dynamic Bar Chart'
+    },
     xAxis: {
         max: 'dataMax'
     },
