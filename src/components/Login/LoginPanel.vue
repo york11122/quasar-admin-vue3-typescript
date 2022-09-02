@@ -1,5 +1,8 @@
 <template>
     <q-card flat class="row" style="border-radius: 20px;  width:85%; max-width: 400px;">
+        <div class="absolute-top-left q-pa-md">
+            <dark-mode />
+        </div>
         <div class="col flex justify-center items-center q-pa-md">
             <q-card-section>
                 <q-btn flat>
@@ -9,8 +12,10 @@
                     </q-toolbar-title>
                 </q-btn>
             </q-card-section>
-            <q-card-section align="center" class="fit">
+            <q-card-section align="center" class="fit q-gutter-y-sm">
+
                 <q-form ref="loginForm" class="q-gutter-y-sm">
+
                     <q-input v-model="_username" placeholder="請輸入帳號" dense clearable outlined lazy-rules
                         :rules="[val => !!val || '請輸入帳號']" />
                     <q-input v-model="_password" placeholder="請輸入密碼" dense outlined :type="isPwd ? 'password' : 'text'"
@@ -24,6 +29,9 @@
                         @click="onLoginClick">
                         登入
                     </q-btn>
+                    <q-banner v-if="message !== ''" inline-actions dense rounded class="text-red">
+                        {{ message }}
+                    </q-banner>
                 </q-form>
                 <q-separator spaced="lg" />
                 <q-card-section class="text-caption text-grey-7">
@@ -41,11 +49,13 @@
 import { ref } from "vue"
 import { useVModel } from '@vueuse/core'
 import { QForm } from "quasar"
+import DarkMode from "src/components/Toolbar/DarkMode.vue";
+
 defineOptions({ name: "Login" })
 
-interface Props { username: string | undefined; password: string | undefined; loading: boolean }
+interface Props { username: string | undefined; password: string | undefined; loading: boolean; message: string }
 
-const props = withDefaults(defineProps<Props>(), { username: '', password: '', loading: false })
+const props = withDefaults(defineProps<Props>(), { username: '', password: '', loading: false, message: '' })
 
 const emit = defineEmits<{
     (e: 'update:username'): void

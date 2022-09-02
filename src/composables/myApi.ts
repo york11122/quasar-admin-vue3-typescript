@@ -1,10 +1,11 @@
 import { createFetch } from "@vueuse/core";
 import { SessionStorage, Notify, QNotifyCreateOptions } from "quasar";
 import { useUserStore } from "src/stores/user"
+
 const useMyApi = () => {
   const userStore = useUserStore()
   return createFetch({
-    baseUrl: "https://httpbin.org",
+    baseUrl: import.meta.env.VITE_API_URL,
     options: {
       // doing some additional setting before the fetch, e.g. Authorization header adding
       async beforeFetch({ options }) {
@@ -37,6 +38,8 @@ const useMyApi = () => {
           Notify.create(defaultNotify);
         }
         switch (response?.status) {
+          case 422:
+            break;
           case 401:
             defaultNotify.message = "(401)權限不足";
             Notify.create(defaultNotify);

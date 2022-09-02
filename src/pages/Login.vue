@@ -7,7 +7,7 @@
       <lottie-web :path="defaultOptions.path" @isLottieFinish="handleFinish" />
     </div>
     <login-panel v-model:username="loginData.username" v-model:password="loginData.password"
-      v-model:loading="isFetching" @onLoginClick="execute()" />
+      v-model:loading="isFetching" @onLoginClick="onLoginClick" :message="message" />
   </div>
 
 </template>
@@ -25,6 +25,7 @@ defineOptions({ name: "Login" })
 
 const userStore = useUserStore()
 const router = useRouter()
+const message = ref<string>('')
 const loginData = reactive<{ username: string, password: string }>({ username: 'admin', password: 'admin' })
 const isLottieFinished = ref<boolean>(false)
 const defaultOptions = ref<any>({
@@ -35,13 +36,20 @@ const defaultOptions = ref<any>({
 
 const api = useMyApi()
 
-const { data, isFetching, onFetchError, execute, onFetchResponse } = api("/status/200", { immediate: false }).post(loginData)
+const { data, isFetching, onFetchError: onLoginError, onFetchResponse: onLoginResponse, execute } = api<any>("/auth", { immediate: false }).post(loginData).json()
 
-onFetchError((res) => {
-  console.log(res, 'Error')
+const onLoginClick = () => {
+  message.value = ''
+  execute()
+}
+
+onLoginError((error) => {
+  if (data.value.message) {
+    message.value = data.value.message
+  }
 })
 
-onFetchResponse(async (res) => {
+onLoginResponse(async (res) => {
   userStore.setLoginToken(loginData.username)
   router.push("/")
 })

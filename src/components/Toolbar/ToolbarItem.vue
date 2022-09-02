@@ -12,9 +12,7 @@
       <q-tooltip>全螢幕</q-tooltip>
     </q-btn>
 
-    <q-btn dense flat :icon="$q.dark.isActive ? 'light_mode' : 'dark_mode'" @click="$q.dark.toggle()">
-      <q-tooltip>{{ $q.dark.isActive ? '淺色模式' : '深色模式' }}</q-tooltip>
-    </q-btn>
+    <dark-mode />
     <q-btn round dense flat icon="notifications">
       <q-badge color="red" text-color="" floating>
         2
@@ -58,6 +56,7 @@
 <script lang="ts" setup>
 import { useUserStore } from "src/stores/user"
 import { useRouter } from "vue-router"
+import DarkMode from "src/components/Toolbar/DarkMode.vue"
 
 defineOptions({ name: "ToolbarItem" })
 
