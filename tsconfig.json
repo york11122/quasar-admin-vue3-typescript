@@ -2,6 +2,6 @@
   "extends": "@quasar/app-vite/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["unplugin-vue-define-options"]
+    "types": ["unplugin-vue-define-options/macros-global"]
   }
 }

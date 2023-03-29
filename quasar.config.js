@@ -13,6 +13,7 @@ const path = require("path");
 
 module.exports = configure(function (/* ctx */) {
   return {
+    supportTS: true,
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
 
