@@ -6,10 +6,9 @@
       <q-skeleton type="text" height="70%" width="50%" v-if="!isLottieFinished" />
       <lottie-web :path="defaultOptions.path" @isLottieFinish="handleFinish" />
     </div>
-    <login-panel v-model:username="loginData.username" v-model:password="loginData.password"
-      v-model:loading="isFetching" @onLoginClick="onLoginClick" :message="message" />
+    <login-panel v-model:username="loginData.username" v-model:password="loginData.password" v-model:loading="isFetching"
+      @onLoginClick="onLoginClick" :message="message" />
   </div>
-
 </template>
 
 <script lang="ts" setup>
@@ -50,7 +49,7 @@ onLoginError((error) => {
 })
 
 onLoginResponse(async (res) => {
-  userStore.setLoginToken(loginData.username)
+  userStore.setLoginToken(data.value.accessToken)
   router.push("/")
 })
 
