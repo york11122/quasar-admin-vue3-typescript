@@ -7,17 +7,16 @@ import { deepClone } from "src/utils/index";
 import { asyncRoutesChildren, asyncRootRoute } from "src/router/routes";
 import constructionRouters from "src/router/utils/permissionUtils";
 import { RouteRecordRaw } from "vue-router";
-import { useMyApi } from "src/composables/myApi"
-
+import { useMyApi } from "src/composables/myApi";
 
 export default boot(async ({ router }) => {
   const routerStore = useRouterStore();
   const userStore = useUserStore();
-  const api = useMyApi()
+  const api = useMyApi();
 
   router.beforeEach(async (to, from, next) => {
     // Simulate obtaining token
-    const token = userStore.getAccessToken || SessionStorage.getItem("access_token");
+    const token = SessionStorage.getItem("access_token");
     // There is a token indicating that you have logged in
     if (token) {
       //You cannot access the login interface after logging in
@@ -32,19 +31,8 @@ export default boot(async ({ router }) => {
         next();
       } else {
         if (userStore.getUserRole.length <= 0) {
-          const { data } = await api("/status/200")
-
-          let role = ["user"]
-          if (token === "admin" || token === "super") {
-            role = [token]
-          }
-          userStore.setUserInfo(
-            {
-              username: token as string,
-              accessToken: token as string,
-              role
-            }
-          );
+          const { data } = await api("/data/mock/me.json").get().json();
+          userStore.setUserInfo(data.value);
         }
         // And set the corresponding route according to the permissions
         const accessRoutes = deepClone(asyncRoutesChildren);
