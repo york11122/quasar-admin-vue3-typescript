@@ -8,7 +8,7 @@ const useMyApi = () => {
     //baseUrl: import.meta.env.VITE_API_URL,
 
     //for testing mock data at public/data/mock
-    baseUrl: window.location.protocol + "//" + window.location.host,
+    baseUrl: "",
 
     options: {
       // doing some additional setting before the fetch, e.g. Authorization header adding
