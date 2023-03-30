@@ -1,0 +1,1 @@
+import{f as a}from"./index.4309f6b7.js";import{V as r,v as s,P as e}from"./prism-typescript.3e4b88d3.js";import{V as f}from"./prism-typescript.3e4b88d3.js";import"./_commonjsHelpers.825a3ddb.js";var i=a(async({app:o})=>{r.use(s,{Prism:e}),o.use(r)});export{f as VueMarkdownEditor,i as default};
