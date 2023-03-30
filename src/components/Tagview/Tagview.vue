@@ -1,17 +1,47 @@
 <template>
-  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '0px 3px 0px 3px' : '0px 15px 0px 5px' }">
-    <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
-      inline-label indicator-color="transparent" :breakpoint="0">
+  <div
+    class="row"
+    :style="{
+      margin: !$q.screen.gt.sm ? '0px 3px 0px 3px' : '0px 15px 0px 5px',
+    }"
+  >
+    <q-tabs
+      class="tagViewBase col-12"
+      align="left"
+      active-color="primary"
+      active-class="tagActive"
+      dense
+      swipeable
+      inline-label
+      indicator-color="transparent"
+      :breakpoint="0"
+    >
       <q-route-tab :to="'/'" :class="tagViewClass('/')" flat dense no-caps>
         <q-icon size="1.1rem" name="home" />
         <div class="line-limit-length">首頁</div>
       </q-route-tab>
-      <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
-        <q-route-tab :to="tag.fullPath" :class="tagViewClass(tag.fullPath)" flat dense no-caps>
+      <template
+        v-for="(tag, i) in tagViewStore.tagView"
+        :key="tag.fullPath + i"
+      >
+        <q-route-tab
+          :to="tag.fullPath"
+          :class="tagViewClass(tag.fullPath)"
+          flat
+          dense
+          no-caps
+        >
           <q-icon size="1.1rem" :name="tag.icon" />
           <div class="line-limit-length">{{ tag.title }}</div>
-          <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
-            @click.prevent.stop="removetagViewAt(i)" />
+          <q-btn
+            class="tagView-remove-icon"
+            style="display: inline-flex"
+            round
+            size="0.45em"
+            flat
+            icon="close"
+            @click.prevent.stop="removetagViewAt(i)"
+          />
           <q-menu touch-position context-menu>
             <q-list dense>
               <q-item clickable v-close-popup>
@@ -37,22 +67,21 @@
             </q-list>
           </q-menu>
         </q-route-tab>
-
       </template>
     </q-tabs>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onUnmounted } from "vue"
+import { computed, onUnmounted } from "vue";
 import { useTagViewStore } from "src/stores/tagView";
-import { useKeepAliveStore } from "src/stores/keep-alive"
+import { useKeepAliveStore } from "src/stores/keep-alive";
 import { SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
 
-defineOptions({ name: "Tagview" })
+defineOptions({ name: "Tagview" });
 
-const route = useRoute()
+const route = useRoute();
 const tagViewStore = useTagViewStore();
 const keepAliveStore = useKeepAliveStore();
 
@@ -84,15 +113,13 @@ const tagViewClass = computed(() => {
 });
 
 onUnmounted(() => {
-  unSubscribe()
-})
+  unSubscribe();
+});
 
-const unSubscribe = tagViewStore.$subscribe(
-  (mutation, state) => {
-    keepAliveStore.setKeepAliveList(state.tagView)
-    SessionStorage.set("tagView", state.tagView);
-  }
-);
+const unSubscribe = tagViewStore.$subscribe((mutation, state) => {
+  keepAliveStore.setKeepAliveList(state.tagView);
+  SessionStorage.set("tagView", state.tagView);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -115,9 +142,8 @@ const unSubscribe = tagViewStore.$subscribe(
       justify-content: center;
     }
 
-
     .tagActive {
-      color: $ACTIVE_COLOR  !important;
+      color: $ACTIVE_COLOR !important;
       background: $ACTIVE_BACKGROUND;
     }
   }
@@ -142,7 +168,7 @@ const unSubscribe = tagViewStore.$subscribe(
     }
 
     .tagActive {
-      color: $ACTIVE_COLOR  !important;
+      color: $ACTIVE_COLOR !important;
       background: $ACTIVE_BACKGROUND;
     }
   }

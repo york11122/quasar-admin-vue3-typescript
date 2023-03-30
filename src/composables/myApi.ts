@@ -1,9 +1,9 @@
 import { createFetch } from "@vueuse/core";
 import { SessionStorage, Notify, QNotifyCreateOptions } from "quasar";
-import { useUserStore } from "src/stores/user"
+import { useUserStore } from "src/stores/user";
 
 const useMyApi = () => {
-  const userStore = useUserStore()
+  const userStore = useUserStore();
   return createFetch({
     baseUrl: import.meta.env.VITE_API_URL,
     options: {
@@ -42,12 +42,11 @@ const useMyApi = () => {
             break;
           case 401:
             defaultNotify.message = "(401)權限不足";
-            Notify.create(defaultNotify);
+            userStore.setLogout();
             break;
           case 403:
             defaultNotify.message = "(403)";
             Notify.create(defaultNotify);
-            userStore.setLogout()
             break;
           case 404:
             defaultNotify.message = "(404)";
@@ -89,9 +88,9 @@ const useMyApi = () => {
       },
     },
     fetchOptions: {
-      mode: "cors"
-    }
+      mode: "cors",
+    },
   });
-}
+};
 
-export { useMyApi }
+export { useMyApi };

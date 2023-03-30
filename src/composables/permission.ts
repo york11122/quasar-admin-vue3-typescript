@@ -1,19 +1,22 @@
-import { useUserStore } from "src/stores/user"
+import { useUserStore } from "src/stores/user";
 
 export const usePermission = () => {
-    const userStore = useUserStore()
+  const userStore = useUserStore();
 
-    function hasPermission(permission: string[]) {
-        const { getUserRole } = userStore;
+  function hasPermission(permission: string[]) {
+    const { getUserRoles } = userStore;
 
-        let has = getUserRole.includes('super');
-        if (!has) {
-            has = getUserRole.some(role => permission.includes(role))
-        }
-        return has;
+    if (getUserRoles) {
+      let has = getUserRoles.includes("super");
+      if (!has) {
+        has = getUserRoles.some((role) => permission.includes(role));
+      }
+      return has;
     }
+    return false;
+  }
 
-    return {
-        hasPermission
-    };
-}
+  return {
+    hasPermission,
+  };
+};

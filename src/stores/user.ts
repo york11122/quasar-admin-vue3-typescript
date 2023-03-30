@@ -1,29 +1,23 @@
 import { defineStore } from "pinia";
 import { SessionStorage } from "quasar";
-import { useTagViewStore } from "./tagView"
 
 interface User {
   username: string;
-  role: string[];
-  accessToken: string | null;
+  roles: string[];
 }
 
 export const useUserStore = defineStore("user", {
   state: (): User => ({
     username: "",
-    role: [],
-    accessToken: null
+    roles: [],
   }),
 
   getters: {
     getUserName(state) {
       return state.username;
     },
-    getUserRole(state) {
-      return state.role;
-    },
-    getAccessToken(state) {
-      return state.accessToken;
+    getUserRoles(state) {
+      return state.roles;
     },
     getFirstCharacterOfUserName(state) {
       return state.username ? state.username.charAt(0).toUpperCase() : "";
@@ -32,24 +26,18 @@ export const useUserStore = defineStore("user", {
 
   actions: {
     setLoginToken(accessToken: string) {
-      this.accessToken = accessToken;
       SessionStorage.set("access_token", accessToken);
     },
     setUserInfo(user: User) {
       this.username = user.username;
-      this.role = user.role;
-      this.accessToken = user.accessToken
+      this.roles = user.roles;
     },
     setLogout() {
       this.username = "";
-      this.role = [];
-      this.accessToken = null;
+      this.roles = [];
       SessionStorage.remove("access_token");
       SessionStorage.remove("user");
       SessionStorage.clear();
-
-      const tagViewStore = useTagViewStore()
-      tagViewStore.removeAllTagView()
     },
   },
 });
