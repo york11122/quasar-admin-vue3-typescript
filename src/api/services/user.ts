@@ -10,7 +10,7 @@ export const useUserAPI = () => {
     payload: { username: string; password: string },
     options: UseFetchOptions = {}
   ) => {
-    return useMyApi("/data/mock/login.json", options).post(payload).json();
+    return useMyApi("/data/mock/login.json", options).json();
   };
 
   return { me, login };
