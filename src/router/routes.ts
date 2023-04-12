@@ -1,5 +1,5 @@
-import { Route } from "src/types/index"
-import layout from "src/components/Layout/Layout.vue"
+import { Route } from "src/types/index";
+import layout from "src/components/Layout/Layout.vue";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -47,7 +47,7 @@ const asyncRoutesChildren: Route[] = [
     meta: {
       title: "權限控管",
       icon: "verified_user",
-      isOpen: true
+      isOpen: true,
     },
     children: [
       {
@@ -68,7 +68,7 @@ const asyncRoutesChildren: Route[] = [
           title: "路由權限",
           icon: "where_to_vote",
           keepAlive: true,
-          roles: ['admin']
+          roles: ["admin"],
         },
       },
     ],

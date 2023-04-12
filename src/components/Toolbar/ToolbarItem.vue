@@ -1,11 +1,9 @@
 <template>
   <div class="q-gutter-sm row items-center no-wrap">
-
     <q-btn dense flat icon="fa-brands fa-github" href="https://github.com/york11122/quasar-admin-vue3-typescript"
       target="_blank">
       <q-tooltip>github</q-tooltip>
     </q-btn>
-
 
     <q-btn dense flat :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'" @click="$q.fullscreen.toggle()"
       v-if="$q.screen.gt.sm">
@@ -14,9 +12,7 @@
 
     <dark-mode />
     <q-btn round dense flat icon="notifications">
-      <q-badge color="red" text-color="" floating>
-        2
-      </q-badge>
+      <q-badge color="red" text-color="" floating> 2 </q-badge>
       <q-tooltip>通知</q-tooltip>
     </q-btn>
     <q-btn round flat>
@@ -27,7 +23,9 @@
         <q-list dense>
           <q-item>
             <q-item-section>
-              <div>Signed in as <br /><strong>{{ userStore.getUserName }}</strong></div>
+              <div>
+                Signed in as <br /><strong>{{ userStore.getUserName }}</strong>
+              </div>
             </q-item-section>
           </q-item>
           <q-separator />
@@ -49,23 +47,18 @@
 
       <q-tooltip>使用者</q-tooltip>
     </q-btn>
-
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from "src/stores/user"
-import { useRouter } from "vue-router"
-import DarkMode from "src/components/Toolbar/DarkMode.vue"
+import { useUserStore } from "src/stores/user";
+import DarkMode from "src/components/Toolbar/DarkMode.vue";
 
-defineOptions({ name: "ToolbarItem" })
+defineOptions({ name: "ToolbarItem" });
 
-const userStore = useUserStore()
-const router = useRouter()
+const userStore = useUserStore();
 
 const logout = () => {
-  userStore.setLogout()
-  router.push({ name: "Login" })
-}
-
+  userStore.setLogout();
+};
 </script>

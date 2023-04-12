@@ -1,5 +1,7 @@
 <template>
-  <div class="row" :style="{ margin: !$q.screen.gt.sm ? '0px 3px 0px 3px' : '0px 15px 0px 5px' }">
+  <div class="row" :style="{
+    margin: !$q.screen.gt.sm ? '0px 3px 0px 3px' : '0px 15px 0px 5px',
+  }">
     <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
       inline-label indicator-color="transparent" :breakpoint="0">
       <q-route-tab :to="'/'" :class="tagViewClass('/')" flat dense no-caps>
@@ -37,22 +39,21 @@
             </q-list>
           </q-menu>
         </q-route-tab>
-
       </template>
     </q-tabs>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onUnmounted } from "vue"
+import { computed, onUnmounted } from "vue";
 import { useTagViewStore } from "src/stores/tagView";
-import { useKeepAliveStore } from "src/stores/keep-alive"
+import { useKeepAliveStore } from "src/stores/keep-alive";
 import { SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
 
-defineOptions({ name: "Tagview" })
+defineOptions({ name: "Tagview" });
 
-const route = useRoute()
+const route = useRoute();
 const tagViewStore = useTagViewStore();
 const keepAliveStore = useKeepAliveStore();
 
@@ -84,19 +85,16 @@ const tagViewClass = computed(() => {
 });
 
 onUnmounted(() => {
-  unSubscribe()
-})
+  unSubscribe();
+});
 
-const unSubscribe = tagViewStore.$subscribe(
-  (mutation, state) => {
-    keepAliveStore.setKeepAliveList(state.tagView)
-    SessionStorage.set("tagView", state.tagView);
-  }
-);
+const unSubscribe = tagViewStore.$subscribe((mutation, state) => {
+  keepAliveStore.setKeepAliveList(state.tagView);
+  SessionStorage.set("tagView", state.tagView);
+});
 </script>
 
 <style lang="scss" scoped>
-// $
 .body--light {
   .tagViewBase {
     background-color: white;
@@ -115,9 +113,8 @@ const unSubscribe = tagViewStore.$subscribe(
       justify-content: center;
     }
 
-
     .tagActive {
-      color: $ACTIVE_COLOR  !important;
+      color: $ACTIVE_COLOR !important;
       background: $ACTIVE_BACKGROUND;
     }
   }
@@ -142,7 +139,7 @@ const unSubscribe = tagViewStore.$subscribe(
     }
 
     .tagActive {
-      color: $ACTIVE_COLOR  !important;
+      color: $ACTIVE_COLOR !important;
       background: $ACTIVE_BACKGROUND;
     }
   }

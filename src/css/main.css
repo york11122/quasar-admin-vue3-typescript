@@ -8,11 +8,9 @@
   min-height: 100%;
 }
 
-
 .sticky-header-table {
   height: 310px;
 }
-
 
 .body--dark .sticky-header-table .q-table__top,
 .body--dark .sticky-header-table .q-table__bottom,
@@ -45,4 +43,5 @@
   max-width: 900px;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }

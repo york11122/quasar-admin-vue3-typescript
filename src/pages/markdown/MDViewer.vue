@@ -1,22 +1,19 @@
 <template>
-    <base-content>
-        <div class="base-markdown-content">
-            <base-skelton :show="isFetching" />
-            <v-md-editor style="width:100%" :model-value="data" mode="preview" />
-        </div>
-    </base-content>
+  <base-content>
+    <div class="base-markdown-content">
+      <base-skelton :show="isFetching" />
+      <markdown v-model="data" :previewOnly="true" />
+    </div>
+  </base-content>
 </template>
 
 <script lang="ts" setup>
-import BaseContent from "src/components/BaseContent/BaseContent.vue"
-import BaseSkelton from "src/components/Skelton/BaseSkelton.vue"
-import { useFetch } from "src/composables/fetch"
+import BaseContent from "src/components/BaseContent/BaseContent.vue";
+import BaseSkelton from "src/components/Skelton/BaseSkelton.vue";
+import Markdown from "src/components/Markdown/Markdown.vue";
+import { useFetch } from "src/composables/fetch";
 
-defineOptions({ name: "MDViewer" })
+defineOptions({ name: "MDViewer" });
 
-const { data, isFetching } = useFetch("data/v-md-editor.md")
-
+const { data, isFetching } = useFetch("data/md-editor-v3.md").text();
 </script>
-
-
-

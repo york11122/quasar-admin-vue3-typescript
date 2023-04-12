@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { SessionStorage } from "quasar";
 import { useTagViewStore } from "./tagView";
-
+import { Router as router } from "src/router/index";
 interface User {
   username: string;
   roles: string[];
@@ -17,7 +17,7 @@ export const useUserStore = defineStore("user", {
     getUserName(state) {
       return state.username;
     },
-    getUserRole(state) {
+    getUserRoles(state) {
       return state.roles;
     },
     getFirstCharacterOfUserName(state) {
@@ -42,6 +42,8 @@ export const useUserStore = defineStore("user", {
 
       const tagViewStore = useTagViewStore();
       tagViewStore.removeAllTagView();
+
+      router.push({ name: "Login" });
     },
   },
 });

@@ -1,0 +1,54 @@
+$color_1: #fff;
+$font-family_1: "Roboto", "-apple-system", "Helvetica Neue", Helvetica, Arial,
+  sans-serif;
+
+@import "./quasar.variables.scss";
+
+/* app global css */
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  font-family: $font-family_1 !important;
+}
+
+#q-app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  font-family: $font-family_1 !important;
+}
+
+.custom-form-error-message {
+  .q-field__bottom--animated {
+    left: -5px;
+    bottom: 15px !important;
+    z-index: 10;
+    pointer-events: none;
+
+    .q-field__messages {
+      div {
+        width: max-content;
+        border-radius: 5px;
+        background: $negative;
+        color: $color_1;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+.truncate-chip-labels>.q-chip {
+  max-width: 100px;
+}

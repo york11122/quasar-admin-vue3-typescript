@@ -7,13 +7,12 @@ import { deepClone } from "src/utils/index";
 import { asyncRoutesChildren, asyncRootRoute } from "src/router/routes";
 import constructionRouters from "src/router/utils/permissionUtils";
 import { RouteRecordRaw } from "vue-router";
-import { useMyApi } from "src/composables/myApi";
+import { useUserAPI } from "src/api/services/user";
 
 export default boot(async ({ router }) => {
   const routerStore = useRouterStore();
   const userStore = useUserStore();
-  const api = useMyApi();
-
+  const { me } = useUserAPI();
   router.beforeEach(async (to, from, next) => {
     // Simulate obtaining token
     const token = SessionStorage.getItem("access_token");
@@ -25,14 +24,16 @@ export default boot(async ({ router }) => {
       }
       // There is user authority, and the route is not empty, then let go
       if (
-        userStore.getUserRole.length > 0 &&
+        userStore.getUserRoles.length > 0 &&
         routerStore.getPermissionRoutes.length
       ) {
         next();
       } else {
-        if (userStore.getUserRole.length <= 0) {
-          const { data } = await api("/data/mock/me.json").get().json();
-          userStore.setUserInfo(data.value);
+        if (userStore.getUserRoles.length <= 0) {
+          const { data, error } = await me();
+          if (!error.value) {
+            userStore.setUserInfo(data.value);
+          }
         }
         // And set the corresponding route according to the permissions
         const accessRoutes = deepClone(asyncRoutesChildren);

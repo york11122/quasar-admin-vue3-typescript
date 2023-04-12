@@ -21,9 +21,11 @@ export interface RouteData {
   icon?: string;
   keepAlive?: boolean;
   name: RouteRecordName | null | undefined;
+  isHidden: unknown;
 }
 
 export interface User {
+  _id: string;
   username: string;
-  role: string;
+  roles: string[];
 }

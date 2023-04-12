@@ -1,38 +1,27 @@
 <template>
   <q-layout view="lHh lpR lff" class="full-height">
-    <q-header class="q-py-xs header" height-hint="48" bordered style="
-        box-shadow: rgba(0, 0, 0, 0) 0px 2px 12px 0px;
-        padding-bottom: 2px;
-      ">
+    <q-header class="q-py-xs header" height-hint="48" bordered
+      style="box-shadow: rgba(0, 0, 0, 0) 0px 2px 12px 0px; padding-bottom: 2px">
       <q-toolbar style="margin-top: -5px">
-
         <div class="q-pr-md">
           <q-btn flat dense round aria-label="Menu" :icon="leftDrawerOpen === true ? 'menu_open' : 'menu'"
             @click="toggleLeftDrawer()" />
         </div>
-
-        <!-- breadcrumbs-->
         <breadcrumbs :show-icon="false" v-if="$q.screen.gt.sm" />
-
         <q-space />
-
-        <!-- toolbar item-->
         <toolbar-item />
-
       </q-toolbar>
-
       <q-separator />
-      <!-- tagview-->
       <tagview />
     </q-header>
 
     <!-- drawer start -->
     <q-drawer v-model="leftDrawerOpen" :width="230" show-if-above bordered>
       <div class="absolute-top q-pa-sm" style="height: 50px">
-        <toolbar-title :title="'Windripple'" style="width:100%" />
+        <toolbar-title :title="'Windripple'" style="width: 100%" />
         <q-separator spaced="sm" inset />
       </div>
-      <base-menu style="height: calc(100% - 50px); margin-top: 50px;" />
+      <base-menu style="height: calc(100% - 50px); margin-top: 50px" />
     </q-drawer>
     <!-- drawer end -->
 
@@ -47,14 +36,13 @@
       </router-view>
     </q-page-container>
     <!-- page end -->
-
   </q-layout>
 </template>
 
 <script lang="ts">
 export default {
-  name: "MainLayout"
-}
+  name: "MainLayout",
+};
 </script>
 
 <script lang="ts" setup>
@@ -62,15 +50,14 @@ import { ref } from "vue";
 import Tagview from "src/components/Tagview/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
-import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue"
-import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue"
+import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue";
+import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue";
 import { useKeepAliveStore } from "src/stores/keep-alive";
-import { useToggle } from "@vueuse/shared"
+import { useToggle } from "@vueuse/shared";
 
 const leftDrawerOpen = ref<boolean>(false);
 const keepAliveStore = useKeepAliveStore();
-const toggleLeftDrawer = useToggle(leftDrawerOpen)
-
+const toggleLeftDrawer = useToggle(leftDrawerOpen);
 </script>
 
 <style lang="scss" scoped>
@@ -87,7 +74,6 @@ const toggleLeftDrawer = useToggle(leftDrawerOpen)
     background-color: $dark;
   }
 }
-
 
 /* fade-slide */
 .fade-slide-leave-active,

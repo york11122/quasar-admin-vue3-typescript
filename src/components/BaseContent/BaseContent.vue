@@ -1,6 +1,7 @@
 <template>
   <div class="main-content">
-    <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%" @scroll="onScroll">
+    <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%"
+      :content-active-style="contentActiveStyle" @scroll="onScroll">
       <slot></slot>
 
       <q-page-sticky position="bottom-right" :offset="[18, 18]">
@@ -9,22 +10,15 @@
         </transition>
       </q-page-sticky>
     </q-scroll-area>
-
   </div>
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  onMounted,
-  onUnmounted,
-  onActivated,
-  onDeactivated,
-} from "vue";
+import { ref, onMounted, onUnmounted, onActivated, onDeactivated } from "vue";
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
 
-defineOptions({ name: "BaseContent" })
+defineOptions({ name: "BaseContent" });
 
 interface scrollInfo {
   horizontalContainerSize: number;
@@ -35,7 +29,6 @@ interface scrollInfo {
   verticalPercentage: number;
   verticalPosition: number;
   verticalSize: number;
-
 }
 
 interface scrollPosition {
@@ -48,6 +41,10 @@ const thumbStyle = {
   borderRadius: "3px",
   width: "7px",
 };
+
+const props = withDefaults(defineProps<{ contentActiveStyle?: string }>(), {
+  contentActiveStyle: "",
+});
 
 const route = useRoute();
 const scrollArea = ref<QScrollArea | null>(null);
@@ -63,12 +60,14 @@ const getScrollPosition = () => {
 };
 
 const onScroll = (info: scrollInfo) => {
-  (info.verticalPercentage >= 0.1) ? showToTopBtn.value = true : showToTopBtn.value = false
-}
+  info.verticalPercentage >= 0.1
+    ? (showToTopBtn.value = true)
+    : (showToTopBtn.value = false);
+};
 
 const toTop = () => {
-  scrollToPosition(0, 300)
-}
+  scrollToPosition(0, 300);
+};
 
 onMounted(() => {
   basePath.value = route.fullPath;
@@ -92,10 +91,7 @@ onActivated(() => {
 
 onDeactivated(() => {
   const position = getScrollPosition();
-  SessionStorage.set(
-    basePath.value,
-    position
-  );
+  SessionStorage.set(basePath.value, position);
 });
 </script>
 

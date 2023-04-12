@@ -97,16 +97,9 @@
                     </div>
                     <div class="col-12 col-md column">
                         <div class="col">
-                            <q-card flat bordered>
-                                <q-video :ratio="16 / 9" src="https://www.youtube.com/embed/VYzuhhBKKWQ" />
-                            </q-card>
-                        </div>
-
-                        <div class="col">
-                            <q-parallax :height="150">
+                            <q-parallax :height="300">
                                 <template v-slot:media>
-                                    <video height="440" poster="https://cdn.quasar.dev/img/polina.jpg" autoplay loop
-                                        muted>
+                                    <video height="440" poster="https://cdn.quasar.dev/img/polina.jpg" autoplay loop muted>
                                         <source type="video/webm" src="https://cdn.quasar.dev/img/polina.webm">
                                         <source type="video/mp4" src="https://cdn.quasar.dev/img/polina.mp4">
                                     </video>
@@ -114,8 +107,9 @@
 
                                 <h3 class="text-white">Video</h3>
                             </q-parallax>
-
-                            <q-parallax :height="200" :speed="0.5">
+                        </div>
+                        <div class="col">
+                            <q-parallax :height="300" :speed="0.5">
                                 <template v-slot:media>
                                     <img src="https://cdn.quasar.dev/img/parallax1.jpg">
                                 </template>
@@ -123,8 +117,11 @@
                                 <h1 class="text-white">Docks</h1>
                             </q-parallax>
                         </div>
-
-
+                        <div class="col">
+                            <q-card flat bordered>
+                                <q-video :ratio="16 / 9" src="https://www.youtube.com/embed/VYzuhhBKKWQ" />
+                            </q-card>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,148 +129,147 @@
     </base-content>
 </template>
   
-  <script lang="ts" setup>
-  import { ref } from "vue"
-  import { type ECOption, useEcharts } from "src/composables/eCharts"
-  import BaseContent from "src/components/BaseContent/BaseContent.vue"
-  import CountTo from "src/components/CountTo/CountTo.vue";
-  
-  
-  defineOptions({ name: "Dashboard" })
-  
-  
-  const stackRef = ref<HTMLElement | null>(null)
-  const stackOption = ref<ECOption>({
-  
-      tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-              type: 'cross',
-              label: {
-                  backgroundColor: '#6a7985'
-              }
-          }
-      },
-      legend: {
-          data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-      },
-  
-      grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-      },
-      xAxis: [
-          {
-              type: 'category',
-              boundaryGap: false,
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          }
-      ],
-      yAxis: [
-          {
-              type: 'value'
-          }
-      ],
-      series: [
-          {
-              name: 'Email',
-              type: 'line',
-              stack: 'Total',
-              areaStyle: {},
-              emphasis: {
-                  focus: 'series'
-              },
-              data: [120, 132, 101, 134, 90, 230, 210]
-          },
-          {
-              name: 'Union Ads',
-              type: 'line',
-              stack: 'Total',
-              areaStyle: {},
-              emphasis: {
-                  focus: 'series'
-              },
-              data: [220, 182, 191, 234, 290, 330, 310]
-          },
-          {
-              name: 'Video Ads',
-              type: 'line',
-              stack: 'Total',
-              areaStyle: {},
-              emphasis: {
-                  focus: 'series'
-              },
-              data: [150, 232, 201, 154, 190, 330, 410]
-          },
-          {
-              name: 'Direct',
-              type: 'line',
-              stack: 'Total',
-              areaStyle: {},
-              emphasis: {
-                  focus: 'series'
-              },
-              data: [320, 332, 301, 334, 390, 330, 320]
-          },
-          {
-              name: 'Search Engine',
-              type: 'line',
-              stack: 'Total',
-              label: {
-                  show: true,
-                  position: 'top'
-              },
-              areaStyle: {},
-              emphasis: {
-                  focus: 'series'
-              },
-              data: [820, 932, 901, 934, 1290, 1330, 1320]
-          }
-      ]
-  });
-  useEcharts(stackRef, stackOption);
-  
-  const pieRef = ref<HTMLElement | null>(null)
-  const pieOption = ref<ECOption>({
-      tooltip: {
-          trigger: 'item'
-      },
-      legend: {
-          top: '5%',
-          left: 'center'
-      },
-      series: [
-          {
-              name: 'Access From',
-              type: 'pie',
-              radius: ['40%', '70%'],
-              avoidLabelOverlap: false,
-              label: {
-                  show: false,
-                  position: 'center'
-              },
-              emphasis: {
-                  label: {
-                      show: true,
-                      fontSize: '40',
-                      fontWeight: 'bold'
-                  }
-              },
-              labelLine: {
-                  show: false
-              },
-              data: [
-                  { value: 1048, name: 'Search Engine' },
-                  { value: 735, name: 'Direct' },
-                  { value: 580, name: 'Email' },
-                  { value: 484, name: 'Union Ads' },
-              ]
-          }
-      ]
-  });
-  useEcharts(pieRef, pieOption);
-  
-  </script>
+<script lang="ts" setup>
+import { ref } from "vue"
+import { type ECOption, useEcharts } from "src/composables/eCharts"
+import BaseContent from "src/components/BaseContent/BaseContent.vue"
+import CountTo from "src/components/CountTo/CountTo.vue";
+
+
+defineOptions({ name: "Dashboard" })
+
+
+const stackRef = ref<HTMLElement | null>(null)
+const stackOption = ref<ECOption>({
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+    },
+
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Email',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name: 'Union Ads',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name: 'Video Ads',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name: 'Direct',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name: 'Search Engine',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [820, 932, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+});
+useEcharts(stackRef, stackOption);
+
+const pieRef = ref<HTMLElement | null>(null)
+const pieOption = ref<ECOption>({
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        top: '5%',
+        left: 'center'
+    },
+    series: [
+        {
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '40',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                { value: 1048, name: 'Search Engine' },
+                { value: 735, name: 'Direct' },
+                { value: 580, name: 'Email' },
+                { value: 484, name: 'Union Ads' },
+            ]
+        }
+    ]
+});
+useEcharts(pieRef, pieOption);
+
+</script>
   

@@ -1,6 +1,6 @@
 import { createFetch } from "@vueuse/core";
-import { SessionStorage, Notify, QNotifyCreateOptions } from "quasar";
-
+import { SessionStorage, QNotifyCreateOptions } from "quasar";
+import Notify from "src/components/Notify/Notify";
 
 export const useFetch = createFetch({
   baseUrl: "",
@@ -24,8 +24,6 @@ export const useFetch = createFetch({
         message: "unknow error",
         icon: "warning",
         color: "warning",
-        position: "top",
-        timeout: 1500,
       };
       if (
         error.code === "ECONNABORTED" ||

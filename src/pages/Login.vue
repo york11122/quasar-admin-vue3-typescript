@@ -12,7 +12,10 @@
         width="50%"
         v-if="!isLottieFinished"
       />
-      <lottie-web :path="defaultOptions.path" @isLottieFinish="handleFinish" />
+      <lottie-web
+        :path="defaultOptions.path"
+        @isLottieFinish="handleLottieFinish"
+      />
     </div>
     <login-panel
       v-model:username="loginData.username"
@@ -25,61 +28,67 @@
 </template>
 
 <script lang="ts" setup>
+// Import necessary libraries and components
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "src/stores/user";
 import LottieWeb from "src/components/LottieWeb/LottieWeb.vue";
 import CornerBottom from "src/components/Login/CornerBottom.vue";
 import LoginPanel from "src/components/Login/LoginPanel.vue";
-import { useMyApi } from "src/composables/myApi";
-
+import { useUserAPI } from "src/api/services/user";
+// Define component options
 defineOptions({ name: "Login" });
 
+// Setup user store, router, and message reference
 const userStore = useUserStore();
 const router = useRouter();
 const message = ref<string>("");
-const loginData = reactive<{ username: string; password: string }>({
-  username: "admin",
-  password: "admin",
-});
+const { login } = useUserAPI();
+
+// Lottie configuration
 const isLottieFinished = ref<boolean>(false);
 const defaultOptions = ref<any>({
   path: "https://assets1.lottiefiles.com/packages/lf20_gzl797gs.json",
   loop: true,
   animationSpeed: 1,
 });
+const handleLottieFinish = () => {
+  isLottieFinished.value = true;
+};
 
-const api = useMyApi();
+// Login data and configuration
+const loginData: { username: string; password: string } = reactive({
+  username: "admin",
+  password: "admin",
+});
 
-// const { data, isFetching, onFetchError: onLoginError, onFetchResponse: onLoginResponse, execute } = api<any>("/auth", { immediate: false }).post(loginData).json()
-//mock fake data from json file to test login
+// Setup API call for login
 const {
-  data,
+  data: loginResponse,
   isFetching,
   onFetchError: onLoginError,
   onFetchResponse: onLoginResponse,
-  execute,
-} = api<any>("/data/mock/login.json", { immediate: false }).get().json();
+  execute: executeLogin,
+} = login(loginData, { immediate: false });
 
+// Function to handle login button click
 const onLoginClick = () => {
   message.value = "";
-  execute();
+  executeLogin();
 };
 
+// Function to handle login errors
 onLoginError((error) => {
-  if (data.value.message) {
-    message.value = data.value.message;
+  if (loginResponse.value.errorCode) {
+    message.value = loginResponse.value.message;
   }
 });
 
-onLoginResponse(async (res) => {
-  userStore.setLoginToken(data.value.accessToken);
+// Function to handle successful login response
+onLoginResponse((res) => {
+  userStore.setLoginToken(loginResponse.value.accessToken);
   router.push("/");
 });
-
-const handleFinish = () => {
-  isLottieFinished.value = true;
-};
 </script>
 
 <style scoped>

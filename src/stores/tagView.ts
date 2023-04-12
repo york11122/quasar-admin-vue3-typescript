@@ -28,10 +28,17 @@ export const useTagViewStore = defineStore("tagView", {
         fullPath: to.fullPath,
         icon: to.meta.icon,
         keepAlive: to.meta.keepAlive,
+        isHidden: to.meta.isHidden,
       };
+
+      // if (tag.isHidden) {
+      //   return;
+      // }
 
       if (getFirst(to.query)) {
         tag.title += "：" + getFirst(to.query);
+      } else if (getFirst(to.params)) {
+        tag.title += "：" + getFirst(to.params);
       }
 
       if (
@@ -62,6 +69,15 @@ export const useTagViewStore = defineStore("tagView", {
       this.tagView = tagView;
     },
 
+    removeTagViewByFullPath(fullPath: string) {
+      const index = this.tagView.findIndex(
+        (item) => item.fullPath === fullPath
+      );
+      if (index !== -1) {
+        removeATagView(this, index);
+      }
+    },
+
     removeTagViewAt(index: number) {
       removeATagView(this, index);
     },
@@ -81,7 +97,10 @@ export const useTagViewStore = defineStore("tagView", {
     removeAllTagView() {
       this.tagView = [];
       SessionStorage.set("tagView", []);
-      router.push({ name: "home" });
+      const token = SessionStorage.getItem("access_token");
+      if (token) {
+        router.push({ name: "home" });
+      }
     },
   },
 });

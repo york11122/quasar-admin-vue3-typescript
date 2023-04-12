@@ -1,8 +1,7 @@
 <template>
   <template v-for="(item, index) in myRouter">
     <div class="base-menu-item" :key="index" v-if="item.meta?.isHidden !== true">
-      <q-item-label v-if="item.meta?.itemLabel" header class="text-weight-bold text-uppercase"
-        :key="item.meta.itemLabel">
+      <q-item-label v-if="item.meta?.itemLabel" header class="text-weight-bold text-uppercase" :key="item.meta.itemLabel">
         {{ item.meta.itemLabel }}
       </q-item-label>
 
@@ -80,20 +79,17 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
 
 </script>
 
-
-
 <style lang="scss" scoped>
-// $
 .body--light {
   .base-menu-item {
-    color: $ITEM_COLOR  !important;
+    color: $ITEM_COLOR !important;
 
     .baseRootItemActive {
-      color: $ACTIVE_COLOR  !important;
+      color: $ACTIVE_COLOR !important;
     }
 
     .baseItemActive {
-      color: $ACTIVE_COLOR  !important;
+      color: $ACTIVE_COLOR !important;
       background: $ACTIVE_BACKGROUND;
       transition: all 0.618s;
       font-weight: bold;
@@ -103,7 +99,7 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
         position: absolute;
         width: 3px;
         height: 100%;
-        background: $ACTIVE_COLOR  !important;
+        background: $ACTIVE_COLOR !important;
         top: 0;
         right: 0;
       }
@@ -114,14 +110,14 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
 .body--dark {
 
   .base-menu-item {
-    color: $ITEM_COLOR_DARK  !important;
+    color: $ITEM_COLOR_DARK !important;
 
     .baseRootItemActive {
-      color: $ACTIVE_COLOR_DARK  !important;
+      color: $ACTIVE_COLOR_DARK !important;
     }
 
     .baseItemActive {
-      color: $ACTIVE_COLOR_DARK  !important;
+      color: $ACTIVE_COLOR_DARK !important;
       background: $ACTIVE_BACKGROUND_DARK;
       transition: all 0.618s;
       font-weight: bold;
@@ -131,7 +127,7 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
         position: absolute;
         width: 3px;
         height: 100%;
-        background: $ACTIVE_COLOR_DARK  !important;
+        background: $ACTIVE_COLOR_DARK !important;
         top: 0;
         right: 0;
       }
