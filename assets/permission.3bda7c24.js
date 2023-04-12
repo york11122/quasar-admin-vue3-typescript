@@ -1,0 +1,1 @@
+import{u}from"./user.385a4f83.js";const c=()=>{const r=u();function o(t){const{getUserRoles:s}=r;if(s){let e=s.includes("super");return e||(e=s.some(n=>t.includes(n))),e}return!1}return{hasPermission:o}};export{c as u};

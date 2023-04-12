@@ -1,0 +1,1 @@
+import{_ as e}from"./Iframe.2583276f.js";import{ac as o,aB as s,a3 as a,d as r}from"./index.fa1234cd.js";import"./BaseSkelton.26201938.js";import"./QSkeleton.d8c3cc58.js";const c={class:"fit"},l=o({__name:"TypeScript",setup(p){const t="https://www.typescriptlang.org/";return(n,_)=>(s(),a("div",c,[r(e,{src:t})]))}});export{l as default};
