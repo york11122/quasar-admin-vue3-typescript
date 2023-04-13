@@ -1,0 +1,1 @@
+import{B as a}from"./BaseContent.12e6bd15.js";import{ac as e,aB as t,a1 as o,b3 as n,aa as s}from"./index.e4387ea1.js";import"./QScrollArea.6e430288.js";import"./selection.57a36c23.js";const r=e({name:"Permission"}),u=e({...r,setup(c){return(i,m)=>(t(),o(a,null,{default:n(()=>[s(" Only Admin can view this page. ")]),_:1}))}});export{u as default};

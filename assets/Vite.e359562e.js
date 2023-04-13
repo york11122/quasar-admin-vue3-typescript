@@ -1,1 +1,0 @@
-import{_ as e}from"./Iframe.2583276f.js";import{ac as s,aB as o,a3 as a,d as c}from"./index.fa1234cd.js";import"./BaseSkelton.26201938.js";import"./QSkeleton.d8c3cc58.js";const r={class:"fit"},l=s({__name:"Vite",setup(n){const t="https://vitejs.dev/";return(_,i)=>(o(),a("div",r,[c(e,{src:t})]))}});export{l as default};
