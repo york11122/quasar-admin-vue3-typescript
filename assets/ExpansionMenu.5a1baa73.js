@@ -1,1 +1,0 @@
-import{B as e}from"./BaseContent.12e6bd15.js";import{ac as t,aB as a,a1 as o,b3 as n,aa as r}from"./index.e4387ea1.js";import"./QScrollArea.6e430288.js";import"./selection.57a36c23.js";const s=t({name:"ExpantionMenu"}),l=t({...s,setup(c){return(p,_)=>(a(),o(e,null,{default:n(()=>[r(" on structure ")]),_:1}))}});export{l as default};
