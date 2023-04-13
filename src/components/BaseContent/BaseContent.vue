@@ -3,13 +3,13 @@
     <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%"
       :content-active-style="contentActiveStyle" @scroll="onScroll">
       <slot></slot>
-
-      <q-page-sticky position="bottom-right" :offset="[18, 18]">
-        <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-          <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="expand_less" @click="toTop" />
-        </transition>
-      </q-page-sticky>
     </q-scroll-area>
+
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+        <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="expand_less" @click="toTop" />
+      </transition>
+    </q-page-sticky>
   </div>
 </template>
 

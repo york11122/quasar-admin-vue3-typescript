@@ -33,6 +33,9 @@ export const useUserStore = defineStore("user", {
       this.username = user.username;
       this.roles = user.roles;
     },
+    setUserRoles(roles: string[]) {
+      this.roles = roles;
+    },
     setLogout() {
       this.username = "";
       this.roles = [];

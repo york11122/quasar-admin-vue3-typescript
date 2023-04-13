@@ -97,9 +97,9 @@
                     </div>
                     <div class="col-12 col-md column">
                         <div class="col">
-                            <q-parallax :height="300">
+                            <q-parallax :height="100">
                                 <template v-slot:media>
-                                    <video height="440" poster="https://cdn.quasar.dev/img/polina.jpg" autoplay loop muted>
+                                    <video poster="https://cdn.quasar.dev/img/polina.jpg" autoplay loop muted>
                                         <source type="video/webm" src="https://cdn.quasar.dev/img/polina.webm">
                                         <source type="video/mp4" src="https://cdn.quasar.dev/img/polina.mp4">
                                     </video>
@@ -109,7 +109,7 @@
                             </q-parallax>
                         </div>
                         <div class="col">
-                            <q-parallax :height="300" :speed="0.5">
+                            <q-parallax :height="100" :speed="0.5">
                                 <template v-slot:media>
                                     <img src="https://cdn.quasar.dev/img/parallax1.jpg">
                                 </template>

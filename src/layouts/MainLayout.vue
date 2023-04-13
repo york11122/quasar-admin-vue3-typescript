@@ -27,7 +27,7 @@
 
     <!-- page start -->
     <q-page-container class="app-main full-height">
-      <router-view v-slot="{ Component, route }">
+      <router-view v-if="isRouterAlive" v-slot="{ Component, route }">
         <transition name="fade-slide" mode="out-in" appear>
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
             <component :is="Component" :key="route.fullPath" />
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, nextTick, provide } from "vue";
 import Tagview from "src/components/Tagview/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
@@ -57,6 +57,17 @@ import { useToggle } from "@vueuse/shared";
 
 const leftDrawerOpen = ref<boolean>(false);
 const keepAliveStore = useKeepAliveStore();
+const isRouterAlive = ref<boolean>(true)
+
+const reloadPage = () => {
+  isRouterAlive.value = false;
+  nextTick(() => {
+    isRouterAlive.value = true;
+  });
+}
+
+provide<() => void>('reloadPage', reloadPage)
+
 const toggleLeftDrawer = useToggle(leftDrawerOpen);
 </script>
 

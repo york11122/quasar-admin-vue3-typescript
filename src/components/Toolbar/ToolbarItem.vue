@@ -47,17 +47,22 @@
 
       <q-tooltip>使用者</q-tooltip>
     </q-btn>
+    <q-btn dense flat icon="refresh" @click="handleReloadClick" v-if="$q.screen.gt.sm">
+      <q-tooltip>重新整理</q-tooltip>
+    </q-btn>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { inject } from "vue"
 import { useUserStore } from "src/stores/user";
 import DarkMode from "src/components/Toolbar/DarkMode.vue";
 
 defineOptions({ name: "ToolbarItem" });
 
 const userStore = useUserStore();
-
+const reloadPage = inject<() => void>('reloadPage') as () => void
+const handleReloadClick = () => { reloadPage() }
 const logout = () => {
   userStore.setLogout();
 };
