@@ -1,5 +1,5 @@
 <template>
-  <base-content>
+  <base-content scrollable>
     <div class="base-markdown-content">
       <base-skelton :show="isFetching" />
       <markdown v-model="data" :previewOnly="true" />

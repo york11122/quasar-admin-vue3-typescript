@@ -1,5 +1,5 @@
 <template>
-    <base-content>
+    <base-content scrollable>
         <q-card flat class="q-gutter-md">
             <q-card-section>
                 <div ref="barRef" style="height:400px" />
@@ -11,13 +11,11 @@
                 <div ref="pieRef" style="height:400px" />
             </q-card-section>
         </q-card>
-
     </base-content>
 </template>
 
 <script setup lang="ts">
 import { onUnmounted, ref } from 'vue';
-import { graphic } from 'echarts';
 import { type ECOption, useEcharts } from 'src/composables/eCharts';
 import BaseContent from 'src/components/BaseContent/BaseContent.vue';
 
@@ -233,5 +231,4 @@ onUnmounted(() => {
 
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

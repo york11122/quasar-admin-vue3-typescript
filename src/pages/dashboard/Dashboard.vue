@@ -1,5 +1,5 @@
 <template>
-    <base-content>
+    <base-content scrollable>
         <div class="q-pl-sm q-pr-sm">
             <div class="column q-gutter-y-sm">
                 <div class="row col q-gutter-sm">
@@ -130,7 +130,7 @@
 </template>
   
 <script lang="ts" setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { type ECOption, useEcharts } from "src/composables/eCharts"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
 import CountTo from "src/components/CountTo/CountTo.vue";
@@ -138,6 +138,9 @@ import CountTo from "src/components/CountTo/CountTo.vue";
 
 defineOptions({ name: "Dashboard" })
 
+onMounted(() => {
+    console.log(123)
+})
 
 const stackRef = ref<HTMLElement | null>(null)
 const stackOption = ref<ECOption>({

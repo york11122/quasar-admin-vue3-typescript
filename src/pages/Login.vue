@@ -1,29 +1,12 @@
 <template>
   <div class="flex justify-center items-center" style="height: 100%">
     <corner-bottom class="wave fit bg-black" />
-
-    <div
-      class="col-6 flex justify-center items-center"
-      v-show="$q.screen.gt.sm"
-    >
-      <q-skeleton
-        type="text"
-        height="70%"
-        width="50%"
-        v-if="!isLottieFinished"
-      />
-      <lottie-web
-        :path="defaultOptions.path"
-        @isLottieFinish="handleLottieFinish"
-      />
+    <div class="col-6 flex justify-center items-center" v-show="$q.screen.gt.sm">
+      <q-skeleton type="text" height="70%" width="50%" v-if="!isLottieFinished" />
+      <lottie-web :path="defaultOptions.path" @isLottieFinish="handleLottieFinish" />
     </div>
-    <login-panel
-      v-model:username="loginData.username"
-      v-model:password="loginData.password"
-      v-model:loading="isFetching"
-      @onLoginClick="onLoginClick"
-      :message="message"
-    />
+    <login-panel v-model:username="loginData.username" v-model:password="loginData.password" v-model:loading="isFetching"
+      @onLoginClick="onLoginClick" :message="message" />
   </div>
 </template>
 

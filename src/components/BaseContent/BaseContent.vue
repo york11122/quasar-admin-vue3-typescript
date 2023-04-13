@@ -1,24 +1,26 @@
 <template>
-  <div class="main-content">
-    <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%"
+  <q-page class="fit" :padding="padding">
+    <q-scroll-area v-if="scrollable" ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%"
       :content-active-style="contentActiveStyle" @scroll="onScroll">
       <slot></slot>
     </q-scroll-area>
-
+    <slot v-else></slot>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
         <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="expand_less" @click="toTop" />
       </transition>
     </q-page-sticky>
-  </div>
+  </q-page>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted, onActivated, onDeactivated } from "vue";
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
+import { useAppStore } from "src/stores/app"
 
 defineOptions({ name: "BaseContent" });
+
 
 interface scrollInfo {
   horizontalContainerSize: number;
@@ -42,8 +44,16 @@ const thumbStyle = {
   width: "7px",
 };
 
-const props = withDefaults(defineProps<{ contentActiveStyle?: string }>(), {
+interface Props {
+  contentActiveStyle?: string;
+  scrollable?: boolean;
+  padding?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
   contentActiveStyle: "",
+  scrollable: false,
+  padding: false
 });
 
 const route = useRoute();

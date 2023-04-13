@@ -1,5 +1,5 @@
 <template>
-  <q-card flat class="q-gutter-md fit">
+  <base-content scrollable>
     <q-card-section class="q-gutter-md">
       <q-select style="width:200px" outlined label="change user role" v-model="selectedPermission"
         :options="permissionOptions" emit-value @update:model-value="handlePermissionChange" />
@@ -24,16 +24,20 @@
         <q-btn :disable="!hasPermission(['user'])" unelevated color="primary" label="only user can click" />
       </div>
     </q-card-section>
-  </q-card>
+  </base-content>
 </template>
 
 <script lang="ts" setup>
 import { useUserStore } from "src/stores/user";
+import { useAppStore } from "src/stores/app"
 import { usePermission } from "src/composables/permission";
 import { ref } from "vue";
+import BaseContent from "src/components/BaseContent/BaseContent.vue";
+
 defineOptions({ name: "Directive" });
 
 const userStore = useUserStore();
+const appStore = useAppStore();
 const { hasPermission } = usePermission();
 
 const selectedPermission = ref<string>(userStore.getUserRoles[0]);
@@ -41,6 +45,7 @@ const permissionOptions = [{ label: "super", value: "super" }, { label: "admin",
 
 const handlePermissionChange = () => {
   userStore.setUserRoles([selectedPermission.value]);
+  appStore.reloadPage(200);
 }
 
 </script>

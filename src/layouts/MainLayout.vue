@@ -27,7 +27,7 @@
 
     <!-- page start -->
     <q-page-container class="app-main full-height">
-      <router-view v-if="isRouterAlive" v-slot="{ Component, route }">
+      <router-view v-if="appStore.getReloadFlag" v-slot="{ Component, route }">
         <transition name="fade-slide" mode="out-in" appear>
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
             <component :is="Component" :key="route.fullPath" />
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref, nextTick, provide } from "vue";
+import { ref } from "vue";
 import Tagview from "src/components/Tagview/Tagview.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
@@ -54,20 +54,11 @@ import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue";
 import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue";
 import { useKeepAliveStore } from "src/stores/keep-alive";
 import { useToggle } from "@vueuse/shared";
+import { useAppStore } from "src/stores/app"
 
 const leftDrawerOpen = ref<boolean>(false);
 const keepAliveStore = useKeepAliveStore();
-const isRouterAlive = ref<boolean>(true)
-
-const reloadPage = () => {
-  isRouterAlive.value = false;
-  nextTick(() => {
-    isRouterAlive.value = true;
-  });
-}
-
-provide<() => void>('reloadPage', reloadPage)
-
+const appStore = useAppStore();
 const toggleLeftDrawer = useToggle(leftDrawerOpen);
 </script>
 

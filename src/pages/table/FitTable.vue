@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-sm fit" v-if="$q.screen.gt.xs">
+  <base-content class="q-pa-sm">
     <q-table class="fit sticky-header-table" selection="multiple" v-model:selected="selected" :dense="$q.screen.lt.md"
       separator="cell" flat bordered :rows="rows" :filter="filter" :columns="columns" row-key="name"
       v-model:pagination="pagination">
@@ -20,15 +20,14 @@
 
       </template>
     </q-table>
-  </div>
-  <base-content v-else>
-    <q-table grid flat bordered :rows="rows" :columns="columns" row-key="name" v-model:pagination="pagination" />
+
   </base-content>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from "vue"
 import BaseContent from "src/components/BaseContent/BaseContent.vue"
+import ReloadWrapper from "src/components/ReloadWrapper/ReloadWrapper.vue";
 defineOptions({ name: "FitTable" })
 
 const pagination = ref({
