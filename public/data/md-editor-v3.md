@@ -1,70 +1,37 @@
-## 😲 md-editor-v3
+![image](https://uicdn.toast.com/toastui/img/tui-editor-bi.png)
 
-Markdown Editor for Vue3, developed in jsx and typescript, support different themes、beautify content by prettier.
+# Awesome Editor!
 
-### 🤖 Base
+It has been _released as opensource in 2018_ and has ~~continually~~ evolved to **receive 10k GitHub ⭐️ Stars**.
 
-**bold**, <u>underline</u>, _italic_, ~line-through~, superscript<sup>26</sup>, subscript<sub>1</sub>, `inline code`, [link](https://imzbf.cc)
+## Create Instance
 
-> quote: I Have a Dream
+You can create an instance with the following code and use `getHtml()` and `getMarkdown()` of the [Editor](https://github.com/nhn/tui.editor).
 
-1. So even though we face the difficulties of today and tomorrow, I still have a dream.
-2. It is a dream deeply rooted in the American dream.
-3. I have a dream that one day this nation will rise up.
-
-- [ ] Friday
-- [ ] Saturday
-- [x] Sunday
-
-![Picture](https://imzbf.github.io/md-editor-rt/imgs/mark_emoji.gif)
-
-## 🤗 Code
-
-```vue
-<template>
-  <MdEditor v-model="text" />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-import MdEditor from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
-
-const text = ref('Hello Editor!');
-</script>
+```js
+const editor = new Editor(options);
 ```
 
-## 🖨 Text
+> See the table below for default options
+> > More API information can be found in the document
 
-The Old Man and the Sea served to reinvigorate Hemingway's literary reputation and prompted a reexamination of his entire body of work.
+| name | type | description |
+| --- | --- | --- |
+| el | `HTMLElement` | container element |
 
-## 📈 Table
+## Features
 
-| nickname | from             |
-| -------- | ---------------- |
-| zhijian  | ChongQing, China |
+* CommonMark + GFM Specifications
+   * Live Preview
+   * Scroll Sync
+   * Auto Indent
+   * Syntax Highlight
+        1. Markdown
+        2. Preview
 
-## 📏 Formula
+## Support Wrappers
 
-Inline: $x+y^{2x}$
-
-$$
-\sqrt[3]{x}
-$$
-
-## 🧬 Diagram
-
-```mermaid
-flowchart TD
-  Start --> Stop
-```
-
-## 🪄 Alert
-
-!!! note Supported Types
-
-note、abstract、info、tip、success、question、warning、failure、danger、bug、example、quote、hint、caution、error、attention
-
-!!!
-
-## ☘️ em...
+> * Wrappers
+>    1. [x] React
+>    2. [x] Vue
+>    3. [ ] Ember

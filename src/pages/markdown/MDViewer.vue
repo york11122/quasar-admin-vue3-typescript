@@ -1,19 +1,25 @@
 <template>
-  <base-content scrollable>
-    <div class="base-markdown-content">
-      <base-skelton :show="isFetching" />
-      <markdown v-model="data" :previewOnly="true" />
-    </div>
+  <base-content scrollable contentActiveStyle="">
+    <markdown-viewer-toast class="base-markdown-content" v-model="content" ref="markdownRef" />
   </base-content>
 </template>
 
+
 <script lang="ts" setup>
+import MarkdownViewerToast from 'src/components/Markdown/MarkdownViewerToast.vue';
 import BaseContent from "src/components/BaseContent/BaseContent.vue";
-import BaseSkelton from "src/components/Skelton/BaseSkelton.vue";
-import Markdown from "src/components/Markdown/Markdown.vue";
-import { useFetch } from "src/composables/fetch";
+import { useFetch } from "src/composables/fetch"
+import { ref } from "vue"
 
-defineOptions({ name: "MDViewer" });
+defineOptions({ name: "MDViewer" })
 
-const { data, isFetching } = useFetch("data/md-editor-v3.md").text();
+const markdownRef = ref<typeof MarkdownViewerToast | null>()
+const content = ref<string>("")
+
+const { data, onFetchResponse } = useFetch("data/md-editor-v3.md").text()
+
+onFetchResponse((res) => {
+  content.value = data.value as string
+})
+
 </script>

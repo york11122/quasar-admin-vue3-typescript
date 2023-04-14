@@ -39,9 +39,26 @@
 }
 
 .base-markdown-content {
-  padding: 0px 10px 0px 10px;
+  padding: 0px 15px 0px 15px;
   max-width: 900px;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   position: relative;
 }
+
+.toastui-editor-contents {
+  font-family: 'Microsoft JhengHei', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', '나눔바른고딕',
+    'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic', sans-serif !important;
+  font-size: 15px !important;
+}
+
+/* resolve width issue on mobile */
+.q-scrollarea__content {
+  max-width: 100%;
+}
+
+/* .toastui-editor-contents pre {
+  white-space: nowrap !important;
+  overflow-x: auto !important;
+  overflow-wrap: normal !important;
+} */

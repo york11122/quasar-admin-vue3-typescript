@@ -45,7 +45,7 @@ const markdownToolbarOptions: ToolbarNames[] = [
 ];
 
 interface Props {
-  modelValue: string | null;
+  modelValue: string | undefined;
   previewOnly?: boolean;
 }
 
