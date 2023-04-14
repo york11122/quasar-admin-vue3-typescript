@@ -57,6 +57,11 @@
   max-width: 100%;
 }
 
+/* Toast UI editor : remove code operator background on dark mode  */
+code .token.operator {
+  background: none !important;
+}
+
 /* .toastui-editor-contents pre {
   white-space: nowrap !important;
   overflow-x: auto !important;
