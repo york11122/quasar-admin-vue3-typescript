@@ -17,7 +17,6 @@
 import { ref, onMounted, onUnmounted, onActivated, onDeactivated } from "vue";
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
-import { useAppStore } from "src/stores/app"
 
 defineOptions({ name: "BaseContent" });
 
@@ -117,6 +116,10 @@ onDeactivated(() => {
   .toTopBtn {
     color: $ACTIVE_COLOR_DARK;
     background-color: $ITEM_COLOR_DARK;
+  }
+
+  .base-item {
+    background-color: $ACTIVE_BACKGROUND_DARK;
   }
 }
 </style>

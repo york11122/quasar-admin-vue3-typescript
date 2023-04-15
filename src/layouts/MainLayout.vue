@@ -4,7 +4,7 @@
       style="box-shadow: rgba(0, 0, 0, 0) 0px 2px 12px 0px; padding-bottom: 2px">
       <q-toolbar style="margin-top: -5px">
         <div class="q-pr-md">
-          <q-btn flat dense round aria-label="Menu" :icon="leftDrawerOpen === true ? 'menu_open' : 'menu'"
+          <q-btn flat dense round aria-label="Menu" :icon="isDrawerOpen ? 'menu_open' : 'menu'"
             @click="toggleLeftDrawer()" />
         </div>
         <breadcrumbs :show-icon="false" v-if="$q.screen.gt.sm" />
@@ -15,15 +15,7 @@
       <tagview />
     </q-header>
 
-    <!-- drawer start -->
-    <q-drawer v-model="leftDrawerOpen" :width="230" show-if-above bordered>
-      <div class="absolute-top q-pa-sm" style="height: 50px">
-        <toolbar-title :title="'Windripple'" style="width: 100%" />
-        <q-separator spaced="sm" inset />
-      </div>
-      <base-menu style="height: calc(100% - 50px); margin-top: 50px" />
-    </q-drawer>
-    <!-- drawer end -->
+    <drawer ref="drawerRef" v-model="isDrawerOpen" title="Windripple" />
 
     <!-- page start -->
     <q-page-container class="app-main full-height">
@@ -46,20 +38,33 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from "vue"
+import { useKeepAliveStore } from "src/stores/keep-alive";
+import { useAppStore } from "src/stores/app";
+
 import Tagview from "src/components/Tagview/Tagview.vue";
-import BaseMenu from "src/components/Menu/BaseMenu.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue";
-import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue";
-import { useKeepAliveStore } from "src/stores/keep-alive";
-import { useToggle } from "@vueuse/shared";
-import { useAppStore } from "src/stores/app"
+import Drawer from 'src/components/Drawer/Drawer.vue';
 
-const leftDrawerOpen = ref<boolean>(false);
-const keepAliveStore = useKeepAliveStore();
+
 const appStore = useAppStore();
-const toggleLeftDrawer = useToggle(leftDrawerOpen);
+const keepAliveStore = useKeepAliveStore();
+const drawerRef = ref<typeof Drawer | null>(null)
+const isDrawerOpen = ref<boolean>(false)
+
+const toggleLeftDrawerOpen = () => {
+  drawerRef.value?.toggleDrawerOpen();
+}
+
+const toggleLeftDrawer = () => {
+  drawerRef.value?.toggleDrawer();
+}
+
+const toggleLeftDrawerMini = () => {
+  drawerRef.value?.toggleDrawerMini();
+}
+
 </script>
 
 <style lang="scss" scoped>

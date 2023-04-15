@@ -2,7 +2,7 @@
 
 # Awesome Editor!
 
-It has been _released as opensource in 2018_ and has ~~continually~~ evolved to **receive 10k GitHub ⭐️ Stars**.
+It has been *released as opensource in 2018* and has ~~continually~~ evolved to **receive 10k GitHub ⭐️ Stars**.
 
 ## Create Instance
 
@@ -16,22 +16,19 @@ const editor = new Editor(options);
 > > More API information can be found in the document
 
 | name | type | description |
-| --- | --- | --- |
+| ---- | ---- | ----------- |
 | el | `HTMLElement` | container element |
 
 ## Features
 
 * CommonMark + GFM Specifications
-   * Live Preview
-   * Scroll Sync
-   * Auto Indent
-   * Syntax Highlight
+    * Live Preview
+    * Scroll Sync
+    * Auto Indent
+    * Syntax Highlight
         1. Markdown
         2. Preview
 
 ## Support Wrappers
 
-> * Wrappers
->    1. [x] React
->    2. [x] Vue
->    3. [ ] Ember
+* [x] vvv

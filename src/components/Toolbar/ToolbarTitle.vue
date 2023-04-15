@@ -1,7 +1,7 @@
 <template>
   <q-btn flat no-caps no-wrap @click="$router.push('/')">
     <q-icon name="fa-solid fa-shield-dog" />
-    <q-toolbar-title shrink class="text-weight-bold">
+    <q-toolbar-title v-if="!mini" shrink class="text-weight-bold">
       {{ title }}
     </q-toolbar-title>
   </q-btn>
@@ -9,5 +9,5 @@
 
 <script lang="ts" setup>
 defineOptions({ name: "ToolbarTitle" })
-withDefaults(defineProps<{ title?: string }>(), { title: '' })
+withDefaults(defineProps<{ title?: string, mini?: boolean }>(), { title: '', mini: false })
 </script>

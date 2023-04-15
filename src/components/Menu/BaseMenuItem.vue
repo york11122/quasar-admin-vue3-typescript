@@ -7,8 +7,8 @@
 
       <!-- no children -->
       <q-item v-if="!item.children" :exact="item.path === '/'" clickable v-ripple :inset-level="initLevel"
-        active-class="baseItemActive" :active="$route.fullPath === handleLink(basePath, item.path)"
-        @click="handleMenuClick(basePath, item.path)">
+        :style="initLevel === 0 ? 'padding-left: ;' : ''" active-class="baseItemActive"
+        :active="$route.fullPath === handleLink(basePath, item.path)" @click="handleMenuClick(basePath, item.path)">
         <q-item-section avatar>
           <q-icon :name="item.meta?.icon" />
         </q-item-section>
@@ -19,11 +19,10 @@
           <q-icon name="fa-solid fa-up-right-from-square" size="10px" />
         </q-item-section>
       </q-item>
-
       <!-- has children -->
       <q-expansion-item v-else :class="baseItemClassWithNoChildren(item.path)" :duration="duration"
-        :default-opened="item.meta?.isOpen" :header-inset-level="initLevel" :icon="item.meta?.icon"
-        :label="item.meta?.title">
+        :default-opened="item.meta?.isOpen" :header-style="initLevel === 0 ? 'padding-left: ;' : ''"
+        :header-inset-level="initLevel" :icon="item.meta?.icon" :label="item.meta?.title">
         <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
         <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
           :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
