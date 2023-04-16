@@ -1,5 +1,7 @@
 import { boot } from "quasar/wrappers";
+import { EventBus } from "quasar";
 
 export default boot(({ app }) => {
-  // app.provide
+  const bus = new EventBus();
+  app.provide("bus", bus);
 });
