@@ -41,6 +41,15 @@ const asyncRoutesChildren: Route[] = [
     },
   },
   {
+    component: () => import("pages/calendar/Calendar.vue"),
+    path: "/calendar",
+    name: "Calendar",
+    meta: {
+      title: "月曆",
+      icon: "fa-solid fa-calendar-days",
+    },
+  },
+  {
     component: layout,
     path: "/permission",
     name: "Permission",
