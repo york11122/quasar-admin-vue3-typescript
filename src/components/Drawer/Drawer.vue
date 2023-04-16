@@ -3,7 +3,7 @@
     @mouseover="handleLeftDrawerMouse(MouseEvent.Over)" @mouseout="handleLeftDrawerMouse(MouseEvent.Out)">
     <div class="absolute-top q-pa-sm" style="height: 50px">
       <toolbar-title :title="title" style="width: 100%" :mini="isMini" />
-      <q-separator spaced="sm" inset />
+      <q-separator spaced="sm" />
     </div>
     <base-menu style="height: calc(100% - 50px); margin-top: 50px" />
   </q-drawer>

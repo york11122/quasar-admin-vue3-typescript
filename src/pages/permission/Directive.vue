@@ -1,5 +1,5 @@
 <template>
-  <base-content scrollable>
+  <base-content scrollable padding>
     <q-card-section class="q-gutter-md">
       <q-select style="width:200px" outlined label="change user role" v-model="selectedPermission"
         :options="permissionOptions" emit-value @update:model-value="handlePermissionChange" />
