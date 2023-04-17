@@ -9,7 +9,6 @@
 import MarkdownEditorToast from 'src/components/Markdown/MarkdownEditorToast.vue';
 import BaseContent from "src/components/BaseContent/BaseContent.vue";
 import { useFetch } from "src/composables/fetch"
-import Notify from "src/components/Notify/Notify"
 import { ref } from "vue"
 
 defineOptions({ name: "MDEditor" })

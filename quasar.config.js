@@ -22,11 +22,11 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
       "i18n",
-      "markdown",
       "router/permission",
       "router/layout",
       "directives",
-      "bus"
+      "bus",
+      "notify-defaults",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css

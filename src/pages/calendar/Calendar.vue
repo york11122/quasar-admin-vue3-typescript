@@ -19,7 +19,7 @@ import '@quasar/quasar-ui-qcalendar/src/QCalendarMonth.sass'
 
 import BaseContent from 'src/components/BaseContent/BaseContent.vue'
 import NavigationBar from './components/NavigationBar.vue'
-import Notify from "src/components/Notify/Notify";
+import { Notify } from "quasar";
 
 
 defineOptions({ name: "Calendar" })

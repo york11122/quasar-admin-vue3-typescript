@@ -1,7 +1,6 @@
 import { createFetch } from "@vueuse/core";
-import { SessionStorage, QNotifyCreateOptions } from "quasar";
+import { SessionStorage, QNotifyCreateOptions, Notify } from "quasar";
 import { useUserStore } from "src/stores/user";
-import Notify from "src/components/Notify/Notify";
 
 const useMyApi = createFetch({
   baseUrl: import.meta.env.VITE_API_URL,
