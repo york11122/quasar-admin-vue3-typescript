@@ -21,7 +21,7 @@ export interface RouteData {
   icon?: string;
   keepAlive?: boolean;
   name: RouteRecordName | null | undefined;
-  isHidden: unknown;
+  isHidden?: unknown;
 }
 
 export interface User {

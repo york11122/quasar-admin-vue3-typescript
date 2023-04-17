@@ -35,6 +35,7 @@
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Route } from "src/types/index"
+import { openURL } from "quasar"
 defineOptions({ name: "BaseMenuItem" })
 
 interface Props {
@@ -67,10 +68,7 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
   const link = basePath === "" ? itemPath : basePath + "/" + itemPath;
   const i = link.indexOf('http')
   if (i !== -1) {
-    const a = document.createElement('a')
-    a.setAttribute('href', link.slice(i))
-    a.setAttribute('target', '_blank')
-    a.click()
+    openURL(link.slice(i))
     return false
   }
   router.push(link)

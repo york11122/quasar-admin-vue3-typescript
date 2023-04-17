@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { RouteData } from "src/types/index";
-import { RouteRecordName } from "vue-router";
 
 export const useKeepAliveStore = defineStore("keepAlive", {
   state: () => ({
