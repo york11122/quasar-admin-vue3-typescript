@@ -2,10 +2,9 @@ import { boot } from "quasar/wrappers";
 import { useTagViewStore } from "src/stores/tagView";
 import { useBreadcrumbsStore } from "src/stores/breadcrumbs";
 import { useKeepAliveStore } from "src/stores/keep-alive";
-import { SessionStorage } from "quasar";
+import { SessionStorage, LoadingBar } from "quasar";
 import { RouteLocationNormalized } from "vue-router";
 import constantRoutes from "src/router/constantRoutes";
-import LoadingBar from "src/components/LoadingBar/LoadingBar";
 import { RouteData } from "src/types";
 
 export default boot(async ({ router }) => {

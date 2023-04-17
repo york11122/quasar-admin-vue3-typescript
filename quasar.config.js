@@ -26,7 +26,7 @@ module.exports = configure(function (/* ctx */) {
       "router/layout",
       "directives",
       "bus",
-      "notify-defaults",
+      "quasar-plugin-defaults",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
