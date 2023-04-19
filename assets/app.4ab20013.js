@@ -1,0 +1,1 @@
+import{j as a,x as s}from"./index.07f6d001.js";const r=a("app",{state:()=>({reloadFlag:!0,isdrawerMini:!1}),getters:{},actions:{async reloadPage(e=0){this.reloadFlag=!1,await s(),e?setTimeout(()=>{this.reloadFlag=!0},e):this.reloadFlag=!0},async setDrawerMini(e){this.isdrawerMini=e}}});export{r as u};
