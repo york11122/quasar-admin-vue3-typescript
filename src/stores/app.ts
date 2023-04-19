@@ -3,22 +3,17 @@ import { nextTick } from "vue"
 
 interface APP {
     reloadFlag: boolean;
-    showLeftDrawer: boolean;
 }
 
 export const useAppStore = defineStore("app", {
     state: (): APP => ({
         reloadFlag: true,
-        showLeftDrawer: true
     }),
 
     getters: {
         getReloadFlag(state): boolean {
             return state.reloadFlag;
-        },
-        isShowLeftDrawer(state): boolean {
-            return state.showLeftDrawer;
-        },
+        }
     },
 
     actions: {
@@ -32,10 +27,6 @@ export const useAppStore = defineStore("app", {
             } else {
                 this.reloadFlag = true;
             }
-        },
-
-        openLeftDrawer(showLeftDrawer: boolean) {
-            this.showLeftDrawer = showLeftDrawer;
         }
     },
 });

@@ -52,17 +52,8 @@ const appStore = useAppStore();
 const keepAliveStore = useKeepAliveStore();
 const drawerRef = ref<typeof Drawer | null>(null)
 const isDrawerOpen = ref<boolean>(false)
-
-const toggleLeftDrawerOpen = () => {
-  drawerRef.value?.toggleDrawerOpen();
-}
-
 const toggleLeftDrawer = () => {
   drawerRef.value?.toggleDrawer();
-}
-
-const toggleLeftDrawerMini = () => {
-  drawerRef.value?.toggleDrawerMini();
 }
 
 </script>

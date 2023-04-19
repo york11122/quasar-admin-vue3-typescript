@@ -32,10 +32,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Route } from "src/types/index"
 import { openURL } from "quasar"
+import { useThemeStore } from "src/stores/theme"
+import { storeToRefs } from "pinia"
 defineOptions({ name: "BaseMenuItem" })
 
 interface Props {
@@ -46,8 +48,12 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), { myRouter: () => [] as Route[], initLevel: 0, duration: 150, basePath: "" })
+
 const route = useRoute();
 const router = useRouter();
+const themeStore = useThemeStore()
+
+const { primaryColor, activeTextColor, activeBgColor } = storeToRefs(themeStore)
 
 const baseItemClassWithNoChildren = computed(() => {
   return (path: any) => {
@@ -77,60 +83,58 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
 </script>
 
 <style lang="scss" scoped>
-.body--light {
-  .base-menu-item {
-    color: $ITEM_COLOR !important;
+.base-menu-item {
+  color: $ITEM_COLOR !important;
 
-    .baseRootItemActive {
-      color: $ACTIVE_COLOR !important;
-    }
+  .baseRootItemActive {
+    color: v-bind(primaryColor) !important;
+  }
 
-    .baseItemActive {
-      color: $ACTIVE_COLOR !important;
-      background: $ACTIVE_BACKGROUND;
-      transition: all 0.618s;
-      font-weight: bold;
+  .baseItemActive {
+    color: v-bind(activeTextColor) !important;
+    background: v-bind(activeBgColor);
+    transition: all 0.618s;
+    font-weight: bold;
 
-      &:after {
-        content: "";
-        position: absolute;
-        width: 3px;
-        height: 100%;
-        background: $ACTIVE_COLOR !important;
-        top: 0;
-        right: 0;
-      }
+    &:after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 100%;
+      background: v-bind(primaryColor) !important;
+      top: 0;
+      right: 0;
     }
   }
 }
 
-.body--dark {
+// .body--dark {
 
-  .base-menu-item {
-    color: $ITEM_COLOR_DARK !important;
+//   .base-menu-item {
+//     color: $ITEM_COLOR_DARK !important;
 
-    .baseRootItemActive {
-      color: $ACTIVE_COLOR_DARK !important;
-    }
+//     .baseRootItemActive {
+//       color: $ACTIVE_COLOR_DARK !important;
+//     }
 
-    .baseItemActive {
-      color: $ACTIVE_COLOR_DARK !important;
-      background: $ACTIVE_BACKGROUND_DARK;
-      transition: all 0.618s;
-      font-weight: bold;
+//     .baseItemActive {
+//       color: $ACTIVE_COLOR_DARK !important;
+//       background: $ACTIVE_BACKGROUND_DARK;
+//       transition: all 0.618s;
+//       font-weight: bold;
 
-      &:after {
-        content: "";
-        position: absolute;
-        width: 3px;
-        height: 100%;
-        background: $ACTIVE_COLOR_DARK !important;
-        top: 0;
-        right: 0;
-      }
-    }
-  }
-}
+//       &:after {
+//         content: "";
+//         position: absolute;
+//         width: 3px;
+//         height: 100%;
+//         background: $ACTIVE_COLOR_DARK !important;
+//         top: 0;
+//         right: 0;
+//       }
+//     }
+//   }
+// }
 </style>
 
 
