@@ -1,8 +1,9 @@
 <template>
-  <q-drawer v-model="_modelValue" :mini="isMini" :width="230" show-if-above bordered :mini-to-overlay="isMiniOverlay"
-    @mouseover="handleLeftDrawerMouse(MouseEvent.Over)" @mouseout="handleLeftDrawerMouse(MouseEvent.Out)">
+  <q-drawer v-model="_modelValue" :mini="isdrawerMini" :width="230" show-if-above bordered
+    :mini-to-overlay="isMiniOverlay" @mouseover="handleLeftDrawerMouse(MouseEvent.Over)"
+    @mouseout="handleLeftDrawerMouse(MouseEvent.Out)">
     <div class="absolute-top q-pa-sm" style="height: 50px">
-      <toolbar-title :title="title" style="width: 100%" :mini="isMini" />
+      <toolbar-title :title="title" style="width: 100%" :mini="isdrawerMini" />
       <q-separator spaced="sm" />
     </div>
     <base-menu style="height: calc(100% - 50px); margin-top: 50px" />
@@ -15,6 +16,8 @@ import { useToggle } from "@vueuse/shared";
 import { useVModel } from "@vueuse/core";
 import ToolbarTitle from "src/components/Toolbar/ToolbarTitle.vue";
 import BaseMenu from "src/components/Menu/BaseMenu.vue";
+import { useAppStore } from "src/stores/app"
+import { storeToRefs } from "pinia"
 enum MouseEvent {
   Over = 'mouseover',
   Out = 'mouseout'
@@ -33,17 +36,19 @@ const emit = defineEmits<{
 
 const _modelValue = useVModel(props, "modelValue", emit);
 
-const isMini = ref<boolean>(false);
 const isMiniOpen = ref<boolean>(false);
 const isMiniOverlay = ref<boolean>(false);
 
+const appStore = useAppStore()
+const { isdrawerMini } = storeToRefs(appStore)
+
 const toggleDrawerOpen = useToggle(_modelValue);
-const toggleDrawerMini = useToggle(isMini);
+const toggleDrawerMini = useToggle(isdrawerMini);
 
 //點擊loop 正常-> 縮小-> 關閉-> 正常
 const toggleDrawer = () => {
   if (_modelValue.value) {
-    isMini.value ? toggleDrawerOpen(false) : toggleDrawerMini(true)
+    isdrawerMini.value ? toggleDrawerOpen(false) : toggleDrawerMini(true)
   }
   else {
     toggleDrawerMini(false)
@@ -54,17 +59,17 @@ const toggleDrawer = () => {
 
 const handleLeftDrawerMouse = (type: MouseEvent) => {
   if (_modelValue.value) {
-    if (isMini.value) {
+    if (isdrawerMini.value) {
       if (type === MouseEvent.Over && !isMiniOpen.value) {
         isMiniOverlay.value = true
-        isMini.value = false;
+        isdrawerMini.value = false;
         isMiniOpen.value = true;
       }
     }
     else {
       if (type === MouseEvent.Out && isMiniOpen.value) {
         isMiniOverlay.value = false
-        isMini.value = true;
+        isdrawerMini.value = true;
         isMiniOpen.value = false;
       }
     }

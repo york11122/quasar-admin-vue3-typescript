@@ -19,7 +19,7 @@
 
     <!-- page start -->
     <q-page-container class="app-main full-height">
-      <router-view v-if="appStore.getReloadFlag" v-slot="{ Component, route }">
+      <router-view v-if="appStore.reloadFlag" v-slot="{ Component, route }">
         <transition name="fade-slide" mode="out-in" appear>
           <keep-alive :max="10" :include="keepAliveStore.getKeepAliveList">
             <component :is="Component" :key="route.fullPath" />

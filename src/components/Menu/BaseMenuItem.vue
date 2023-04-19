@@ -20,9 +20,9 @@
         </q-item-section>
       </q-item>
       <!-- has children -->
-      <q-expansion-item v-else :class="baseItemClassWithNoChildren(item.path)" :duration="duration"
-        :default-opened="item.meta?.isOpen" :header-style="initLevel === 0 ? 'padding-left: ;' : ''"
-        :header-inset-level="initLevel" :icon="item.meta?.icon" :label="item.meta?.title">
+      <q-expansion-item v-else :duration="duration" :default-opened="item.meta?.isOpen"
+        :header-style="expansionHeaderStyle(item.path)" :header-inset-level="initLevel" :icon="item.meta?.icon"
+        :label="item.meta?.title">
         <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
         <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
           :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
@@ -35,8 +35,9 @@
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Route } from "src/types/index"
-import { openURL } from "quasar"
+import { Dark, openURL } from "quasar"
 import { useThemeStore } from "src/stores/theme"
+import { useAppStore } from "src/stores/app"
 import { storeToRefs } from "pinia"
 defineOptions({ name: "BaseMenuItem" })
 
@@ -47,19 +48,14 @@ interface Props {
   basePath?: string
 }
 
-withDefaults(defineProps<Props>(), { myRouter: () => [] as Route[], initLevel: 0, duration: 150, basePath: "" })
+const props = withDefaults(defineProps<Props>(), { myRouter: () => [] as Route[], initLevel: 0, duration: 150, basePath: "" })
 
 const route = useRoute();
 const router = useRouter();
 const themeStore = useThemeStore()
+const appStore = useAppStore()
 
 const { primaryColor, activeTextColor, activeBgColor } = storeToRefs(themeStore)
-
-const baseItemClassWithNoChildren = computed(() => {
-  return (path: any) => {
-    return route.fullPath.startsWith(path) ? "baseRootItemActive" : "";
-  };
-});
 
 const handleLink = (basePath: string, itemPath: string) => {
   const link = basePath === "" ? itemPath : basePath + "/" + itemPath;
@@ -80,15 +76,27 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
   router.push(link)
 };
 
+const expansionHeaderStyle = computed(() => {
+  return (path: any) => {
+    let cssString = props.initLevel === 0 ? 'padding-left: ;' : ''
+    cssString += route.fullPath.startsWith(path) ? `color: ${activeTextColor.value};` : ''
+    if (appStore.isdrawerMini) {
+      cssString += route.fullPath.startsWith(path) ? `background: ${activeBgColor.value};` : ""
+    }
+    return cssString
+  }
+})
+
+
 </script>
 
 <style lang="scss" scoped>
 .base-menu-item {
-  color: $ITEM_COLOR !important;
+  color: #2c3e50 !important;
 
-  .baseRootItemActive {
-    color: v-bind(primaryColor) !important;
-  }
+  // .baseRootItemActive {
+  //   color: v-bind(primaryColor) !important;
+  // }
 
   .baseItemActive {
     color: v-bind(activeTextColor) !important;
@@ -107,34 +115,6 @@ const handleMenuClick = (basePath: string, itemPath: string) => {
     }
   }
 }
-
-// .body--dark {
-
-//   .base-menu-item {
-//     color: $ITEM_COLOR_DARK !important;
-
-//     .baseRootItemActive {
-//       color: $ACTIVE_COLOR_DARK !important;
-//     }
-
-//     .baseItemActive {
-//       color: $ACTIVE_COLOR_DARK !important;
-//       background: $ACTIVE_BACKGROUND_DARK;
-//       transition: all 0.618s;
-//       font-weight: bold;
-
-//       &:after {
-//         content: "";
-//         position: absolute;
-//         width: 3px;
-//         height: 100%;
-//         background: $ACTIVE_COLOR_DARK !important;
-//         top: 0;
-//         right: 0;
-//       }
-//     }
-//   }
-// }
 </style>
 
 

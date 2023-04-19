@@ -2,7 +2,7 @@
   <div class="row" :style="{
     margin: !$q.screen.gt.sm ? '0px 3px 0px 3px' : '0px 15px 0px 5px',
   }">
-    <q-tabs class="tagViewBase col-12" align="left" active-color="primary" active-class="tagActive" dense swipeable
+    <q-tabs class="tagViewBase col-12" align="left" active-color="white" active-class="tagActive" dense swipeable
       inline-label indicator-color="transparent" :breakpoint="0">
       <q-route-tab :to="'/'" :class="tagViewClass('/')" flat dense no-caps>
         <q-icon size="1.1rem" name="home" />
@@ -46,16 +46,21 @@
 
 <script lang="ts" setup>
 import { computed, onUnmounted } from "vue";
-import { useTagViewStore } from "src/stores/tagView";
-import { useKeepAliveStore } from "src/stores/keep-alive";
 import { SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
+import { useTagViewStore } from "src/stores/tagView";
+import { useKeepAliveStore } from "src/stores/keep-alive";
+import { useThemeStore } from "src/stores/theme"
+import { storeToRefs } from "pinia"
 
 defineOptions({ name: "Tagview" });
 
 const route = useRoute();
 const tagViewStore = useTagViewStore();
 const keepAliveStore = useKeepAliveStore();
+const themeStore = useThemeStore()
+
+const { primaryColor, activeTextColor, activeBgColor } = storeToRefs(themeStore)
 
 const removeAllTagView = () => {
   tagViewStore.removeAllTagView();
@@ -95,55 +100,29 @@ const unSubscribe = tagViewStore.$subscribe((mutation, state) => {
 </script>
 
 <style lang="scss" scoped>
-.body--light {
-  .tagViewBase {
-    background-color: white;
+.tagViewBase {
+  .tagView {
+    margin: 4px 3px 2px 3px;
+    min-height: 20px;
+    padding: 0 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $grey-4;
+    border-radius: 4px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .tagView {
-      margin: 4px 3px 2px 3px;
-      min-height: 20px;
-      padding: 0 10px;
-      border-style: solid;
-      border-width: 1px;
-      border-color: $grey-4;
-      border-radius: 4px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tagActive {
-      color: $ACTIVE_COLOR !important;
-      background: $ACTIVE_BACKGROUND;
-    }
+  .tagActive {
+    font-weight: bold;
+    color: v-bind(activeTextColor) !important;
+    background: v-bind(activeBgColor) !important;
   }
 }
 
-.body--dark {
-  .tagViewBase {
-    background-color: $ACTIVE_BACKGROUND_DARK;
 
-    .tagView {
-      margin: 4px 3px 2px 3px;
-      min-height: 20px;
-      padding: 0 10px;
-      border-style: solid;
-      border-width: 0.5px;
-      border-color: $grey-4;
-      border-radius: 4px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tagActive {
-      color: $ACTIVE_COLOR !important;
-      background: $ACTIVE_BACKGROUND;
-    }
-  }
-}
 
 .tagView-remove-icon {
   // font-size: .7rem;
