@@ -1,8 +1,10 @@
 <template>
     <q-dialog v-model="openSettingPanel" full-height position="right">
         <q-card style="width: 350px">
-            <q-card-section>
+            <q-card-section class="row">
                 <div class="text-weight-bold text-h6">系統設定</div>
+                <q-space />
+                <q-btn icon="close" flat round dense v-close-popup />
             </q-card-section>
             <q-separator />
             <q-card-section class="q-gutter-sm">
@@ -18,9 +20,11 @@
                 <q-toggle v-model="isDrawerMini" color="primary" checked-icon="check" unchecked-icon="clear" />
                 <DarkMode />
             </q-card-section>
-
         </q-card>
     </q-dialog>
+
+    <q-btn class="fixed" size="17px" unelevated color="primary" style="right: 5px; top: 250px; z-index:1" dense
+        icon="fa-regular fa-gear" @click="toggleSettingPanel()" />
 </template>
 
 <script setup lang="ts">

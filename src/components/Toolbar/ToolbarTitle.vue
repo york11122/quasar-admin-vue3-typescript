@@ -1,5 +1,5 @@
 <template>
-  <q-btn color="primary" :style="{ background: activeBgColor }" flat no-caps no-wrap @click="$router.push('/')">
+  <q-btn flat no-caps no-wrap @click="$router.push('/')">
     <q-icon name="fa-solid fa-shield-dog" />
     <q-toolbar-title v-if="!mini" shrink class="text-weight-bold">
       {{ title }}

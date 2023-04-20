@@ -19,6 +19,10 @@ export const useThemeStore = defineStore("theme", {
     primaryColor(state): string {
       return state.primary;
     },
+    baseBgColor(state): string {
+      return Dark.isActive ? darkPageColor : "#f7f9fa";
+    },
+
     activeBgColor(state): string {
       if (Dark.isActive) {
         return lighten(darkColor, 15);
@@ -33,6 +37,21 @@ export const useThemeStore = defineStore("theme", {
       }
       return luminosity(state.primary) > 0.4 ? "#ffffff" : state.primary;
     },
+
+    drawerBgColor(state): string {
+      return Dark.isActive ? darkPageColor : state.primary;
+    },
+
+    drawerTextColor(state): string {
+      return luminosity(state.primary) > 0.4 ? "#000000" : "#ffffff";
+    },
+
+    headerBgColor(state): string {
+      return Dark.isActive ? darkColor : "#ffffff";
+    },
+    headerTextColor(state): string {
+      return Dark.isActive ? "#ffffff" : "#000000";
+    }
   },
 
   actions: {

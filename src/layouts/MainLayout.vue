@@ -6,16 +6,10 @@
         <div class="q-pr-md">
           <q-btn flat dense round aria-label="Menu" :icon="isDrawerOpen ? 'menu_open' : 'menu'"
             @click="toggleLeftDrawer()" />
-
-
         </div>
-        <breadcrumbs :show-icon="false" v-if="$q.screen.gt.sm" />
+        <breadcrumbs class="text-weight-bold" :show-icon="false" v-if="$q.screen.gt.sm" />
         <q-space />
         <toolbar-item />
-        <div class="q-pa-xs" />
-        <q-btn flat dense round icon="fa-solid fa-gear" @click="toggleSettingPanel()">
-          <q-tooltip>系統設定</q-tooltip>
-        </q-btn>
       </q-toolbar>
       <q-separator />
       <tagview />
@@ -55,6 +49,12 @@ import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue";
 import Drawer from 'src/components/Drawer/Drawer.vue';
 import Setting from "src/components/Setting/Setting.vue";
 
+import { useThemeStore } from "src/stores/theme"
+import { storeToRefs } from "pinia"
+
+const themeStore = useThemeStore()
+const { headerBgColor, headerTextColor } = storeToRefs(themeStore)
+
 const appStore = useAppStore();
 const keepAliveStore = useKeepAliveStore();
 
@@ -72,18 +72,9 @@ const toggleSettingPanel = () => {
 </script>
 
 <style lang="scss" scoped>
-.body--light {
-  .header {
-    color: black;
-    background-color: white;
-  }
-}
-
-.body--dark {
-  .header {
-    color: white;
-    background-color: $dark;
-  }
+.header {
+  color: v-bind(headerTextColor);
+  background: v-bind(headerBgColor);
 }
 
 /* fade-slide */

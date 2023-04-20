@@ -1,5 +1,5 @@
 <template>
-  <q-page class="fit" :padding="padding">
+  <q-page class="fit page" :padding="padding">
     <q-scroll-area v-if="scrollable" ref="scrollArea" :thumb-style="thumbStyle" :visible="false" style="height: 100%"
       :content-active-style="contentActiveStyle" @scroll="onScroll">
       <slot></slot>
@@ -7,7 +7,7 @@
     <slot v-else></slot>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-        <q-btn class="toTopBtn" fab padding="10px" v-show="showToTopBtn" icon="expand_less" @click="toTop" />
+        <q-btn color="primary" fab padding="10px" v-show="showToTopBtn" icon="expand_less" @click="toTop" />
       </transition>
     </q-page-sticky>
   </q-page>
@@ -17,6 +17,8 @@
 import { ref, onMounted, onUnmounted, onActivated, onDeactivated } from "vue";
 import { QScrollArea, SessionStorage } from "quasar";
 import { useRoute } from "vue-router";
+import { useThemeStore } from "src/stores/theme";
+import { storeToRefs } from "pinia";
 
 defineOptions({ name: "BaseContent" });
 
@@ -59,6 +61,10 @@ const route = useRoute();
 const scrollArea = ref<QScrollArea | null>(null);
 const basePath = ref<string>("");
 const showToTopBtn = ref<boolean>(false);
+
+
+const themeStore = useThemeStore()
+const { baseBgColor } = storeToRefs(themeStore)
 
 const scrollToPosition = (value: number, duration: number = 0) => {
   scrollArea.value?.setScrollPosition("vertical", value, duration);
@@ -105,21 +111,7 @@ onDeactivated(() => {
 </script>
 
 <style lang="scss" scoped>
-.body--light {
-  .toTopBtn {
-    color: white;
-    background-color: $primary;
-  }
-}
-
-.body--dark {
-  .toTopBtn {
-    color: $ACTIVE_COLOR_DARK;
-    background-color: $ITEM_COLOR_DARK;
-  }
-
-  .base-item {
-    background-color: $ACTIVE_BACKGROUND_DARK;
-  }
+.page {
+  background: v-bind(baseBgColor);
 }
 </style>
