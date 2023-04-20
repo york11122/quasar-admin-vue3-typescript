@@ -14,15 +14,15 @@
       </q-card-section>
       <q-card-section align="center" class="fit q-gutter-y-sm">
         <q-form ref="loginForm" class="custom-form-error-message">
-          <q-input v-model="_username" placeholder="請輸入帳號" dense clearable outlined no-error-icon lazy-rules
+          <q-input v-model="username" placeholder="請輸入帳號" dense clearable outlined no-error-icon lazy-rules
             :rules="[(val) => !!val || '請輸入帳號']" />
-          <q-input v-model="_password" placeholder="請輸入密碼" dense outlined no-error-icon
-            :type="isPwd ? 'password' : 'text'" lazy-rules :rules="[(val) => !!val || '請輸入密碼']">
+          <q-input v-model="password" placeholder="請輸入密碼" dense outlined no-error-icon :type="isPwd ? 'password' : 'text'"
+            lazy-rules :rules="[(val) => !!val || '請輸入密碼']">
             <template v-slot:append>
               <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
             </template>
           </q-input>
-          <q-btn class="full-width" size="1.2em" rounded unelevated color="primary" :loading="_loading"
+          <q-btn class="full-width" size="1.2em" rounded unelevated color="primary" :loading="loading"
             @click="onLoginClick">
             登入
           </q-btn>
@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useVModel } from "@vueuse/core";
+import { useVModels } from "@vueuse/core";
 import { QForm } from "quasar";
 import DarkMode from "src/components/Toolbar/DarkMode.vue";
 
@@ -70,9 +70,7 @@ const emit = defineEmits<{
 
 const isPwd = ref<boolean>(true);
 const loginForm = ref<QForm | null>(null);
-const _username = useVModel(props, "username", emit);
-const _password = useVModel(props, "password", emit);
-const _loading = useVModel(props, "loading", emit);
+const { username, password, loading, message } = useVModels(props, emit);
 
 const onLoginClick = async () => {
   const success = await loginForm.value?.validate();

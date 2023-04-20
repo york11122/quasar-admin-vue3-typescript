@@ -6,10 +6,16 @@
         <div class="q-pr-md">
           <q-btn flat dense round aria-label="Menu" :icon="isDrawerOpen ? 'menu_open' : 'menu'"
             @click="toggleLeftDrawer()" />
+
+
         </div>
         <breadcrumbs :show-icon="false" v-if="$q.screen.gt.sm" />
         <q-space />
         <toolbar-item />
+        <div class="q-pa-xs" />
+        <q-btn flat dense round icon="fa-solid fa-gear" @click="toggleSettingPanel()">
+          <q-tooltip>系統設定</q-tooltip>
+        </q-btn>
       </q-toolbar>
       <q-separator />
       <tagview />
@@ -17,6 +23,7 @@
 
     <drawer ref="drawerRef" v-model="isDrawerOpen" title="Windripple" />
 
+    <setting ref="settingRef" />
     <!-- page start -->
     <q-page-container class="app-main full-height">
       <router-view v-if="appStore.reloadFlag" v-slot="{ Component, route }">
@@ -46,14 +53,20 @@ import Tagview from "src/components/Tagview/Tagview.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue";
 import Drawer from 'src/components/Drawer/Drawer.vue';
-
+import Setting from "src/components/Setting/Setting.vue";
 
 const appStore = useAppStore();
 const keepAliveStore = useKeepAliveStore();
-const drawerRef = ref<typeof Drawer | null>(null)
+
+const drawerRef = ref<typeof Drawer | null>(null);
 const isDrawerOpen = ref<boolean>(false)
 const toggleLeftDrawer = () => {
   drawerRef.value?.toggleDrawer();
+}
+
+const settingRef = ref<typeof Setting | null>(null);
+const toggleSettingPanel = () => {
+  settingRef.value?.toggleSettingPanel();
 }
 
 </script>

@@ -11,10 +11,16 @@
     </q-btn>
 
     <dark-mode />
+
+    <q-btn dense flat icon="refresh" @click="appStore.reloadPage(200)" v-if="$q.screen.gt.sm">
+      <q-tooltip>重新整理</q-tooltip>
+    </q-btn>
+
     <q-btn round dense flat icon="notifications">
       <q-badge color="red" text-color="" floating> 2 </q-badge>
       <q-tooltip>通知</q-tooltip>
     </q-btn>
+
     <q-btn round flat>
       <q-avatar color="primary" text-color="white">
         {{ userStore.getFirstCharacterOfUserName }}
@@ -47,9 +53,7 @@
 
       <q-tooltip>使用者</q-tooltip>
     </q-btn>
-    <q-btn dense flat icon="refresh" @click="appStore.reloadPage(200)" v-if="$q.screen.gt.sm">
-      <q-tooltip>重新整理</q-tooltip>
-    </q-btn>
+
   </div>
 </template>
 

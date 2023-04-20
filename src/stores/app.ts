@@ -3,13 +3,13 @@ import { nextTick } from "vue";
 
 interface APP {
   reloadFlag: boolean;
-  isdrawerMini: boolean;
+  isDrawerMini: boolean;
 }
 
 export const useAppStore = defineStore("app", {
   state: (): APP => ({
     reloadFlag: true,
-    isdrawerMini: false,
+    isDrawerMini: false,
   }),
 
   getters: {},
@@ -27,8 +27,10 @@ export const useAppStore = defineStore("app", {
       }
     },
 
-    async setDrawerMini(mini: boolean) {
-      this.isdrawerMini = mini;
+    setDrawerMini(mini: boolean) {
+      this.isDrawerMini = mini;
     },
+
+
   },
 });

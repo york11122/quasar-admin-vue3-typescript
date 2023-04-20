@@ -1,9 +1,9 @@
 <template>
-  <q-drawer v-model="_modelValue" :mini="isdrawerMini" :width="230" show-if-above bordered
+  <q-drawer v-model="_modelValue" :mini="isDrawerMini" :width="230" show-if-above bordered
     :mini-to-overlay="isMiniOverlay" @mouseover="handleLeftDrawerMouse(MouseEvent.Over)"
     @mouseout="handleLeftDrawerMouse(MouseEvent.Out)">
     <div class="absolute-top q-pa-sm" style="height: 50px">
-      <toolbar-title :title="title" style="width: 100%" :mini="isdrawerMini" />
+      <toolbar-title :title="title" style="width: 100%" :mini="isDrawerMini" />
       <q-separator spaced="sm" />
     </div>
     <base-menu style="height: calc(100% - 50px); margin-top: 50px" />
@@ -40,15 +40,15 @@ const isMiniOpen = ref<boolean>(false);
 const isMiniOverlay = ref<boolean>(false);
 
 const appStore = useAppStore()
-const { isdrawerMini } = storeToRefs(appStore)
+const { isDrawerMini } = storeToRefs(appStore)
 
 const toggleDrawerOpen = useToggle(_modelValue);
-const toggleDrawerMini = useToggle(isdrawerMini);
+const toggleDrawerMini = useToggle(isDrawerMini);
 
 //點擊loop 正常-> 縮小-> 關閉-> 正常
 const toggleDrawer = () => {
   if (_modelValue.value) {
-    isdrawerMini.value ? toggleDrawerOpen(false) : toggleDrawerMini(true)
+    isDrawerMini.value ? toggleDrawerOpen(false) : toggleDrawerMini(true)
   }
   else {
     toggleDrawerMini(false)
@@ -59,17 +59,17 @@ const toggleDrawer = () => {
 
 const handleLeftDrawerMouse = (type: MouseEvent) => {
   if (_modelValue.value) {
-    if (isdrawerMini.value) {
+    if (isDrawerMini.value) {
       if (type === MouseEvent.Over && !isMiniOpen.value) {
         isMiniOverlay.value = true
-        isdrawerMini.value = false;
+        isDrawerMini.value = false;
         isMiniOpen.value = true;
       }
     }
     else {
       if (type === MouseEvent.Out && isMiniOpen.value) {
         isMiniOverlay.value = false
-        isdrawerMini.value = true;
+        isDrawerMini.value = true;
         isMiniOpen.value = false;
       }
     }
