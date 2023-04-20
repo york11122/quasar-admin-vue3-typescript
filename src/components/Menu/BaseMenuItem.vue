@@ -80,7 +80,7 @@ const expansionHeaderStyle = computed(() => {
   return (path: any) => {
     let cssString = props.initLevel === 0 ? 'padding-left: ;' : ''
     cssString += route.fullPath.startsWith(path) ? `color: ${activeTextColor.value};` : ''
-    if (appStore.isdrawerMini) {
+    if (appStore.isDrawerMini) {
       cssString += route.fullPath.startsWith(path) ? `background: ${activeBgColor.value};` : ""
     }
     return cssString
