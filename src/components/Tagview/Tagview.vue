@@ -6,12 +6,12 @@
       inline-label indicator-color="transparent" :breakpoint="0">
       <q-route-tab :to="'/'" :class="tagViewClass('/')" flat dense no-caps>
         <q-icon size="1.1rem" name="home" />
-        <div class="line-limit-length">首頁</div>
+        <div class="line-limit-length">{{ $t("router.home") }}</div>
       </q-route-tab>
       <template v-for="(tag, i) in tagViewStore.tagView" :key="tag.fullPath + i">
         <q-route-tab :to="tag.fullPath" :class="tagViewClass(tag.fullPath)" flat dense no-caps>
           <q-icon size="1.1rem" :name="tag.icon" />
-          <div class="line-limit-length">{{ tag.title }}</div>
+          <div class="line-limit-length"> {{ $t(tag.title) }}</div>
           <q-btn class="tagView-remove-icon" style="display: inline-flex" round size="0.45em" flat icon="close"
             @click.prevent.stop="removetagViewAt(i)" />
           <q-menu touch-position context-menu>

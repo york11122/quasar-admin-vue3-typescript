@@ -1,5 +1,7 @@
-import enUS from './en-US';
+import enUS from "./en-US";
+import zhTW from "./zh-TW";
 
 export default {
-  'en-US': enUS
+  "en-US": enUS,
+  "zh-TW": zhTW,
 };

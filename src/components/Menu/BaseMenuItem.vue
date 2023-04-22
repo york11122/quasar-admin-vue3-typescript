@@ -13,7 +13,7 @@
           <q-icon :name="item.meta?.icon" />
         </q-item-section>
         <q-item-section>
-          {{ item.meta?.title }}
+          {{ item.meta ? $t(item.meta?.title) : "" }}
         </q-item-section>
         <q-item-section v-if="handleLink(basePath, item.path) === '#'" side>
           <q-icon name="fa-solid fa-up-right-from-square" size="10px" />
@@ -22,7 +22,7 @@
       <!-- has children -->
       <q-expansion-item v-else :duration="duration" :default-opened="item.meta?.isOpen"
         :header-style="expansionHeaderStyle(item.path)" :header-inset-level="initLevel" :icon="item.meta?.icon"
-        :label="item.meta?.title">
+        :label="item.meta ? $t(item.meta?.title) : ''">
         <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
         <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
           :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />

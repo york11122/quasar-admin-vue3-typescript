@@ -1,7 +1,23 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful'
+  router: {
+    home: "Home",
+    chart: "Chart",
+    talbe: "Table",
+    calendar: "Calendar",
+    permission: "Permission",
+    directive: "Directive",
+    routerPermission: "Router Permission",
+    markdown: "Markdown",
+    markdownViewer: "Viewer",
+    markdownEditor: "Editor",
+    lottie: "Lottie",
+    menu1: "Expandtion Menu",
+    menu2: "Menu level 2",
+    menu3: "Menu 3",
+    externalLink: "External Link",
+    typeScript: "TypeScript",
+    vite: "Vite",
+    vue3: "Vue3",
+    quasar: "Quasar",
+  },
 };

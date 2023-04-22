@@ -1,0 +1,23 @@
+export default {
+  router: {
+    home: "首頁",
+    chart: "圖表",
+    talbe: "表格",
+    calendar: "日曆",
+    permission: "權限",
+    directive: "權限指令",
+    routerPermission: "路由權限",
+    markdown: "Markdown",
+    markdownViewer: "預覽",
+    markdownEditor: "編輯器",
+    lottie: "Lottie",
+    menu1: "多層目錄",
+    menu2: "第二層",
+    menu3: "第三層",
+    externalLink: "外部連結",
+    typeScript: "TypeScript",
+    vite: "Vite",
+    vue3: "Vue3",
+    quasar: "Quasar",
+  },
+};

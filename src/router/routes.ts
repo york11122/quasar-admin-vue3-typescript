@@ -18,7 +18,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/",
     name: "home",
     meta: {
-      title: "首頁",
+      title: "router.home",
       icon: "home",
     },
   },
@@ -27,7 +27,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/chart",
     name: "Chart",
     meta: {
-      title: "圖表",
+      title: "router.chart",
       icon: "insert_chart_outlined",
     },
   },
@@ -36,7 +36,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/table",
     name: "FitTable",
     meta: {
-      title: "Table",
+      title: "router.talbe",
       icon: "table_view",
     },
   },
@@ -45,7 +45,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/calendar",
     name: "Calendar",
     meta: {
-      title: "月曆",
+      title: "router.calendar",
       icon: "fa-solid fa-calendar-days",
     },
   },
@@ -54,7 +54,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/permission",
     name: "Permission",
     meta: {
-      title: "權限控管",
+      title: "router.permission",
       icon: "verified_user",
       isOpen: true,
     },
@@ -64,17 +64,17 @@ const asyncRoutesChildren: Route[] = [
         path: "directive",
         name: "Directive",
         meta: {
-          title: "組件權限",
+          title: "router.directive",
           icon: "how_to_reg",
           keepAlive: true,
         },
       },
       {
         component: () => import("pages/permission/Permission.vue"),
-        path: "permission",
+        path: "router-permission",
         name: "Permission",
         meta: {
-          title: "路由權限",
+          title: "router.routerPermission",
           icon: "where_to_vote",
           keepAlive: true,
           roles: ["admin"],
@@ -87,7 +87,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/markdown",
     name: "markdown",
     meta: {
-      title: "markdown",
+      title: "router.markdown",
       icon: "fa-brands fa-markdown",
       keepAlive: false,
       isOpen: true,
@@ -98,7 +98,7 @@ const asyncRoutesChildren: Route[] = [
         path: "md-viewer",
         name: "MDViewer",
         meta: {
-          title: "MD呈現",
+          title: "router.markdownViewer",
           icon: "article",
           keepAlive: true,
         },
@@ -108,7 +108,7 @@ const asyncRoutesChildren: Route[] = [
         path: "md-editor",
         name: "MDEditor",
         meta: {
-          title: "編輯器",
+          title: "router.markdownEditor",
           icon: "edit_note",
           keepAlive: true,
         },
@@ -120,7 +120,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/lottie",
     name: "Lottie",
     meta: {
-      title: "Lottie動畫",
+      title: "router.lottie",
       icon: "animation",
       keepAlive: false,
       roles: ["admin"],
@@ -131,7 +131,7 @@ const asyncRoutesChildren: Route[] = [
     path: "/menu1",
     name: "menu1",
     meta: {
-      title: "摺疊目錄",
+      title: "router.menu1",
       icon: "filter_1",
       isOpen: false,
     },
@@ -141,7 +141,7 @@ const asyncRoutesChildren: Route[] = [
         path: "menu2",
         name: "menu2",
         meta: {
-          title: "第一層",
+          title: "router.menu2",
           icon: "filter_2",
         },
         children: [
@@ -150,7 +150,7 @@ const asyncRoutesChildren: Route[] = [
             path: "menu3",
             name: "menu3",
             meta: {
-              title: "第二層",
+              title: "router.menu3",
               icon: "filter_3",
             },
           },
@@ -160,10 +160,10 @@ const asyncRoutesChildren: Route[] = [
   },
   {
     component: layout,
-    path: "/docs",
-    name: "docs",
+    path: "/externalLink",
+    name: "externalLink",
     meta: {
-      title: "外部資訊",
+      title: "router.externalLink",
       icon: "description",
       isOpen: false,
     },
@@ -173,7 +173,7 @@ const asyncRoutesChildren: Route[] = [
         path: "ts",
         name: "TypeScript",
         meta: {
-          title: "TypeScript",
+          title: "router.typeScript",
           icon: "fa-brands fa-js",
         },
       },
@@ -182,7 +182,7 @@ const asyncRoutesChildren: Route[] = [
         path: "vite",
         name: "Vite",
         meta: {
-          title: "Vite",
+          title: "router.vite",
           icon: "fa-solid fa-file-code",
         },
       },
@@ -190,7 +190,7 @@ const asyncRoutesChildren: Route[] = [
         path: "https://vuejs.org/",
         name: "Vue3",
         meta: {
-          title: "Vue3",
+          title: "router.vue3",
           icon: "fa-brands fa-vuejs",
         },
       },
@@ -198,7 +198,7 @@ const asyncRoutesChildren: Route[] = [
         path: "https://quasar.dev/",
         name: "Quasar",
         meta: {
-          title: "Quasar",
+          title: "router.quasar",
           icon: "fa-solid fa-file-code",
         },
       },

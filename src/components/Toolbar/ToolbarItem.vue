@@ -1,5 +1,8 @@
 <template>
   <div class="q-gutter-sm row items-center no-wrap">
+    <q-separator vertical />
+    <LangSelector />
+    <q-separator vertical />
     <q-btn dense flat icon="fa-brands fa-github" href="https://github.com/york11122/quasar-admin-vue3-typescript"
       target="_blank">
       <q-tooltip>github</q-tooltip>
@@ -15,6 +18,7 @@
     <q-btn dense flat icon="refresh" @click="appStore.reloadPage(200)" v-if="$q.screen.gt.sm">
       <q-tooltip>重新整理</q-tooltip>
     </q-btn>
+
 
     <q-btn round dense flat icon="notifications">
       <q-badge color="red" text-color="" floating> 2 </q-badge>
@@ -58,10 +62,10 @@
 </template>
 
 <script lang="ts" setup>
-import { inject } from "vue"
 import { useUserStore } from "src/stores/user";
 import DarkMode from "src/components/Toolbar/DarkMode.vue";
 import { useAppStore } from "src/stores/app"
+import LangSelector from "src/components/Toolbar/LangSelector.vue"
 
 defineOptions({ name: "ToolbarItem" });
 
