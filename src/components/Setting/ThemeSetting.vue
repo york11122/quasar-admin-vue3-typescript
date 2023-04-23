@@ -2,18 +2,18 @@
   <q-dialog v-model="openSettingPanel" full-height position="right">
     <q-card style="width: 350px">
       <q-card-section class="row">
-        <div class="text-weight-bold text-h6">系統設定</div>
+        <div class="text-weight-bold text-h6">{{ $t('themeSetting.title') }}</div>
         <q-space />
         <q-btn icon="close" flat round dense v-close-popup />
       </q-card-section>
       <q-separator />
       <q-card-section class="q-gutter-sm">
-        <div class="text-weight-bold text-subtitle2">主題顏色</div>
+        <div class="text-weight-bold text-subtitle2">{{ $t('themeSetting.themeColor') }}</div>
         <q-color v-model="hex" flat bordered no-header-tabs @change="handleColorChange" />
       </q-card-section>
       <q-separator />
       <q-card-section class="q-gutter-sm">
-        <div class="text-weight-bold text-subtitle2">設定</div>
+        <div class="text-weight-bold text-subtitle2">{{ $t('themeSetting.setting') }}</div>
         <q-toggle v-model="isDrawerMini" color="primary" checked-icon="check" unchecked-icon="clear" />
         <DarkMode />
       </q-card-section>
@@ -32,7 +32,7 @@ import { useAppStore } from "src/stores/app"
 import { storeToRefs } from "pinia"
 import DarkMode from "../Toolbar/DarkMode.vue";
 
-defineOptions({ name: "Setting" })
+defineOptions({ name: "ThemeSetting" })
 
 const openSettingPanel = ref<boolean>(false)
 const toggleSettingPanel = useToggle(openSettingPanel);

@@ -17,7 +17,7 @@
 
     <drawer ref="drawerRef" v-model="isDrawerOpen" title="Windripple" />
 
-    <setting ref="settingRef" />
+    <theme-setting ref="settingRef" />
     <!-- page start -->
     <q-page-container class="app-main full-height">
       <router-view v-if="appStore.reloadFlag" v-slot="{ Component, route }">
@@ -47,7 +47,7 @@ import Tagview from "src/components/Tagview/Tagview.vue";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs.vue";
 import ToolbarItem from "src/components/Toolbar/ToolbarItem.vue";
 import Drawer from 'src/components/Drawer/Drawer.vue';
-import Setting from "src/components/Setting/Setting.vue";
+import ThemeSetting from "src/components/Setting/ThemeSetting.vue";
 
 import { useThemeStore } from "src/stores/theme"
 import { storeToRefs } from "pinia"
@@ -64,7 +64,7 @@ const toggleLeftDrawer = () => {
   drawerRef.value?.toggleDrawer();
 }
 
-const settingRef = ref<typeof Setting | null>(null);
+const settingRef = ref<typeof ThemeSetting | null>(null);
 const toggleSettingPanel = () => {
   settingRef.value?.toggleSettingPanel();
 }

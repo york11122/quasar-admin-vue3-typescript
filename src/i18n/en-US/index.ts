@@ -29,4 +29,10 @@ export default {
     content:
       "Only an admin can view this page. If the current user does not have admin permissions, this page will be hidden from the menu and will not be registered with the router.",
   },
+
+  themeSetting: {
+    title: "Theme Setting",
+    themeColor: "Theme Color",
+    setting: "Setting",
+  },
 };

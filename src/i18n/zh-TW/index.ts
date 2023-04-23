@@ -29,4 +29,10 @@ export default {
     content:
       "只有管理員可以查看此頁面。如果當前用戶沒有管理員權限，此頁面將從選單中隱藏且不會被註冊到路由器中。",
   },
+
+  themeSetting: {
+    title: "主題設定",
+    themeColor: "主題顏色",
+    setting: "設定",
+  },
 };
