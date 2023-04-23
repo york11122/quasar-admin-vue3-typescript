@@ -2,6 +2,8 @@
 
 Demo: [https://york11122.github.io/quasar-admin-vue3-typescript/](https://york11122.github.io/quasar-admin-vue3-typescript/)
 
+![IMG_0089](https://user-images.githubusercontent.com/21119213/233841029-643ff5fe-294d-4449-a512-049915de7051.jpeg)
+
 記錄過往遇過的功能
 使用 [Vue3](https://vuejs.org/) + [Pinia ](https://pinia.vuejs.org/)+ [TypeScript ](https://www.typescriptlang.org/)+ [Quasar ](https://quasar.dev/)
 重新封裝組件，當做學習紀錄
