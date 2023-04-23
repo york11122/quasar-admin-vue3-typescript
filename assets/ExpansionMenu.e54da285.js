@@ -1,1 +1,0 @@
-import{B as t}from"./BaseContent.b69dffc4.js";import{k as e,m as a,n,Q as o,W as r}from"./index.0984c3c0.js";import"./theme.5ceebe71.js";import"./selection.d0b77819.js";const s=e({name:"ExpantionMenu"}),f=e({...s,setup(p){return(_,c)=>(a(),n(t,{padding:""},{default:o(()=>[r(" Page Menu3 ")]),_:1}))}});export{f as default};
