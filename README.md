@@ -3,6 +3,7 @@
 Demo: [https://york11122.github.io/quasar-admin-vue3-typescript/](https://york11122.github.io/quasar-admin-vue3-typescript/)
 
 Built using [Vue3](https://vuejs.org/) + [Pinia ](https://pinia.vuejs.org/)+ [TypeScript ](https://www.typescriptlang.org/)+ [Quasar ](https://quasar.dev/)
+
 Project was created using [quasar-cli](https://quasar.dev/start/quasar-cli)
 
 ![IMG_0089](https://user-images.githubusercontent.com/21119213/233841029-643ff5fe-294d-4449-a512-049915de7051.jpeg)
