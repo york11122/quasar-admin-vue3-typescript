@@ -1,27 +1,31 @@
 <template>
   <base-content scrollable padding>
     <q-card-section class="q-gutter-md">
-      <q-select style="width:200px" outlined label="change user role" v-model="selectedPermission"
+      <q-select style="width:200px" outlined label="user role" v-model="selectedPermission"
         :options="permissionOptions" emit-value @update:model-value="handlePermissionChange" />
       <div class="text-h6">
-        current user permission: {{ userStore.getUserRoles }}
+        {{ $t('permission.currentPermission') }}: {{ userStore.getUserRoles }}
       </div>
-      <div class="text-subtitle2">*super user is fully eligible</div>
+      <div class="text-subtitle2"> {{ $t('permission.description') }}</div>
     </q-card-section>
     <q-card-section class="q-gutter-md">
       <div class="text-h6">v-permission</div>
       <div class="q-gutter-sm">
-        <q-btn v-permission="['admin', 'user']" unelevated color="primary" label="admin & user can see" />
-        <q-btn v-permission="['admin']" unelevated color="primary" label="only admin can see" />
-        <q-btn v-permission="['user']" unelevated color="primary" label="only user can see" />
+        <q-btn v-permission="['admin', 'user']" unelevated color="primary"
+          :label="`admin & user ${$t('permission.canSee')}`" />
+        <q-btn v-permission="['admin']" unelevated color="primary" :label="`admin ${$t('permission.canSee')}`" />
+        <q-btn v-permission="['user']" unelevated color="primary" :label="`user ${$t('permission.canSee')}`" />
       </div>
     </q-card-section>
     <q-card-section class="q-gutter-md">
       <div class="text-h6">hasPermission</div>
       <div class="q-gutter-sm">
-        <q-btn :disable="!hasPermission(['admin', 'user'])" unelevated color="primary" label="admin & user can click" />
-        <q-btn :disable="!hasPermission(['admin'])" unelevated color="primary" label="only admin can click" />
-        <q-btn :disable="!hasPermission(['user'])" unelevated color="primary" label="only user can click" />
+        <q-btn :disable="!hasPermission(['admin', 'user'])" unelevated color="primary"
+          :label="`admin & user ${$t('permission.canClick')}`" />
+        <q-btn :disable="!hasPermission(['admin'])" unelevated color="primary"
+          :label="`admin ${$t('permission.canClick')}`" />
+        <q-btn :disable="!hasPermission(['user'])" unelevated color="primary"
+          :label="`user ${$t('permission.canClick')}`" />
       </div>
     </q-card-section>
   </base-content>

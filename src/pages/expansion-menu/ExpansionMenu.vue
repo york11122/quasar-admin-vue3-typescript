@@ -1,6 +1,6 @@
 <template>
-  <base-content>
-    on structure
+  <base-content padding>
+    Page Menu3
   </base-content>
 </template>
 

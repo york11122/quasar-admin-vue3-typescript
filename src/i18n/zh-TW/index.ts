@@ -20,4 +20,13 @@ export default {
     vue3: "Vue3",
     quasar: "Quasar",
   },
+
+  permission: {
+    currentPermission: "當前權限",
+    description: "*super user 有任意權限",
+    canSee: "可見",
+    canClick: "可點擊",
+    content:
+      "只有管理員可以查看此頁面。如果當前用戶沒有管理員權限，此頁面將從選單中隱藏且不會被註冊到路由器中。",
+  },
 };
