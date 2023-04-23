@@ -15,7 +15,7 @@
       <tagview />
     </q-header>
 
-    <drawer ref="drawerRef" v-model="isDrawerOpen" title="Windripple" />
+    <drawer ref="drawerRef" v-model="isDrawerOpen" title="Quasar Admin" />
 
     <theme-setting ref="settingRef" />
     <!-- page start -->

@@ -21,6 +21,16 @@ export default {
     quasar: "Quasar",
   },
 
+  layout: {
+    github: "Github",
+    fullScreen: "Full Screen",
+    darkMode: "Dark Mode",
+    lightMode: "Light Mode",
+    refresh: "Refresh Page",
+    notification: "Notification",
+    user: "User",
+  },
+
   permission: {
     currentPermission: "Current Permission",
     description: "*The super user is completely eligible",

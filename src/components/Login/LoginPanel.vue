@@ -5,12 +5,7 @@
     </div>
     <div class="col flex justify-center items-center q-pa-md">
       <q-card-section>
-        <q-btn flat>
-          <q-icon name="fa-solid fa-shield-dog" size="30px" />
-          <q-toolbar-title shrink class="text-weight-bold">
-            Windripple
-          </q-toolbar-title>
-        </q-btn>
+        <ToolbarTitle title="Quasar Admin" size="20px" />
       </q-card-section>
       <q-card-section align="center" class="fit q-gutter-y-sm">
         <q-form ref="loginForm" class="custom-form-error-message">
@@ -44,6 +39,7 @@ import { ref } from "vue";
 import { useVModels } from "@vueuse/core";
 import { QForm } from "quasar";
 import DarkMode from "src/components/Toolbar/DarkMode.vue";
+import ToolbarTitle from '../Toolbar/ToolbarTitle.vue';
 
 defineOptions({ name: "Login" });
 

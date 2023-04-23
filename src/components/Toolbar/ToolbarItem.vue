@@ -5,24 +5,24 @@
     <q-separator vertical />
     <q-btn dense flat icon="fa-brands fa-github" href="https://github.com/york11122/quasar-admin-vue3-typescript"
       target="_blank">
-      <q-tooltip>github</q-tooltip>
+      <q-tooltip>{{ $t('layout.github') }}</q-tooltip>
     </q-btn>
 
     <q-btn dense flat :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'" @click="$q.fullscreen.toggle()"
       v-if="$q.screen.gt.sm">
-      <q-tooltip>全螢幕</q-tooltip>
+      <q-tooltip>{{ $t('layout.fullScreen') }}</q-tooltip>
     </q-btn>
 
     <dark-mode />
 
     <q-btn dense flat icon="refresh" @click="appStore.reloadPage(200)" v-if="$q.screen.gt.sm">
-      <q-tooltip>重新整理</q-tooltip>
+      <q-tooltip>{{ $t('layout.refresh') }}</q-tooltip>
     </q-btn>
 
 
     <q-btn round dense flat icon="notifications">
       <q-badge color="red" text-color="" floating> 2 </q-badge>
-      <q-tooltip>通知</q-tooltip>
+      <q-tooltip>{{ $t('layout.notification') }}</q-tooltip>
     </q-btn>
 
     <q-btn round flat>

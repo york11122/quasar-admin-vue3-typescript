@@ -21,6 +21,16 @@ export default {
     quasar: "Quasar",
   },
 
+  layout: {
+    github: "Github",
+    fullScreen: "全螢幕",
+    darkMode: "深色模式",
+    lightMode: "淺色模式",
+    refresh: "重新整理",
+    notification: "通知",
+    user: "使用者",
+  },
+
   permission: {
     currentPermission: "當前權限",
     description: "*super user 有任意權限",
