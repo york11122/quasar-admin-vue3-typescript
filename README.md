@@ -6,7 +6,7 @@ Built using [Vue3](https://vuejs.org/) + [Pinia ](https://pinia.vuejs.org/)+ [Ty
 
 Project was created using [quasar-cli](https://quasar.dev/start/quasar-cli)
 
-![IMG_0089](https://user-images.githubusercontent.com/21119213/233841029-643ff5fe-294d-4449-a512-049915de7051.jpeg)
+![IMG_0090](https://user-images.githubusercontent.com/21119213/233842368-44f8caa3-1d02-480a-89df-ab092e2e643d.jpeg)
 
 **Structure**
 ``` 
