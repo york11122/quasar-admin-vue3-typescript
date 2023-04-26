@@ -1,1 +1,0 @@
-import{B as s}from"./BaseContent.8ff51c25.js";import{k as t,m as o,n as a,Q as n,B as r,Z as i}from"./index.2f3dbc23.js";import"./QScrollArea.ecc33d4f.js";import"./theme.d79c3fc9.js";const p={class:"text-h6"},c=t({name:"Permission"}),B=t({...c,setup(m){return(e,_)=>(o(),a(s,{padding:""},{default:n(()=>[r("div",p,i(e.$t("permission.content")),1)]),_:1}))}});export{B as default};
