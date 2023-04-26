@@ -1,11 +1,9 @@
 <template>
   <template v-for="(item, index) in myRouter">
-
     <div class="base-menu-item" :key="index" v-if="item.meta?.isHidden !== true">
       <q-item-label v-if="item.meta?.itemLabel" header class="text-weight-bold text-uppercase" :key="item.meta.itemLabel">
         {{ item.meta.itemLabel }}
       </q-item-label>
-
       <!-- no children -->
       <q-item v-if="!item.children" :exact="item.path === '/'" clickable v-ripple :inset-level="initLevel"
         :style="initLevel === 0 ? 'padding-left: ;' : ''" active-class="baseItemActive"
@@ -26,11 +24,11 @@
           :header-style="expansionHeaderStyle(item.path)" :header-inset-level="initLevel" :icon="item.meta?.icon"
           :label="item.meta ? $t(item.meta?.title) : ''">
           <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
-          <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
+          <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2" :layer-level="layerLevel + 1"
             :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
         </q-expansion-item>
         <!-- mini mode -->
-        <q-item v-else :style="expansionHeaderStyle(item.path)">
+        <q-item v-else :style="expansionHeaderStyle(item.path)" clickable v-ripple>
           <q-item-section avatar>
             <q-icon :name="item.meta?.icon" />
           </q-item-section>
@@ -40,12 +38,16 @@
           <q-item-section v-if="handleLink(basePath, item.path) === '#'" side>
             <q-icon name="fa-solid fa-up-right-from-square" size="10px" />
           </q-item-section>
-          <q-menu square anchor="top right" self="top left">
-            <base-menu-item :my-router="item.children"
+          <q-menu square anchor="top right" self="top left" transition-show="scale" transition-hide="scale"
+            :offset="[6, 0]">
+            <base-menu-item :my-router="item.children" :layer-level="layerLevel + 1"
               :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
           </q-menu>
         </q-item>
       </template>
+      <q-tooltip v-if="layerLevel === 0 && isDrawerMini" anchor="center right">
+        {{ item.name }}
+      </q-tooltip>
     </div>
   </template>
 </template>
@@ -64,11 +66,12 @@ defineOptions({ name: "BaseMenuItem" })
 interface Props {
   myRouter: Route[]
   initLevel?: number
+  layerLevel?: number
   duration?: number
   basePath?: string
 }
 
-const props = withDefaults(defineProps<Props>(), { myRouter: () => [] as Route[], initLevel: 0, duration: 150, basePath: "" })
+const props = withDefaults(defineProps<Props>(), { myRouter: () => [] as Route[], layerLevel: 0, initLevel: 0, duration: 150, basePath: "" })
 
 const route = useRoute();
 const router = useRouter();
