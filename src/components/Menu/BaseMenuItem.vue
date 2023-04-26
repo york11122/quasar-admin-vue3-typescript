@@ -1,5 +1,6 @@
 <template>
   <template v-for="(item, index) in myRouter">
+
     <div class="base-menu-item" :key="index" v-if="item.meta?.isHidden !== true">
       <q-item-label v-if="item.meta?.itemLabel" header class="text-weight-bold text-uppercase" :key="item.meta.itemLabel">
         {{ item.meta.itemLabel }}
@@ -20,25 +21,44 @@
         </q-item-section>
       </q-item>
       <!-- has children -->
-      <q-expansion-item v-else :duration="duration" :default-opened="item.meta?.isOpen"
-        :header-style="expansionHeaderStyle(item.path)" :header-inset-level="initLevel" :icon="item.meta?.icon"
-        :label="item.meta ? $t(item.meta?.title) : ''">
-        <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
-        <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
-          :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
-      </q-expansion-item>
+      <template v-else>
+        <q-expansion-item v-if="!isDrawerMini" :duration="duration" :default-opened="item.meta?.isOpen"
+          :header-style="expansionHeaderStyle(item.path)" :header-inset-level="initLevel" :icon="item.meta?.icon"
+          :label="item.meta ? $t(item.meta?.title) : ''">
+          <!-- MenuItem initlevl + 0.2 ; concat parent path if router is existed -->
+          <base-menu-item :my-router="item.children" :init-level="initLevel + 0.2"
+            :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
+        </q-expansion-item>
+        <!-- mini mode -->
+        <q-item v-else :style="expansionHeaderStyle(item.path)">
+          <q-item-section avatar>
+            <q-icon :name="item.meta?.icon" />
+          </q-item-section>
+          <q-item-section>
+            {{ item.meta ? $t(item.meta?.title) : "" }}
+          </q-item-section>
+          <q-item-section v-if="handleLink(basePath, item.path) === '#'" side>
+            <q-icon name="fa-solid fa-up-right-from-square" size="10px" />
+          </q-item-section>
+          <q-menu square anchor="top right" self="top left">
+            <base-menu-item :my-router="item.children"
+              :base-path="basePath === '' ? item.path : basePath + '/' + item.path" :duration="duration" />
+          </q-menu>
+        </q-item>
+      </template>
     </div>
   </template>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Route } from "src/types/index"
-import { Dark, openURL } from "quasar"
+import { Dark, QMenu, openURL } from "quasar"
 import { useThemeStore } from "src/stores/theme"
 import { useAppStore } from "src/stores/app"
 import { storeToRefs } from "pinia"
+
 defineOptions({ name: "BaseMenuItem" })
 
 interface Props {
@@ -56,6 +76,7 @@ const themeStore = useThemeStore()
 const appStore = useAppStore()
 
 const { primaryColor, activeTextColor, activeBgColor } = storeToRefs(themeStore)
+const { isDrawerMini } = storeToRefs(appStore)
 
 const handleLink = (basePath: string, itemPath: string) => {
   const link = basePath === "" ? itemPath : basePath + "/" + itemPath;
@@ -86,8 +107,6 @@ const expansionHeaderStyle = computed(() => {
     return cssString
   }
 })
-
-
 </script>
 
 <style lang="scss" scoped>

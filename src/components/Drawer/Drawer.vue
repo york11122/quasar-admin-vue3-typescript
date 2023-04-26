@@ -59,20 +59,20 @@ const toggleDrawer = () => {
 
 const handleLeftDrawerMouse = (type: MouseEvent) => {
   if (_modelValue.value) {
-    if (isDrawerMini.value) {
-      if (type === MouseEvent.Over && !isMiniOpen.value) {
-        isMiniOverlay.value = true
-        isDrawerMini.value = false;
-        isMiniOpen.value = true;
-      }
-    }
-    else {
-      if (type === MouseEvent.Out && isMiniOpen.value) {
-        isMiniOverlay.value = false
-        isDrawerMini.value = true;
-        isMiniOpen.value = false;
-      }
-    }
+    // if (isDrawerMini.value) {
+    //   if (type === MouseEvent.Over && !isMiniOpen.value) {
+    //     isMiniOverlay.value = true
+    //     isDrawerMini.value = false;
+    //     isMiniOpen.value = true;
+    //   }
+    // }
+    // else {
+    //   if (type === MouseEvent.Out && isMiniOpen.value) {
+    //     isMiniOverlay.value = false
+    //     isDrawerMini.value = true;
+    //     isMiniOpen.value = false;
+    //   }
+    // }
   }
 }
 
