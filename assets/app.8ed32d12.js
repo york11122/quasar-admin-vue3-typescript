@@ -1,0 +1,1 @@
+import{j as a,v as t}from"./index.1847bb47.js";const r=a("app",{state:()=>({reloadFlag:!0,isDrawerMini:!1}),getters:{},actions:{async reloadPage(e=0){this.reloadFlag=!1,await t(),e?setTimeout(()=>{this.reloadFlag=!0},e):this.reloadFlag=!0},setDrawerMini(e){this.isDrawerMini=e}}});export{r as u};
